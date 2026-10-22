@@ -270,11 +270,9 @@ html[lang="th"] .consign-form label > span:not(.photo-error) { font-size: .9rem;
 .form-status { min-height: 24px; margin: 16px 0 0; color: var(--blue); font-size: .9rem; line-height: 1.6; }
 
 /* ---------- Contact + footer ---------- */
-.contact-main { grid-column: 1 / span 7; }
+.contact-main { grid-column: 1 / span 8; }
 .contact-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px 32px; margin-top: 36px; }
-/* Red and cream rays with the hands logo in a black frame and a hard red shadow, as on the original site. */
-.contact-burst { grid-column: 8 / -1; align-self: stretch; display: grid; place-items: center; min-height: 380px; background: repeating-conic-gradient(from 0deg at 50% 50%, var(--red) 0 7.5deg, var(--cream) 7.5deg 15deg); }
-.contact-mark { width: min(58%, 260px); height: auto; aspect-ratio: 1; object-fit: cover; border: 3px solid var(--black); background: var(--cream); box-shadow: 12px 12px 0 var(--red); }
+.contact-mark { grid-column: 10 / span 3; justify-self: end; align-self: end; width: min(100%, 240px); height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--cream); }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px var(--pad) 44px; border-top: 1px solid var(--line); font-size: .7rem; font-stretch: 112%; letter-spacing: .16em; line-height: 1.6; }
 html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spacing: .02em; }
 .site-footer img { width: 46px; height: 46px; object-fit: cover; border: 1px solid var(--cream); }
@@ -291,8 +289,7 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
   .consign-intro, .consign-form, .contact-main { grid-column: 1 / -1; }
   .consign-intro { position: static; }
   .consign-form { margin-top: 56px; }
-  .contact-burst { grid-column: 1 / -1; margin-top: 56px; min-height: 320px; }
-  .contact-mark { width: min(52%, 220px); }
+  .contact-mark { grid-column: 1 / -1; justify-self: start; margin-top: 56px; width: 160px; }
 }
 @media (max-width: 900px) {
   .hero { display: flex; flex-direction: column; min-height: 0; }
