@@ -20,6 +20,27 @@ const PRODUCTS = {
 };
 
 const STORAGE_KEY = 'kharawa-cart-v1';
+const LANGUAGE_KEY = 'kharawa-language-v1';
+const TRANSLATIONS = {
+  th: {
+    'nav.manifesto': 'แนวคิด', 'nav.collection': 'คอลเลกชัน', 'nav.contact': 'ติดต่อ', 'nav.mobileManifesto': '01 / แนวคิด', 'nav.mobileCollection': '02 / คอลเลกชัน', 'nav.mobileContact': '03 / ติดต่อ',
+    'cart.title': 'ถุงสินค้าของคุณ', 'cart.total': 'รวม', 'cart.note': 'ราคาสินค้าและค่าส่งจะยืนยันเมื่อเปิด Pre-order', 'cart.checkout': 'ขอ Pre-order', 'cart.add': 'เพิ่มลงถุง +',
+    'hero.eyebrow': 'งานพิมพ์สำหรับคนบนถนน', 'hero.description': 'เสื้อผ้าไม่ใช่แค่สิ่งที่ใส่ — แต่มันคือสิ่งที่คุณประกาศ', 'hero.cta': 'ดูสัญญาณของเรา ↗', 'manifesto.eyebrow': 'KHARAWA / สัญญาณสาธารณะ', 'manifesto.body': 'เราเชื่อว่าสิ่งที่สวมใส่มีเสียงของมันเอง KHARAWA จึงสร้างชิ้นงานที่ให้คุณพูดออกไป โดยไม่ต้องพูดดังเกินจำเป็น',
+    'collection.eyebrow': '02 / สัญญาณที่คัดสรร', 'collection.intro': 'ชิ้นงานจากสนามทดลองของ KHARAWA — ดูรายละเอียดแต่ละชิ้นและเพิ่มลงถุงสำหรับ Pre-order', 'showcase.eyebrow': 'FIELD EDITION 001', 'showcase.cta': 'ดูชิ้นงานเด่น ↗',
+    'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.body': 'คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', emptyCart: 'ยังไม่มีสินค้าในตะกร้า', viewDetails: 'ดูรายละเอียด', addShort: 'เพิ่ม +', bag: 'ถุง', index: 'เมนู'
+  },
+  en: {
+    'nav.manifesto': 'MANIFESTO', 'nav.collection': 'COLLECTION', 'nav.contact': 'CONTACT', 'nav.mobileManifesto': '01 / MANIFESTO', 'nav.mobileCollection': '02 / COLLECTION', 'nav.mobileContact': '03 / CONTACT',
+    'cart.title': 'YOUR BAG', 'cart.total': 'TOTAL', 'cart.note': 'Price and shipping will be confirmed when Pre-order opens.', 'cart.checkout': 'REQUEST PRE-ORDER', 'cart.add': 'ADD TO BAG +',
+    'hero.eyebrow': 'INKED FOR THE STREETS', 'hero.description': 'Clothing is not just what you wear — it is what you announce.', 'hero.cta': 'EXPLORE THE SIGNAL ↗', 'manifesto.eyebrow': 'KHARAWA / A PUBLIC SIGNAL', 'manifesto.body': 'We believe what you wear has its own voice. KHARAWA creates pieces that let you speak without having to shout.',
+    'collection.eyebrow': '02 / SELECTED SIGNALS', 'collection.intro': 'Pieces from the KHARAWA field study — explore each piece and add it to your Pre-order bag.', 'showcase.eyebrow': 'FIELD EDITION 001', 'showcase.cta': 'VIEW FEATURED PIECE ↗',
+    'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', emptyCart: 'Your bag is empty', viewDetails: 'VIEW DETAILS', addShort: 'ADD +', bag: 'BAG', index: 'INDEX'
+  }
+};
+// Storage can be blocked (private windows, strict cookie settings). Reads and writes must never stop the page script.
+function readStorage(key) { try { return localStorage.getItem(key); } catch { return null; } }
+function writeStorage(key, value) { try { localStorage.setItem(key, value); } catch { /* not persisted */ } }
+let currentLanguage = readStorage(LANGUAGE_KEY) === 'en' ? 'en' : 'th';
 let cart = loadCart();
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
@@ -30,19 +51,31 @@ function loadCart() {
     return Array.isArray(parsed) ? parsed.filter((item) => PRODUCTS[item.id] && item.quantity > 0) : [];
   } catch { return []; }
 }
-function saveCart() {
-  // Storage can be blocked (private windows, strict cookie settings): keep the cart working for this visit anyway.
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch { /* cart stays in memory */ }
-}
+function saveCart() { writeStorage(STORAGE_KEY, JSON.stringify(cart)); }
 function totalItems() { return cart.reduce((sum, item) => sum + item.quantity, 0); }
 function product(id) { return PRODUCTS[id]; }
+
+function applyLanguage(language = currentLanguage) {
+  currentLanguage = language === 'en' ? 'en' : 'th';
+  const dictionary = TRANSLATIONS[currentLanguage];
+  document.documentElement.lang = currentLanguage;
+  writeStorage(LANGUAGE_KEY, currentLanguage);
+  $$('[data-i18n]').forEach((element) => { if (dictionary[element.dataset.i18n]) element.textContent = dictionary[element.dataset.i18n]; });
+  $$('.language-button').forEach((button) => { const active = button.dataset.language === currentLanguage; button.classList.toggle('is-active', active); button.setAttribute('aria-pressed', String(active)); });
+  const cartButton = $('.cart-button');
+  if (cartButton?.firstChild) cartButton.firstChild.textContent = `${dictionary.bag} `;
+  if ($('.menu-button')) $('.menu-button').textContent = dictionary.index;
+  $$('.text-button').forEach((button) => { button.textContent = dictionary.viewDetails; });
+  $$('.add-button').forEach((button) => { button.textContent = dictionary.addShort; });
+  renderCart();
+}
 
 function renderCart() {
   const container = $('.cart-items');
   const count = $('.cart-count');
   count.textContent = String(totalItems());
   if (!cart.length) {
-    container.innerHTML = '<p class="empty-cart">ยังไม่มีสินค้าในตะกร้า</p>';
+    container.innerHTML = `<p class="empty-cart">${TRANSLATIONS[currentLanguage].emptyCart}</p>`;
     $('.cart-total-value').textContent = 'PRICE TBC';
     return;
   }
@@ -112,5 +145,5 @@ $$('[data-product]').forEach((button) => button.addEventListener('click', () => 
 $$('[data-add]').forEach((button) => button.addEventListener('click', () => addToCart(button.dataset.add)));
 $('.modal-add')?.addEventListener('click', (event) => { addToCart(event.currentTarget.dataset.add); closeProduct(); });
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeCart(); if ($('#product-modal').open) closeProduct(); } });
-
-renderCart();
+$$('.language-button').forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
+applyLanguage();

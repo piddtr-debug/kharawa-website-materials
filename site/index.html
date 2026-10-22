@@ -19,29 +19,30 @@
       <span>KHARAWA</span>
     </a>
     <nav class="main-nav" aria-label="เมนูหลัก">
-      <a href="#manifesto">MANIFESTO</a>
-      <a href="#collection">COLLECTION</a>
-      <a href="#contact">CONTACT</a>
+      <a href="#manifesto" data-i18n="nav.manifesto">MANIFESTO</a>
+      <a href="#collection" data-i18n="nav.collection">COLLECTION</a>
+      <a href="#contact" data-i18n="nav.contact">CONTACT</a>
     </nav>
     <div class="header-actions">
+      <div class="language-switcher" aria-label="เลือกภาษา"><button class="language-button is-active" type="button" data-language="th" aria-pressed="true">TH</button><span>/</span><button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button></div>
       <button class="cart-button" type="button" aria-controls="cart-drawer" aria-expanded="false">BAG <span class="cart-count">0</span></button>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">INDEX</button>
     </div>
   </header>
 
   <div class="mobile-nav" id="mobile-nav" hidden>
-    <a href="#manifesto">01 / MANIFESTO</a>
-    <a href="#collection">02 / COLLECTION</a>
-    <a href="#contact">03 / CONTACT</a>
+    <a href="#manifesto" data-i18n="nav.mobileManifesto">01 / MANIFESTO</a>
+    <a href="#collection" data-i18n="nav.mobileCollection">02 / COLLECTION</a>
+    <a href="#contact" data-i18n="nav.mobileContact">03 / CONTACT</a>
   </div>
 
   <aside class="cart-drawer" id="cart-drawer" aria-label="ตะกร้าสินค้า" aria-hidden="true">
-    <div class="cart-head"><h2>YOUR BAG</h2><button class="cart-close" type="button" aria-label="ปิดตะกร้า">×</button></div>
+    <div class="cart-head"><h2 data-i18n="cart.title">YOUR BAG</h2><button class="cart-close" type="button" aria-label="ปิดตะกร้า">×</button></div>
     <div class="cart-items" aria-live="polite"><p class="empty-cart">ยังไม่มีสินค้าในตะกร้า</p></div>
     <div class="cart-foot">
-      <div class="cart-total"><span>รวม</span><strong class="cart-total-value">PRICE TBC</strong></div>
-      <p class="cart-note">ราคาสินค้าและค่าส่งจะยืนยันเมื่อเปิด Pre-order</p>
-      <button class="button button-dark checkout-button" type="button" disabled>REQUEST PRE-ORDER</button>
+      <div class="cart-total"><span data-i18n="cart.total">รวม</span><strong class="cart-total-value">PRICE TBC</strong></div>
+      <p class="cart-note" data-i18n="cart.note">ราคาสินค้าและค่าส่งจะยืนยันเมื่อเปิด Pre-order</p>
+      <button class="button button-dark checkout-button" type="button" disabled data-i18n="cart.checkout">REQUEST PRE-ORDER</button>
     </div>
   </aside>
   <div class="cart-backdrop" hidden></div>
@@ -56,7 +57,7 @@
         <p class="modal-description"></p>
         <ul class="modal-specs"></ul>
         <strong class="modal-price">PRICE TBC</strong>
-        <button class="button button-dark modal-add" type="button">ADD TO BAG +</button>
+        <button class="button button-dark modal-add" type="button" data-i18n="cart.add">ADD TO BAG +</button>
       </div>
     </div>
   </dialog>
@@ -70,19 +71,19 @@
     </section>
 
     <section class="intro" aria-labelledby="hero-title">
-      <p class="eyebrow">INKED FOR THE STREETS</p>
+      <p class="eyebrow" data-i18n="hero.eyebrow">INKED FOR THE STREETS</p>
       <h1 id="hero-title">MAKE<br /><em>YOUR</em><br />SIGNAL.</h1>
-      <p class="hero-description">เสื้อผ้าไม่ใช่แค่สิ่งที่ใส่ — แต่มันคือสิ่งที่คุณประกาศ</p>
-      <a class="button button-light" href="#collection">EXPLORE THE SIGNAL <span>↗</span></a>
+      <p class="hero-description" data-i18n="hero.description">เสื้อผ้าไม่ใช่แค่สิ่งที่ใส่ — แต่มันคือสิ่งที่คุณประกาศ</p>
+      <a class="button button-light" href="#collection" data-i18n="hero.cta">EXPLORE THE SIGNAL ↗</a>
       <p class="edition-mark">KH / 01 / 2026</p>
     </section>
 
     <section class="manifesto section-cream" id="manifesto" aria-labelledby="manifesto-title">
       <div class="section-index">01</div>
       <div>
-        <p class="eyebrow dark">KHARAWA / A PUBLIC SIGNAL</p>
+        <p class="eyebrow dark" data-i18n="manifesto.eyebrow">KHARAWA / A PUBLIC SIGNAL</p>
         <h2 id="manifesto-title">NOT A<br /><em>UNIFORM.</em><br />A POSITION.</h2>
-        <p class="body-copy">เราเชื่อว่าสิ่งที่สวมใส่มีเสียงของมันเอง KHARAWA จึงสร้างชิ้นงานที่ให้คุณพูดออกไป โดยไม่ต้องพูดดังเกินจำเป็น</p>
+        <p class="body-copy" data-i18n="manifesto.body">เราเชื่อว่าสิ่งที่สวมใส่มีเสียงของมันเอง KHARAWA จึงสร้างชิ้นงานที่ให้คุณพูดออกไป โดยไม่ต้องพูดดังเกินจำเป็น</p>
       </div>
       <div class="manifesto-stamp">EST.<br />FOR THE<br />UNMUTED</div>
     </section>
@@ -90,15 +91,15 @@
     <section class="collection section-black" id="collection" aria-labelledby="collection-title">
       <div class="collection-heading">
         <div>
-          <p class="eyebrow">02 / SELECTED SIGNALS</p>
+          <p class="eyebrow" data-i18n="collection.eyebrow">02 / SELECTED SIGNALS</p>
           <h2 id="collection-title">THE FIELD<br /><em>NOTES.</em></h2>
         </div>
-        <p class="section-intro">ชิ้นงานจากสนามทดลองของ KHARAWA — ดูรายละเอียดแต่ละชิ้นและเพิ่มลงถุงสำหรับ Pre-order</p>
+        <p class="section-intro" data-i18n="collection.intro">ชิ้นงานจากสนามทดลองของ KHARAWA — ดูรายละเอียดแต่ละชิ้นและเพิ่มลงถุงสำหรับ Pre-order</p>
       </div>
 
       <div class="showcase-banner">
-        <div><p class="eyebrow">FIELD EDITION 001</p><h3>WEAR THE<br /><em>MESSAGE.</em></h3></div>
-        <button class="button button-light" type="button" data-product="first-press-tee">VIEW FEATURED PIECE ↗</button>
+        <div><p class="eyebrow" data-i18n="showcase.eyebrow">FIELD EDITION 001</p><h3>WEAR THE<br /><em>MESSAGE.</em></h3></div>
+        <button class="button button-light" type="button" data-product="first-press-tee" data-i18n="showcase.cta">VIEW FEATURED PIECE ↗</button>
       </div>
 
       <div class="product-grid">
@@ -112,7 +113,7 @@
 
     <section class="contact section-cream" id="contact" aria-labelledby="contact-title">
       <div class="section-index">03</div>
-      <div><p class="eyebrow dark">JOIN THE FREQUENCY</p><h2 id="contact-title">KEEP YOUR<br /><em>EYES OPEN.</em></h2><p class="body-copy">คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา</p><div class="contact-actions"><a class="button button-dark" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noreferrer">CHAT ON LINE ↗</a><a class="text-link" href="mailto:contact@kharawa.com">contact@kharawa.com ↗</a></div></div>
+      <div><p class="eyebrow dark" data-i18n="contact.eyebrow">JOIN THE FREQUENCY</p><h2 id="contact-title">KEEP YOUR<br /><em>EYES OPEN.</em></h2><p class="body-copy" data-i18n="contact.body">คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา</p><div class="contact-actions"><a class="button button-dark" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noreferrer" data-i18n="contact.line">CHAT ON LINE ↗</a><a class="text-link" href="mailto:contact@kharawa.com">contact@kharawa.com ↗</a></div></div>
       <img class="contact-mark" src="./assets/icon-512.png" width="512" height="512" alt="โลโก้ KHARAWA" loading="lazy" />
     </section>
   </main>
