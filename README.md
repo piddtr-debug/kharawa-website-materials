@@ -29,6 +29,19 @@
 
 เนื่องจาก workflow ปล่อยเฉพาะโฟลเดอร์ `site/` ไฟล์ภาพทุกไฟล์ที่เว็บอ้างอิงต้องอยู่ใน `site/` เท่านั้น (อย่าอ้าง `../assets/...`)
 
+### วิธีใส่รูปสินค้าจริง
+
+การ์ดสินค้าตอนนี้เป็นภาพสีสำรองพร้อมป้าย KHARAWA เมื่อมีรูปจริง ให้วางไฟล์ใน `site/assets/products/` (แนะนำ WebP สัดส่วนประมาณ 1:1.08) แล้วแก้ใน `site/index.html` เฉพาะการ์ดนั้น:
+
+```html
+<div class="product-image product-image-1 has-photo">
+  <span>KH / FS-01</span>
+  <img src="./assets/products/fs-01.webp" alt="เสื้อ First Press Tee ด้านหน้า" width="800" height="864" loading="lazy" />
+</div>
+```
+
+`has-photo` ซ่อนป้ายสำรอง และรูปจะเติมเต็มกรอบอัตโนมัติ ส่วนป้ายรหัสสินค้า (`KH / FS-01`) ยังอยู่มุมซ้ายบน
+
 ## ขอบเขตสำคัญ
 
 Repository นี้ยัง **ไม่ใช่ source code เต็มของเว็บไซต์ที่เผยแพร่** เนื่องจาก source code ต้นฉบับยังไม่ได้ถูกส่งเข้ามาใน Sandbox ขณะจัดทำ repository
