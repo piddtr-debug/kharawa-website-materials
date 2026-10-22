@@ -144,6 +144,8 @@ html[lang="th"] .cart-head h2 { font-size: 1.6rem; letter-spacing: 0; }
 .modal-close:hover { background: var(--black); color: var(--cream); }
 .modal-layout { display: grid; grid-template-columns: 5fr 6fr; }
 .modal-layout .modal-art { aspect-ratio: auto; margin: 0; min-height: 560px; }
+.modal-layout .modal-art::before { background-size: var(--modal-fit, cover); }
+.cart-item .cart-item-art::before { background-size: var(--thumb-size, cover); background-position: var(--thumb-pos, center); }
 .modal-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(32px, 4.4vw, 64px); }
 .modal-copy .product-meta { color: var(--red); }
 .modal-title, html[lang="th"] .modal-title { font-size: clamp(1.7rem, 1rem + 1.7vw, 2.6rem); line-height: 1.05; letter-spacing: var(--track-display); margin: 0 0 20px; }
@@ -196,12 +198,13 @@ html[lang="th"] .showcase-banner h3 { line-height: 1.2; font-size: clamp(2.1rem,
   .product-card { display: grid; grid-template-rows: subgrid; grid-row: span 7; row-gap: 0; }
   .grid-note { grid-row: span 7; }
 }
-.product-image { position: relative; overflow: hidden; aspect-ratio: 4 / 5; margin-bottom: 22px; background: var(--plate-bg, var(--paper)); }
+.product-image { position: relative; overflow: hidden; aspect-ratio: 1 / 1; margin-bottom: 22px; background: var(--plate-bg, var(--paper)); }
 .product-image::before { content: ""; position: absolute; inset: 0; background: var(--plate, none) center / cover no-repeat; transition: transform 1s var(--ease); }
 .product-card:hover .product-image::before { transform: scale(1.04); }
 .product-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .product-image span { position: absolute; z-index: 1; left: 14px; top: 14px; padding: 4px 8px; background: rgba(17, 16, 14, .82); color: var(--cream); font-size: .62rem; font-stretch: 112%; letter-spacing: .16em; line-height: 1.4; }
-.product-image-1 { --plate: url("./assets/plates/plate-1.webp"); --plate-bg: #d6cab3; }
+/* 1: real product photo (front and back side by side, square). --modal-fit / --thumb-* tune how it is cropped in the dialog and the cart. */
+.product-image-1 { --plate: url("./assets/products/first-press-tee.webp"); --plate-bg: #e5ddd6; --modal-fit: contain; --modal-pos-mobile: center 42%; --thumb-size: 195%; --thumb-pos: 0% 31%; }
 .product-image-2 { --plate: url("./assets/plates/plate-2.webp"); --plate-bg: #14110f; }
 .product-image-3 { --plate: url("./assets/plates/plate-3.webp"); --plate-bg: #6d1410; }
 .product-image-4 { --plate: url("./assets/plates/plate-4.webp"); --plate-bg: #0f2f63; }
@@ -303,6 +306,7 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
   .product-grid { grid-template-columns: 1fr; }
   .grid-note { min-height: 220px; }
   .modal-layout { grid-template-columns: 1fr; }
+  .modal-layout .modal-art::before { background-size: cover; background-position: var(--modal-pos-mobile, center); }
   .modal-layout .modal-art { min-height: 0; height: 26vh; height: 26svh; min-height: 120px; max-height: 240px; }
   .modal-copy { padding: 22px 22px 24px; }
   .modal-title, html[lang="th"] .modal-title { font-size: 1.5rem; margin-bottom: 12px; }

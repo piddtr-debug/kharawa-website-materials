@@ -32,7 +32,8 @@
 | `icon-192.png`, `icon-512.png` | โลโก้สี่เหลี่ยมใน Header, Footer และส่วน Contact |
 | `favicon-32.png`, `apple-touch-icon.png` | favicon และไอคอนหน้าจอโฮมมือถือ |
 | `og-image.jpg` | ภาพแชร์โซเชียล 1200×630 (ยังไม่ได้ใส่ใน `<meta>` ดูด้านล่าง) |
-| `plates/plate-1…5.webp` | ภาพสินค้าชั่วคราว 4:5 (ดูหัวข้อ "ภาพสินค้าชั่วคราว") |
+| `products/first-press-tee.webp` | รูปสินค้าจริง FS-01 (ด้านหน้า+ด้านหลัง) |
+| `plates/plate-2…5.webp` | ภาพสินค้าชั่วคราว (ดูหัวข้อ "ภาพสินค้าชั่วคราว") |
 
 > `og:image` ต้องใช้ URL เต็ม (absolute) จึงยังไม่ได้เพิ่มแท็กใน `index.html` เมื่อรู้โดเมนจริงให้เพิ่ม
 > `<meta property="og:image" content="https://<โดเมน>/assets/og-image.jpg" />`
@@ -52,14 +53,19 @@
 
 ### ภาพสินค้าชั่วคราว (plates)
 
-`site/assets/plates/plate-1.webp` ถึง `plate-5.webp` (สัดส่วน 4:5) เป็นภาพประกอบแนวคิดของเสื้อ 4 แบบและหมวก 1 แบบ วาดจากงานศิลป์ของแบรนด์ ไม่ใช่ภาพถ่ายสินค้าจริง ใช้ในการ์ด หน้าต่างรายละเอียด และตะกร้า (กำหนดด้วยคลาส `.product-image-1` ถึง `-5` ใน `styles.css`)
+ภาพสินค้าที่ใช้จริงตอนนี้:
 
-เมื่อมีรูปสินค้าจริง วางไฟล์ใน `site/assets/products/` (แนะนำ WebP สัดส่วน 4:5) แล้วเพิ่ม `<img>` ในการ์ดนั้นของ `site/index.html`:
+- **First Press Tee (FS-01)** ใช้รูปจริง `site/assets/products/first-press-tee.webp` (สี่เหลี่ยมจัตุรัส ด้านหน้าและด้านหลังเคียงกัน) ที่เจ้าของส่งมา
+- **สินค้าอื่น (FS-02 ถึง FS-04 และหมวก)** ยังใช้ภาพประกอบแนวคิดชั่วคราว `site/assets/plates/plate-2.webp` ถึง `plate-5.webp` ซึ่งวาดจากงานศิลป์ของแบรนด์ ไม่ใช่ภาพถ่ายสินค้าจริง หมวกมีโลโก้แบรนด์เป็นแผ่นแพตช์ที่ด้านหน้า
+
+การ์ด หน้าต่างรายละเอียด และตะกร้าอ้างภาพผ่านคลาส `.product-image-1` ถึง `-5` ใน `styles.css` (ตัวแปร `--plate`) การ์ดเป็นสัดส่วน 1:1 ใช้ `--modal-fit` และ `--thumb-size` / `--thumb-pos` ปรับการครอปในหน้าต่างและตะกร้าได้ต่อรูป
+
+เมื่อมีรูปสินค้าจริงเพิ่ม วางไฟล์ใน `site/assets/products/` (แนะนำ WebP สัดส่วน 1:1) แล้วเพิ่ม `<img>` ในการ์ดนั้นของ `site/index.html`:
 
 ```html
 <div class="product-image product-image-1 has-photo">
   <span>KH / FS-01</span>
-  <img src="./assets/products/fs-01.webp" alt="เสื้อ First Press Tee ด้านหน้า" width="800" height="1000" loading="lazy" />
+  <img src="./assets/products/fs-01.webp" alt="เสื้อ First Press Tee ด้านหน้า" width="1000" height="1000" loading="lazy" />
 </div>
 ```
 
