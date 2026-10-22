@@ -205,7 +205,8 @@ html[lang="th"] .showcase-banner h3 { line-height: 1.2; font-size: clamp(2.1rem,
 .product-image span { position: absolute; z-index: 1; left: 14px; top: 14px; padding: 4px 8px; background: rgba(17, 16, 14, .82); color: var(--cream); font-size: .62rem; font-stretch: 112%; letter-spacing: .16em; line-height: 1.4; }
 /* 1: real product photo (front and back side by side, square). --modal-fit / --thumb-* tune how it is cropped in the dialog and the cart. */
 .product-image-1 { --plate: url("./assets/products/first-press-tee.webp"); --plate-bg: #e5ddd6; --modal-fit: contain; --modal-pos-mobile: center 42%; --thumb-size: 195%; --thumb-pos: 0% 31%; }
-.product-image-2 { --plate: url("./assets/plates/plate-2.webp"); --plate-bg: #14110f; }
+/* 2: real product photo, three colourways side by side (square) */
+.product-image-2 { --plate: url("./assets/products/small-signal-tee.webp"); --plate-bg: #e8e2dd; --modal-fit: contain; --modal-pos-mobile: center 52%; --thumb-size: 270%; --thumb-pos: 82% 50%; }
 .product-image-3 { --plate: url("./assets/plates/plate-3.webp"); --plate-bg: #6d1410; }
 .product-image-4 { --plate: url("./assets/plates/plate-4.webp"); --plate-bg: #0f2f63; }
 .product-image-5 { --plate: url("./assets/plates/plate-5.webp"); --plate-bg: #d6cab3; }
