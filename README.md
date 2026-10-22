@@ -15,6 +15,7 @@
 - Cart Drawer เพิ่ม/ลด/ลบสินค้าและบันทึกตะกร้าด้วย `localStorage`
 - Language switcher `TH / EN` สำหรับเมนู ปุ่ม หัวข้อ สินค้า Product Modal, Cart และ Footer พร้อมจำค่าภาษาที่เลือก
 - Pre-loved Consignment form สำหรับฝากขายสินค้ามือสอง พร้อมข้อมูลสินค้า สภาพ ราคา ช่องทางติดต่อ รายละเอียด และรูปภาพ
+- `site/admin/consignments.html` — Admin Dashboard สำหรับค้นหา กรอง ดูรายละเอียด และเปลี่ยนสถานะรายการฝากขาย
 
 ## ขอบเขตสำคัญ
 
@@ -25,6 +26,8 @@ Repository นี้ยัง **ไม่ใช่ source code เต็มข�
 ตะกร้าสินค้าในเวอร์ชันนี้เป็น client-side prototype: สินค้ายังมีสถานะ `PRE-LAUNCH` และ `PRICE TBC` จึงยังไม่เปิด checkout จริง ปุ่ม `REQUEST PRE-ORDER` จะเปิดใช้งานเมื่อเชื่อมราคาจริง ฐานข้อมูล และระบบรับคำสั่งซื้อแล้ว
 
 ฟอร์มฝากขายในเวอร์ชันนี้เป็น draft form: หลังส่งข้อมูลจะเก็บเฉพาะข้อมูลแบบร่างไว้ใน `localStorage` ของ Browser เครื่องนั้น ยังไม่ได้ส่งเข้าอีเมล, LINE, database หรือระบบหลังบ้านจริง จึงต้องเชื่อม submission endpoint ก่อนใช้งานรับฝากขายจริง
+
+Admin Dashboard ปัจจุบันอ่านข้อมูลจาก `localStorage` ชุดเดียวกับฟอร์มฝากขาย จึงเหมาะสำหรับตรวจ flow และ UI เท่านั้น ยังไม่มี Authentication และยังไม่ใช่ระบบ production จนกว่าจะเชื่อม Supabase Server API และเพิ่มสิทธิ์ผู้ดูแล
 
 ## เมื่อมี source code
 
