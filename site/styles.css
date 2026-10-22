@@ -55,7 +55,7 @@ h2 { font-size:clamp(52px,8vw,112px); line-height:.86; letter-spacing:-.07em; ma
 .product-card p,.product-card li { color:rgba(242,231,211,.7); font-size:13px; line-height:1.6; }
 .product-card ul { padding-left:18px; min-height:44px; }
 .product-card strong { font-size:12px; letter-spacing:.16em; }
-.contact-mark { width:180px; height:230px; object-fit:cover; justify-self:end; border:1px solid var(--black); }
+.contact-mark { width:200px; height:200px; object-fit:cover; justify-self:end; border:1px solid var(--black); }
 .contact-actions { display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-top:28px; }
 .text-link { border-bottom:1px solid var(--black); padding-bottom:4px; font-size:12px; }
 .site-footer { padding:30px 8vw 50px; display:flex; align-items:center; justify-content:space-between; gap:20px; font-size:11px; letter-spacing:.12em; }
@@ -71,7 +71,7 @@ h2 { font-size:clamp(52px,8vw,112px); line-height:.86; letter-spacing:-.07em; ma
   .hero-art { min-height:78vh; }
   .manifesto,.contact { grid-template-columns:1fr; min-height:auto; padding:22vw 8vw; gap:28px; }
   .manifesto-stamp,.contact-mark { justify-self:start; }
-  .contact-mark { width:130px; height:160px; }
+  .contact-mark { width:140px; height:140px; }
   .collection { padding:22vw 8vw; }
   .collection-heading { display:block; margin-bottom:54px; }
   .section-intro { margin-top:30px; }

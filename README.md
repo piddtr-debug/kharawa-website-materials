@@ -6,11 +6,28 @@
 
 ## ไฟล์
 
-- `assets/KHARAWA-logo-new.png` — ภาพโลโก้ใหม่ที่ผู้ใช้ส่งมา ขนาด 1228×1281 px
+- `assets/KHARAWA-logo-new.png` — ต้นฉบับโลโก้ใหม่ที่ผู้ใช้ส่งมา ขนาด 1228×1281 px (เก็บไว้เป็น master ไม่ใช้บนเว็บโดยตรง)
 - `docs/โลโก้ใหม่_วิธีนำไปใช้.md` — จุดที่ต้องเปลี่ยนในเว็บไซต์
 - `site/index.html` — Landing Page หลักแบบ Static
 - `site/styles.css` — ระบบสี, layout และ responsive design
 - `site/script.js` — เมนูมือถือและ interaction เบื้องต้น
+- `site/assets/` — ไฟล์ภาพที่เว็บใช้จริง ตัดมาจากต้นฉบับโลโก้
+
+### ไฟล์ใน `site/assets/`
+
+ต้นฉบับโลโก้เป็นภาพแคปหน้าเว็บ มีแถบเทาขอบบน/ล่าง เมนู และข้อความ "FIELD EDITION 001" ติดอยู่ในภาพ จึงครอปออกก่อนนำมาใช้
+
+| ไฟล์ | ใช้ที่ |
+| --- | --- |
+| `kharawa-art.webp` | ภาพ Hero (ครอปเป็น 1228×1060 ไม่มีเมนู/ป้ายติดมา) |
+| `icon-192.png`, `icon-512.png` | โลโก้สี่เหลี่ยมใน Header, Footer และส่วน Contact |
+| `favicon-32.png`, `apple-touch-icon.png` | favicon และไอคอนหน้าจอโฮมมือถือ |
+| `og-image.jpg` | ภาพแชร์โซเชียล 1200×630 (ยังไม่ได้ใส่ใน `<meta>` ดูด้านล่าง) |
+
+> `og:image` ต้องใช้ URL เต็ม (absolute) จึงยังไม่ได้เพิ่มแท็กใน `index.html` เมื่อรู้โดเมนจริงให้เพิ่ม
+> `<meta property="og:image" content="https://<โดเมน>/assets/og-image.jpg" />`
+
+เนื่องจาก workflow ปล่อยเฉพาะโฟลเดอร์ `site/` ไฟล์ภาพทุกไฟล์ที่เว็บอ้างอิงต้องอยู่ใน `site/` เท่านั้น (อย่าอ้าง `../assets/...`)
 
 ## ขอบเขตสำคัญ
 
@@ -20,11 +37,7 @@ Repository นี้ยัง **ไม่ใช่ source code เต็มข�
 
 ## เมื่อมี source code
 
-เปลี่ยนการอ้างอิงโลโก้เดิมทุกจุดเป็น:
-
-```text
-/assets/KHARAWA-logo-new.png
-```
+เปลี่ยนการอ้างอิงโลโก้เดิมทุกจุดไปใช้ไฟล์ใน `site/assets/` (ไม่ใช้ `KHARAWA-logo-new.png` ตรงๆ)
 
 และตรวจอย่างน้อยที่ Header, Footer, Collection, favicon, Open Graph image และ JSON-LD/metadata หากมี
 
