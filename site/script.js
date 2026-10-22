@@ -55,6 +55,8 @@ function saveCart() { writeStorage(STORAGE_KEY, JSON.stringify(cart)); }
 function totalItems() { return cart.reduce((sum, item) => sum + item.quantity, 0); }
 function product(id) { return PRODUCTS[id]; }
 
+function localizedStatus(p) { return currentLanguage === 'th' ? `เตรียมเปิดตัว / ${p.status.split(' / ')[1]}` : p.status; }
+
 function applyLanguage(language = currentLanguage) {
   currentLanguage = language === 'en' ? 'en' : 'th';
   const dictionary = TRANSLATIONS[currentLanguage];
@@ -71,7 +73,7 @@ function applyLanguage(language = currentLanguage) {
   $$('.product-card[data-card]').forEach((card) => {
     const p = product(card.dataset.card);
     if (!p) return;
-    card.querySelector('.product-meta').textContent = currentLanguage === 'th' ? `เตรียมเปิดตัว / ${p.status.split(' / ')[1]}` : p.status;
+    card.querySelector('.product-meta').textContent = localizedStatus(p);
     card.querySelector('h3').textContent = currentLanguage === 'th' ? p.thName : p.name;
     card.querySelectorAll('p')[1].textContent = currentLanguage === 'th' ? p.thDescription : p.description;
     card.querySelectorAll('li').forEach((item, index) => { item.textContent = (currentLanguage === 'th' ? p.thSpecs : p.specs)[index]; });
@@ -79,6 +81,7 @@ function applyLanguage(language = currentLanguage) {
   renderCart();
   if ($('#product-modal')?.open && $('.modal-add')?.dataset.add) {
     const activeProduct = product($('.modal-add').dataset.add);
+    $('.modal-status').textContent = localizedStatus(activeProduct);
     $('.modal-title').textContent = currentLanguage === 'th' ? activeProduct.thName : activeProduct.name;
     $('.modal-description').textContent = currentLanguage === 'th' ? activeProduct.thDescription : activeProduct.description;
     $('.modal-specs').innerHTML = (currentLanguage === 'th' ? activeProduct.thSpecs : activeProduct.specs).map((spec) => `<li>${spec}</li>`).join('');
@@ -134,7 +137,7 @@ function openProduct(id) {
   const modal = $('#product-modal');
   $('.modal-art').className = `modal-art product-image ${p.art}`;
   $('.modal-sku').textContent = p.sku;
-  $('.modal-status').textContent = p.status;
+  $('.modal-status').textContent = localizedStatus(p);
   $('.modal-title').textContent = currentLanguage === 'th' ? p.thName : p.name;
   $('.modal-description').textContent = currentLanguage === 'th' ? p.thDescription : p.description;
   $('.modal-specs').innerHTML = (currentLanguage === 'th' ? p.thSpecs : p.specs).map((spec) => `<li>${spec}</li>`).join('');
