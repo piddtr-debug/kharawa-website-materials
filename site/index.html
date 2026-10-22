@@ -21,7 +21,10 @@
       <a href="#collection">COLLECTION</a>
       <a href="#contact">CONTACT</a>
     </nav>
-    <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">INDEX</button>
+    <div class="header-actions">
+      <button class="cart-button" type="button" aria-controls="cart-drawer" aria-expanded="false">BAG <span class="cart-count">0</span></button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">INDEX</button>
+    </div>
   </header>
 
   <div class="mobile-nav" id="mobile-nav" hidden>
@@ -29,6 +32,32 @@
     <a href="#collection">02 / COLLECTION</a>
     <a href="#contact">03 / CONTACT</a>
   </div>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-label="ตะกร้าสินค้า" aria-hidden="true">
+    <div class="cart-head"><h2>YOUR BAG</h2><button class="cart-close" type="button" aria-label="ปิดตะกร้า">×</button></div>
+    <div class="cart-items" aria-live="polite"><p class="empty-cart">ยังไม่มีสินค้าในตะกร้า</p></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>รวม</span><strong class="cart-total-value">PRICE TBC</strong></div>
+      <p class="cart-note">ราคาสินค้าและค่าส่งจะยืนยันเมื่อเปิด Pre-order</p>
+      <button class="button button-dark checkout-button" type="button" disabled>REQUEST PRE-ORDER</button>
+    </div>
+  </aside>
+  <div class="cart-backdrop" hidden></div>
+
+  <dialog class="product-modal" id="product-modal">
+    <button class="modal-close" type="button" aria-label="ปิดรายละเอียดสินค้า">×</button>
+    <div class="modal-layout">
+      <div class="modal-art product-image"><span class="modal-sku"></span></div>
+      <div class="modal-copy">
+        <p class="product-meta modal-status"></p>
+        <h2 class="modal-title"></h2>
+        <p class="modal-description"></p>
+        <ul class="modal-specs"></ul>
+        <strong class="modal-price">PRICE TBC</strong>
+        <button class="button button-dark modal-add" type="button">ADD TO BAG +</button>
+      </div>
+    </div>
+  </dialog>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
@@ -61,74 +90,31 @@
           <p class="eyebrow">02 / SELECTED SIGNALS</p>
           <h2 id="collection-title">THE FIELD<br /><em>NOTES.</em></h2>
         </div>
-        <p class="section-intro">ชิ้นงานจากสนามทดลองของ KHARAWA — เสื้อผ้าและวัตถุที่ส่งสัญญาณของแบรนด์ออกไป</p>
+        <p class="section-intro">ชิ้นงานจากสนามทดลองของ KHARAWA — ดูรายละเอียดแต่ละชิ้นและเพิ่มลงถุงสำหรับ Pre-order</p>
+      </div>
+
+      <div class="showcase-banner">
+        <div><p class="eyebrow">FIELD EDITION 001</p><h3>WEAR THE<br /><em>MESSAGE.</em></h3></div>
+        <button class="button button-light" type="button" data-product="first-press-tee">VIEW FEATURED PIECE ↗</button>
       </div>
 
       <div class="product-grid">
-        <article class="product-card">
-          <div class="product-image product-image-1"><span>KH / FS-01</span></div>
-          <p class="product-meta">PRE-LAUNCH / 01</p>
-          <h3>FIRST PRESS TEE</h3>
-          <p>เสื้อยืดโอเวอร์ไซซ์ งานพิมพ์ด้านหน้าและกราฟิกมือประกบด้านหลัง</p>
-          <ul><li>240 GSM cotton concept</li><li>Vintage black / S–XL</li></ul>
-          <strong>PRICE TBC</strong>
-        </article>
-        <article class="product-card">
-          <div class="product-image product-image-2"><span>KH / FS-02</span></div>
-          <p class="product-meta">PRE-LAUNCH / 02</p>
-          <h3>SMALL SIGNAL TEE</h3>
-          <p>สัญญาณเล็กบนอกเสื้อ ในสามสีหลักของแบรนด์</p>
-          <ul><li>230 GSM cotton concept</li><li>Off-white / Black / White</li></ul>
-          <strong>PRICE TBC</strong>
-        </article>
-        <article class="product-card">
-          <div class="product-image product-image-3"><span>KH / FS-03</span></div>
-          <p class="product-meta">PRE-LAUNCH / 03</p>
-          <h3>RISING PRESS TEE</h3>
-          <p>เสื้อกราฟิกขนาดใหญ่สำหรับ Collection 01 พร้อมคำว่า Made in the Press</p>
-          <ul><li>240 GSM cotton concept</li><li>Vintage black / S–XL</li></ul>
-          <strong>PRICE TBC</strong>
-        </article>
-        <article class="product-card">
-          <div class="product-image product-image-4"><span>KH / FS-04</span></div>
-          <p class="product-meta">PRE-LAUNCH / 04</p>
-          <h3>PRESS TYPO TEE</h3>
-          <p>เสื้อกราฟิกตัวอักษร KHARAWA และ Made in the Press</p>
-          <ul><li>230 GSM cotton concept</li><li>Black / White / S–XL</li></ul>
-          <strong>PRICE TBC</strong>
-        </article>
-        <article class="product-card">
-          <div class="product-image product-image-5"><span>KH / CAP-01</span></div>
-          <p class="product-meta">PRE-LAUNCH / 05</p>
-          <h3>PRESS CAP 01</h3>
-          <p>หมวก five-panel สีดำ พร้อมงานปัก KHARAWA ด้ายแดง</p>
-          <ul><li>Structured five-panel</li><li>One size / Black</li></ul>
-          <strong>PRICE TBC</strong>
-        </article>
+        <article class="product-card" data-card="first-press-tee"><div class="product-image product-image-1"><span>KH / FS-01</span></div><p class="product-meta">PRE-LAUNCH / 01</p><h3>FIRST PRESS TEE</h3><p>เสื้อยืดโอเวอร์ไซซ์ งานพิมพ์ด้านหน้าและกราฟิกมือประกบด้านหลัง</p><ul><li>240 GSM cotton concept</li><li>Vintage black / S–XL</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="first-press-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="first-press-tee">ADD +</button></div></article>
+        <article class="product-card" data-card="small-signal-tee"><div class="product-image product-image-2"><span>KH / FS-02</span></div><p class="product-meta">PRE-LAUNCH / 02</p><h3>SMALL SIGNAL TEE</h3><p>สัญญาณเล็กบนอกเสื้อ ในสามสีหลักของแบรนด์</p><ul><li>230 GSM cotton concept</li><li>Off-white / Black / White</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="small-signal-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="small-signal-tee">ADD +</button></div></article>
+        <article class="product-card" data-card="rising-press-tee"><div class="product-image product-image-3"><span>KH / FS-03</span></div><p class="product-meta">PRE-LAUNCH / 03</p><h3>RISING PRESS TEE</h3><p>เสื้อกราฟิกขนาดใหญ่สำหรับ Collection 01 พร้อมคำว่า Made in the Press</p><ul><li>240 GSM cotton concept</li><li>Vintage black / S–XL</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="rising-press-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="rising-press-tee">ADD +</button></div></article>
+        <article class="product-card" data-card="press-typo-tee"><div class="product-image product-image-4"><span>KH / FS-04</span></div><p class="product-meta">PRE-LAUNCH / 04</p><h3>PRESS TYPO TEE</h3><p>เสื้อกราฟิกตัวอักษร KHARAWA และ Made in the Press</p><ul><li>230 GSM cotton concept</li><li>Black / White / S–XL</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="press-typo-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="press-typo-tee">ADD +</button></div></article>
+        <article class="product-card" data-card="press-cap-01"><div class="product-image product-image-5"><span>KH / CAP-01</span></div><p class="product-meta">PRE-LAUNCH / 05</p><h3>PRESS CAP 01</h3><p>หมวก five-panel สีดำ พร้อมงานปัก KHARAWA ด้ายแดง</p><ul><li>Structured five-panel</li><li>One size / Black</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="press-cap-01">VIEW DETAILS</button><button class="add-button" type="button" data-add="press-cap-01">ADD +</button></div></article>
       </div>
     </section>
 
     <section class="contact section-cream" id="contact" aria-labelledby="contact-title">
       <div class="section-index">03</div>
-      <div>
-        <p class="eyebrow dark">JOIN THE FREQUENCY</p>
-        <h2 id="contact-title">KEEP YOUR<br /><em>EYES OPEN.</em></h2>
-        <p class="body-copy">คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา</p>
-        <div class="contact-actions">
-          <a class="button button-dark" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noreferrer">CHAT ON LINE ↗</a>
-          <a class="text-link" href="mailto:contact@kharawa.com">contact@kharawa.com ↗</a>
-        </div>
-      </div>
+      <div><p class="eyebrow dark">JOIN THE FREQUENCY</p><h2 id="contact-title">KEEP YOUR<br /><em>EYES OPEN.</em></h2><p class="body-copy">คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา</p><div class="contact-actions"><a class="button button-dark" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noreferrer">CHAT ON LINE ↗</a><a class="text-link" href="mailto:contact@kharawa.com">contact@kharawa.com ↗</a></div></div>
       <img class="contact-mark" src="./assets/KHARAWA-logo-new.png" alt="โลโก้ KHARAWA" />
     </section>
   </main>
 
-  <footer class="site-footer">
-    <img src="./assets/KHARAWA-logo-new.png" alt="โลโก้ KHARAWA" />
-    <p>KHARAWA / 2026<br />MAKE YOUR SIGNAL.</p>
-    <a href="#top">BACK TO TOP ↑</a>
-  </footer>
-
+  <footer class="site-footer"><img src="./assets/KHARAWA-logo-new.png" alt="โลโก้ KHARAWA" /><p>KHARAWA / 2026<br />MAKE YOUR SIGNAL.</p><a href="#top">BACK TO TOP ↑</a></footer>
   <script src="./script.js"></script>
 </body>
 </html>

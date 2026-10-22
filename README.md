@@ -11,12 +11,16 @@
 - `site/index.html` — Landing Page หลักแบบ Static
 - `site/styles.css` — ระบบสี, layout และ responsive design
 - `site/script.js` — เมนูมือถือและ interaction เบื้องต้น
+- Product Showcase พร้อมหน้าต่างรายละเอียดสินค้า
+- Cart Drawer เพิ่ม/ลด/ลบสินค้าและบันทึกตะกร้าด้วย `localStorage`
 
 ## ขอบเขตสำคัญ
 
 Repository นี้ยัง **ไม่ใช่ source code เต็มของเว็บไซต์ที่เผยแพร่** เนื่องจาก source code ต้นฉบับยังไม่ได้ถูกส่งเข้ามาใน Sandbox ขณะจัดทำ repository
 
 ชุดนี้เป็น Landing Page แบบ Static สำหรับนำไปพัฒนาต่อ ยังไม่มี database, authentication หรือระบบ order จริง ดังนั้นไม่ควรนำส่วน `/track` และ `/admin/pre-orders` ไปใช้งาน production โดยตรง
+
+ตะกร้าสินค้าในเวอร์ชันนี้เป็น client-side prototype: สินค้ายังมีสถานะ `PRE-LAUNCH` และ `PRICE TBC` จึงยังไม่เปิด checkout จริง ปุ่ม `REQUEST PRE-ORDER` จะเปิดใช้งานเมื่อเชื่อมราคาจริง ฐานข้อมูล และระบบรับคำสั่งซื้อแล้ว
 
 ## เมื่อมี source code
 
