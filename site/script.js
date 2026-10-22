@@ -30,7 +30,10 @@ function loadCart() {
     return Array.isArray(parsed) ? parsed.filter((item) => PRODUCTS[item.id] && item.quantity > 0) : [];
   } catch { return []; }
 }
-function saveCart() { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); }
+function saveCart() {
+  // Storage can be blocked (private windows, strict cookie settings): keep the cart working for this visit anyway.
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch { /* cart stays in memory */ }
+}
 function totalItems() { return cart.reduce((sum, item) => sum + item.quantity, 0); }
 function product(id) { return PRODUCTS[id]; }
 
