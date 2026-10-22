@@ -10,18 +10,18 @@ const STORAGE_KEY = 'kharawa-cart-v1';
 const LANGUAGE_KEY = 'kharawa-language-v1';
 const TRANSLATIONS = {
   th: {
-    'nav.manifesto': 'แนวคิด', 'nav.collection': 'คอลเลกชัน', 'nav.contact': 'ติดต่อ', 'nav.mobileManifesto': '01 / แนวคิด', 'nav.mobileCollection': '02 / คอลเลกชัน', 'nav.mobileContact': '03 / ติดต่อ',
+    'nav.manifesto': 'แนวคิด', 'nav.collection': 'คอลเลกชัน', 'nav.consign': 'ฝากขาย', 'nav.contact': 'ติดต่อ', 'nav.mobileManifesto': '01 / แนวคิด', 'nav.mobileCollection': '02 / คอลเลกชัน', 'nav.mobileConsign': '03 / ฝากขาย', 'nav.mobileContact': '04 / ติดต่อ',
     'cart.title': 'ถุงสินค้าของคุณ', 'cart.total': 'รวม', 'cart.note': 'ราคาสินค้าและค่าส่งจะยืนยันเมื่อเปิด Pre-order', 'cart.checkout': 'ขอ Pre-order', 'cart.add': 'เพิ่มลงถุง +',
     'hero.eyebrow': 'งานพิมพ์สำหรับคนบนถนน', 'hero.title': 'ส่งสัญญาณ<br /><em>ในแบบ</em><br />ของคุณ', 'hero.description': 'เสื้อผ้าไม่ใช่แค่สิ่งที่ใส่ — แต่มันคือสิ่งที่คุณประกาศ', 'hero.cta': 'ดูสัญญาณของเรา ↗', 'manifesto.eyebrow': 'KHARAWA / สัญญาณสาธารณะ', 'manifesto.title': 'ไม่ใช่<br /><em>เครื่องแบบ</em><br />แต่คือจุดยืน', 'manifesto.body': 'เราเชื่อว่าสิ่งที่สวมใส่มีเสียงของมันเอง KHARAWA จึงสร้างชิ้นงานที่ให้คุณพูดออกไป โดยไม่ต้องพูดดังเกินจำเป็น',
     'collection.eyebrow': '02 / สัญญาณที่คัดสรร', 'collection.title': 'บันทึก<br /><em>จากสนาม</em>', 'collection.intro': 'ชิ้นงานจากสนามทดลองของ KHARAWA — ดูรายละเอียดแต่ละชิ้นและเพิ่มลงถุงสำหรับ Pre-order', 'showcase.eyebrow': 'FIELD EDITION 001', 'showcase.title': 'สวมใส่<br /><em>ข้อความ</em>', 'showcase.cta': 'ดูชิ้นงานเด่น ↗',
-    'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.email': 'contact@kharawa.com ↗', 'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับด้านบน ↑', emptyCart: 'ยังไม่มีสินค้าในตะกร้า', viewDetails: 'ดูรายละเอียด', addShort: 'เพิ่ม +', bag: 'ถุง', index: 'เมนู'
+    'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.email': 'contact@kharawa.com ↗', 'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับด้านบน ↑', 'consign.eyebrow': 'PRE-LOVED / ฝากขาย', 'consign.title': 'ส่งต่อ<br /><em>สัญญาณ</em>', 'consign.body': 'มีชิ้นงาน KHARAWA ที่อยากส่งต่อไหม? ฝากรายละเอียดไว้กับเรา แล้วทีมงานจะติดต่อกลับเพื่อประเมินและแจ้งขั้นตอนถัดไป', 'consign.ruleOneTitle': '01 / คัดสรร', 'consign.ruleOne': 'รับพิจารณาเสื้อผ้าและแอ็กเซสซอรีสภาพดี', 'consign.ruleTwoTitle': '02 / ตรวจสอบ', 'consign.ruleTwo': 'ทีมงานตรวจสภาพและยืนยันราคาก่อนลงขาย', 'consign.ruleThreeTitle': '03 / ส่งต่อ', 'consign.ruleThree': 'รอการติดต่อกลับเพื่อยืนยันการฝากขาย', 'consign.itemLabel': 'ชื่อสินค้า', 'consign.itemPlaceholder': 'เช่น First Press Tee', 'consign.categoryLabel': 'หมวดหมู่', 'consign.categoryPlaceholder': 'เลือกหมวดหมู่', 'consign.accessory': 'แอ็กเซสซอรี', 'consign.conditionLabel': 'สภาพสินค้า', 'consign.conditionPlaceholder': 'เลือกสภาพ', 'consign.conditionNew': 'เหมือนใหม่', 'consign.conditionGood': 'สภาพดี', 'consign.conditionUsed': 'มีร่องรอยการใช้งาน', 'consign.priceLabel': 'ราคาที่ต้องการ', 'consign.pricePlaceholder': 'เช่น 1200', 'consign.contactLabel': 'ช่องทางติดต่อ', 'consign.contactPlaceholder': 'LINE / Instagram / โทรศัพท์', 'consign.detailsLabel': 'รายละเอียดเพิ่มเติม', 'consign.detailsPlaceholder': 'ไซซ์ สี ตำหนิ และข้อมูลที่ควรรู้', 'consign.photoLabel': 'รูปสินค้า', 'consign.photoNote': 'รองรับรูปภาพ 1 รูปสำหรับร่างข้อมูลเบื้องต้น', 'consign.submit': 'ส่งข้อมูลฝากขาย ↗', emptyCart: 'ยังไม่มีสินค้าในตะกร้า', viewDetails: 'ดูรายละเอียด', addShort: 'เพิ่ม +', bag: 'ถุง', index: 'เมนู'
   },
   en: {
-    'nav.manifesto': 'MANIFESTO', 'nav.collection': 'COLLECTION', 'nav.contact': 'CONTACT', 'nav.mobileManifesto': '01 / MANIFESTO', 'nav.mobileCollection': '02 / COLLECTION', 'nav.mobileContact': '03 / CONTACT',
+    'nav.manifesto': 'MANIFESTO', 'nav.collection': 'COLLECTION', 'nav.consign': 'CONSIGN', 'nav.contact': 'CONTACT', 'nav.mobileManifesto': '01 / MANIFESTO', 'nav.mobileCollection': '02 / COLLECTION', 'nav.mobileConsign': '03 / CONSIGN', 'nav.mobileContact': '04 / CONTACT',
     'cart.title': 'YOUR BAG', 'cart.total': 'TOTAL', 'cart.note': 'Price and shipping will be confirmed when Pre-order opens.', 'cart.checkout': 'REQUEST PRE-ORDER', 'cart.add': 'ADD TO BAG +',
     'hero.eyebrow': 'INKED FOR THE STREETS', 'hero.title': 'MAKE<br /><em>YOUR</em><br />SIGNAL.', 'hero.description': 'Clothing is not just what you wear — it is what you announce.', 'hero.cta': 'EXPLORE THE SIGNAL ↗', 'manifesto.eyebrow': 'KHARAWA / A PUBLIC SIGNAL', 'manifesto.title': 'NOT A<br /><em>UNIFORM.</em><br />A POSITION.', 'manifesto.body': 'We believe what you wear has its own voice. KHARAWA creates pieces that let you speak without having to shout.',
     'collection.eyebrow': '02 / SELECTED SIGNALS', 'collection.title': 'THE FIELD<br /><em>NOTES.</em>', 'collection.intro': 'Pieces from the KHARAWA field study — explore each piece and add it to your Pre-order bag.', 'showcase.eyebrow': 'FIELD EDITION 001', 'showcase.title': 'WEAR THE<br /><em>MESSAGE.</em>', 'showcase.cta': 'VIEW FEATURED PIECE ↗',
-    'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.email': 'contact@kharawa.com ↗', 'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑', emptyCart: 'Your bag is empty', viewDetails: 'VIEW DETAILS', addShort: 'ADD +', bag: 'BAG', index: 'INDEX'
+    'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.email': 'contact@kharawa.com ↗', 'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑', 'consign.eyebrow': 'PRE-LOVED / CONSIGNMENT', 'consign.title': 'PASS IT<br /><em>FORWARD.</em>', 'consign.body': 'Have a KHARAWA piece ready for a new life? Leave the details and our team will get back to you with the next steps.', 'consign.ruleOneTitle': '01 / CURATE', 'consign.ruleOne': 'We review clothing and accessories in good condition.', 'consign.ruleTwoTitle': '02 / REVIEW', 'consign.ruleTwo': 'Our team checks condition and confirms the price before listing.', 'consign.ruleThreeTitle': '03 / PASS ON', 'consign.ruleThree': 'We contact you to confirm the consignment.', 'consign.itemLabel': 'Item name', 'consign.itemPlaceholder': 'e.g. First Press Tee', 'consign.categoryLabel': 'Category', 'consign.categoryPlaceholder': 'Choose a category', 'consign.accessory': 'Accessory', 'consign.conditionLabel': 'Condition', 'consign.conditionPlaceholder': 'Choose condition', 'consign.conditionNew': 'Like new', 'consign.conditionGood': 'Good condition', 'consign.conditionUsed': 'Visible wear', 'consign.priceLabel': 'Asking price', 'consign.pricePlaceholder': 'e.g. 1200', 'consign.contactLabel': 'Contact channel', 'consign.contactPlaceholder': 'LINE / Instagram / phone', 'consign.detailsLabel': 'More details', 'consign.detailsPlaceholder': 'Size, colour, flaws and anything we should know', 'consign.photoLabel': 'Product photo', 'consign.photoNote': 'One image is supported for this draft submission.', 'consign.submit': 'SUBMIT CONSIGNMENT ↗', emptyCart: 'Your bag is empty', viewDetails: 'VIEW DETAILS', addShort: 'ADD +', bag: 'BAG', index: 'INDEX'
   }
 };
 let currentLanguage = localStorage.getItem(LANGUAGE_KEY) === 'en' ? 'en' : 'th';
@@ -46,12 +46,14 @@ function applyLanguage(language = currentLanguage) {
   localStorage.setItem(LANGUAGE_KEY, currentLanguage);
   $$('[data-i18n]').forEach((element) => { if (dictionary[element.dataset.i18n]) element.textContent = dictionary[element.dataset.i18n]; });
   $$('[data-i18n-html]').forEach((element) => { if (dictionary[element.dataset.i18nHtml]) element.innerHTML = dictionary[element.dataset.i18nHtml]; });
+  $$('[data-i18n-placeholder]').forEach((element) => { if (dictionary[element.dataset.i18nPlaceholder]) element.placeholder = dictionary[element.dataset.i18nPlaceholder]; });
   $$('.language-button').forEach((button) => { const active = button.dataset.language === currentLanguage; button.classList.toggle('is-active', active); button.setAttribute('aria-pressed', String(active)); });
   const cartButton = $('.cart-button');
   if (cartButton?.firstChild) cartButton.firstChild.textContent = `${dictionary.bag} `;
   if ($('.menu-button')) $('.menu-button').textContent = dictionary.index;
   $$('.text-button').forEach((button) => { button.textContent = dictionary.viewDetails; });
   $$('.add-button').forEach((button) => { button.textContent = dictionary.addShort; });
+  if ($('#consign-status')?.textContent) $('#consign-status').textContent = currentLanguage === 'th' ? 'บันทึกร่างข้อมูลแล้ว — ทีมงานจะติดต่อกลับหลังเชื่อมระบบรับข้อมูลจริง' : 'Draft saved — our team will follow up once a live submission channel is connected.';
   $$('.product-card[data-card]').forEach((card) => {
     const p = product(card.dataset.card);
     if (!p) return;
@@ -127,6 +129,18 @@ function openProduct(id) {
   document.body.classList.add('modal-open');
 }
 function closeProduct() { $('#product-modal').close(); document.body.classList.remove('modal-open'); }
+
+$('#consign-form')?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const data = Object.fromEntries(new FormData(form).entries());
+  const drafts = JSON.parse(localStorage.getItem('kharawa-consignment-drafts-v1') || '[]');
+  drafts.push({ ...data, photo: data.photo?.name || '', createdAt: new Date().toISOString() });
+  localStorage.setItem('kharawa-consignment-drafts-v1', JSON.stringify(drafts));
+  const status = $('#consign-status');
+  status.textContent = currentLanguage === 'th' ? 'บันทึกร่างข้อมูลแล้ว — ทีมงานจะติดต่อกลับหลังเชื่อมระบบรับข้อมูลจริง' : 'Draft saved — our team will follow up once a live submission channel is connected.';
+  form.reset();
+});
 
 $('.menu-button')?.addEventListener('click', () => {
   const button = $('.menu-button');
