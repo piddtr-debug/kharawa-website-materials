@@ -84,7 +84,6 @@ html[lang="th"] .button { font-size: .95rem; font-stretch: 100%; }
 .site-header { position: fixed; z-index: 10; top: 0; left: 0; width: 100%; height: var(--header-h); display: flex; align-items: center; gap: 32px; padding: 0 var(--pad); background: rgba(17, 16, 14, .94); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 /* Over the hero the header floats on the artwork; script.js adds .is-overlay only while the hero is under it. */
 .site-header.is-overlay { background-color: transparent; background-image: linear-gradient(rgba(17, 16, 14, .86), rgba(17, 16, 14, .74) 55%, rgba(17, 16, 14, 0)); background-origin: border-box; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; }
-.site-header.is-overlay .brand-lockup { visibility: hidden; }
 .site-header.is-overlay .main-nav a, .site-header.is-overlay .menu-button, .site-header.is-overlay .cart-button, .site-header.is-overlay .language-switcher { text-shadow: 0 1px 6px rgba(17, 16, 14, .6); }
 .brand-lockup { display: flex; align-items: center; gap: 12px; font-size: .75rem; font-weight: 800; font-stretch: 118%; letter-spacing: .22em; }
 .brand-lockup img { width: 36px; height: 36px; object-fit: cover; border: 1px solid var(--cream); }
@@ -157,18 +156,20 @@ html[lang="th"] .modal-title { line-height: 1.25; }
 .modal-add { position: sticky; bottom: 12px; } /* only matters when a small screen has to scroll the dialog */
 
 /* ---------- Hero + intro ---------- */
-.hero { position: relative; height: 100vh; height: 100svh; min-height: 520px; overflow: hidden; background: var(--cream); }
-.hero-art { position: absolute; inset: 0; }
-.hero-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
-.hero-art-label { position: absolute; right: var(--pad); bottom: clamp(24px, 4vw, 48px); padding: 10px 14px; background: rgba(17, 16, 14, .86); color: var(--cream); font-size: .65rem; font-weight: 700; font-stretch: 118%; line-height: 1.3; letter-spacing: .2em; text-align: right; }
-
-.intro { padding: var(--section-y) var(--pad) clamp(48px, 6vw, 88px); background: var(--black); }
-.intro-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 40px; align-items: end; }
-.intro-main { grid-column: 1 / span 8; }
-.intro-side { grid-column: 9 / span 4; padding-bottom: .8em; }
-.hero-description { max-width: 24em; margin: 0 0 32px; color: var(--muted); font-size: 1.0625rem; line-height: var(--lh-body); }
-.edition-mark { display: flex; justify-content: space-between; margin: clamp(64px, 9vw, 144px) 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .68rem; font-stretch: 112%; letter-spacing: .3em; }
-.edition-mark::after { content: "FIELD EDITION 001"; }
+/* Split first screen like the original site: copy on black at the left, the artwork at the right. */
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); min-height: 100vh; min-height: 100svh; background: var(--black); }
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: calc(var(--header-h) + clamp(24px, 5vh, 64px)) clamp(24px, 4vw, 72px) clamp(24px, 4vh, 48px) var(--pad); }
+.hero .eyebrow::before { content: "✱"; width: auto; height: auto; background: none; color: var(--red-hi); font-size: 1.05em; line-height: 1; }
+.hero h1 { font-size: clamp(3.4rem, 1.2rem + 7.4vw, 10rem); letter-spacing: -.045em; }
+html[lang="th"] .hero h1 { font-size: clamp(3rem, 1.4rem + 6.2vw, 8.4rem); letter-spacing: 0; }
+.hero-description { max-width: 24em; margin: clamp(24px, 4vh, 40px) 0 clamp(24px, 4vh, 36px); color: var(--muted); font-size: 1.0625rem; line-height: var(--lh-body); }
+.hero-cta { box-shadow: 4px 4px 0 var(--red); }
+.hero-cta:hover, .hero-cta:focus-visible { box-shadow: 8px 8px 0 var(--red); }
+.edition-mark { display: flex; align-items: center; margin: auto 0 0; padding-top: clamp(32px, 6vh, 72px); color: var(--muted); font-size: .68rem; font-weight: 600; font-stretch: 112%; letter-spacing: .2em; }
+.edition-mark span + span::before { content: ""; display: inline-block; width: 1px; height: .9em; margin: 0 1.1em; background: var(--line); vertical-align: -.1em; }
+.hero-art { position: relative; overflow: hidden; background: var(--cream); }
+.hero-art img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; }
+.hero-art-label { position: absolute; right: clamp(20px, 3vw, 48px); bottom: clamp(24px, 4vh, 48px); padding: 10px 14px; background: rgba(17, 16, 14, .86); color: var(--cream); font-size: .65rem; font-weight: 700; font-stretch: 118%; line-height: 1.3; letter-spacing: .2em; text-align: right; }
 
 /* ---------- Manifesto ---------- */
 .manifesto, .consign, .contact { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: start; padding: calc(var(--section-y) * .55) var(--pad) var(--section-y); }
@@ -277,8 +278,6 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .intro-main { grid-column: 1 / -1; }
-  .intro-side { grid-column: 1 / span 8; padding-bottom: 0; }
   .manifesto-main { grid-column: 1 / -1; }
   .manifesto .body-copy { margin-left: 0; }
   .manifesto-stamp { grid-column: 1 / -1; justify-self: start; margin-top: 48px; }
@@ -287,6 +286,13 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
   .consign-form { margin-top: 56px; }
   .contact-mark { grid-column: 1 / -1; justify-self: start; margin-top: 56px; width: 160px; }
 }
+@media (max-width: 900px) {
+  .hero { display: flex; flex-direction: column; min-height: 0; }
+  .hero-art { order: -1; height: 56vh; height: 56svh; min-height: 300px; }
+  .hero-art img { object-position: 66% 40%; }
+  .hero-copy { padding: clamp(36px, 8vw, 64px) var(--pad) clamp(28px, 6vw, 48px); }
+  .edition-mark { margin-top: clamp(40px, 10vw, 72px); }
+}
 @media (max-width: 1023px) {
   .main-nav { display: none; }
   .menu-button { display: inline-flex; }
@@ -294,9 +300,6 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
 }
 @media (max-width: 800px) {
   :root { --header-h: 62px; }
-  .hero { height: 78vh; height: 78svh; min-height: 420px; }
-  .hero-art img { object-position: 70% center; }
-  .intro-side { grid-column: 1 / -1; }
   .collection-heading { display: block; }
   .section-intro { margin-top: 28px; }
   .showcase-banner { grid-template-columns: 1fr; align-items: start; }
