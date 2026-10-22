@@ -238,7 +238,8 @@ html[lang="th"] .site-footer p { font-family: var(--serif-body); font-style: nor
   .product-card:nth-child(2), .product-card:nth-child(5) { margin-top: 0; }
   .contact-actions { flex-direction: column; gap: 28px; }
   .modal-layout { grid-template-columns: 1fr; min-height: 0; }
-  .modal-art { min-height: 300px; }
+  .modal-art { min-height: 0; height: 32vh; max-height: 260px; }
+  .modal-close { color: var(--bone); mix-blend-mode: difference; }
   .cart-drawer { padding: 26px 22px 24px; }
 }
 @media (max-width: 420px) {
