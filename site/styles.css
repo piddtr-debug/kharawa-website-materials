@@ -241,8 +241,8 @@ html[lang="th"] .grid-note .note-cta { font-size: .95rem; font-stretch: 100%; }
 html[lang="th"] .consign-rules strong { font-size: .9rem; font-stretch: 100%; }
 .consign-form { grid-column: 7 / span 6; padding: clamp(24px, 3.2vw, 48px); background: var(--paper); border: 1px solid var(--line-dark); }
 .consign-form label { display: block; margin-bottom: 22px; }
-.consign-form label > span { display: block; margin-bottom: 8px; font-size: .72rem; font-weight: 600; font-stretch: 112%; letter-spacing: var(--track-label); text-transform: uppercase; }
-html[lang="th"] .consign-form label > span { font-size: .9rem; font-stretch: 100%; }
+.consign-form label > span:not(.photo-error) { display: block; margin-bottom: 8px; font-size: .72rem; font-weight: 600; font-stretch: 112%; letter-spacing: var(--track-label); text-transform: uppercase; }
+html[lang="th"] .consign-form label > span:not(.photo-error) { font-size: .9rem; font-stretch: 100%; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
 .consign-form input, .consign-form select, .consign-form textarea { width: 100%; min-height: 52px; padding: 13px 16px; border: 1px solid rgba(17, 16, 14, .42); border-radius: 0; background: var(--cream); color: var(--black); font: inherit; font-size: 1rem; line-height: 1.4; transition: border-color .2s, box-shadow .2s; }
 .consign-form input::placeholder, .consign-form textarea::placeholder { color: rgba(17, 16, 14, .58); }
@@ -252,6 +252,9 @@ html[lang="th"] .consign-form label > span { font-size: .9rem; font-stretch: 100
 .file-field input { padding: 10px; background: transparent; border-style: dashed; }
 .file-field input::file-selector-button { margin-right: 14px; padding: 8px 14px; border: 1px solid var(--black); background: transparent; color: var(--black); font: inherit; font-size: .85rem; cursor: pointer; }
 .file-field small { display: block; margin-top: 8px; color: var(--muted-dark); font-size: .8rem; line-height: 1.5; }
+.photo-error { display: block; min-height: 1.4em; margin-top: 6px; color: #a31b15; font-size: .85rem; line-height: 1.5; }
+.photo-preview { display: block; width: min(240px, 100%); aspect-ratio: 1; margin-top: 12px; object-fit: cover; border: 1px solid var(--line-dark); }
+.photo-preview[hidden] { display: none; }
 .consign-form .button { width: 100%; min-height: 56px; }
 .form-status { min-height: 24px; margin: 16px 0 0; color: var(--blue); font-size: .9rem; line-height: 1.6; }
 

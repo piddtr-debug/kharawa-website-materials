@@ -37,7 +37,7 @@ const TRANSLATIONS = {
     'consign.itemLabel': 'ชื่อสินค้า', 'consign.itemPlaceholder': 'เช่น First Press Tee', 'consign.categoryLabel': 'หมวดหมู่', 'consign.categoryPlaceholder': 'เลือกหมวดหมู่', 'consign.tee': 'เสื้อยืด', 'consign.cap': 'หมวก', 'consign.accessory': 'แอ็กเซสซอรี',
     'consign.conditionLabel': 'สภาพสินค้า', 'consign.conditionPlaceholder': 'เลือกสภาพ', 'consign.conditionNew': 'เหมือนใหม่', 'consign.conditionGood': 'สภาพดี', 'consign.conditionUsed': 'มีร่องรอยการใช้งาน',
     'consign.priceLabel': 'ราคาที่ต้องการ', 'consign.pricePlaceholder': 'เช่น 1200', 'consign.contactLabel': 'ช่องทางติดต่อ', 'consign.contactPlaceholder': 'LINE / Instagram / เบอร์โทรศัพท์',
-    'consign.detailsLabel': 'รายละเอียดเพิ่มเติม', 'consign.detailsPlaceholder': 'ไซซ์ สี ตำหนิ และข้อมูลที่ควรทราบ', 'consign.photoLabel': 'รูปสินค้า', 'consign.photoNote': 'เลือกรูปได้ 1 รูป (ใช้สำหรับร่างข้อมูลเบื้องต้น)',
+    'consign.detailsLabel': 'รายละเอียดเพิ่มเติม', 'consign.detailsPlaceholder': 'ไซซ์ สี ตำหนิ และข้อมูลที่ควรทราบ', 'consign.photoLabel': 'รูปสินค้า', 'consign.photoNote': 'รองรับ JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB',
     'consign.submit': 'ส่งข้อมูลฝากขาย ↗', 'consign.status': 'บันทึกร่างข้อมูลแล้ว ขณะนี้ยังเป็นเวอร์ชันทดลอง ข้อมูลถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น และยังไม่ได้ส่งถึงทีมงาน',
     'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และก้าวต่อไปของ KHARAWA จะเปิดเผยเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับขึ้นด้านบน ↑',
@@ -58,7 +58,7 @@ const TRANSLATIONS = {
     'consign.itemLabel': 'Item name', 'consign.itemPlaceholder': 'e.g. First Press Tee', 'consign.categoryLabel': 'Category', 'consign.categoryPlaceholder': 'Choose a category', 'consign.tee': 'Tee', 'consign.cap': 'Cap', 'consign.accessory': 'Accessory',
     'consign.conditionLabel': 'Condition', 'consign.conditionPlaceholder': 'Choose condition', 'consign.conditionNew': 'Like new', 'consign.conditionGood': 'Good condition', 'consign.conditionUsed': 'Visible wear',
     'consign.priceLabel': 'Asking price', 'consign.pricePlaceholder': 'e.g. 1200', 'consign.contactLabel': 'Contact channel', 'consign.contactPlaceholder': 'LINE / Instagram / phone',
-    'consign.detailsLabel': 'More details', 'consign.detailsPlaceholder': 'Size, colour, flaws and anything we should know', 'consign.photoLabel': 'Product photo', 'consign.photoNote': 'One image is supported for this draft submission.',
+    'consign.detailsLabel': 'More details', 'consign.detailsPlaceholder': 'Size, colour, flaws and anything we should know', 'consign.photoLabel': 'Product photo', 'consign.photoNote': 'JPG, PNG or WebP up to 5 MB', 'consign.photoError': 'Choose a JPG, PNG or WebP image up to 5 MB.',
     'consign.submit': 'SUBMIT CONSIGNMENT ↗', 'consign.status': 'Draft saved. This is a trial version: your details stay in this browser only and have not been sent to our team yet.',
     'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑',
@@ -101,6 +101,7 @@ function applyLanguage(language = currentLanguage) {
   $$('.text-button').forEach((button) => { button.textContent = dictionary.viewDetails; });
   $$('.add-button').forEach((button) => { button.textContent = dictionary.addShort; });
   if ($('#consign-status')?.dataset.state === 'saved') $('#consign-status').textContent = consignStatusText();
+  if ($('#consign-photo-error')?.dataset.state === 'invalid') $('#consign-photo-error').textContent = dictionary['consign.photoError'];
   $$('.product-card[data-card]').forEach((card) => {
     const p = product(card.dataset.card);
     if (!p) return;
@@ -190,6 +191,30 @@ $('#consign-form')?.addEventListener('submit', (event) => {
   status.dataset.state = 'saved';
   status.textContent = consignStatusText();
   form.reset();
+  $('#consign-photo-preview').hidden = true;
+  $('#consign-photo-error').textContent = '';
+  delete $('#consign-photo-error').dataset.state;
+});
+
+$('#consign-photo')?.addEventListener('change', (event) => {
+  const file = event.target.files?.[0];
+  const preview = $('#consign-photo-preview');
+  const error = $('#consign-photo-error');
+  error.textContent = '';
+  delete error.dataset.state;
+  preview.hidden = true;
+  if (!file) return;
+  const allowed = ['image/jpeg', 'image/png', 'image/webp'];
+  if (!allowed.includes(file.type) || file.size > 5 * 1024 * 1024) {
+    error.dataset.state = 'invalid';
+    error.textContent = TRANSLATIONS[currentLanguage]['consign.photoError'];
+    event.target.value = '';
+    return;
+  }
+  const objectUrl = URL.createObjectURL(file);
+  preview.src = objectUrl;
+  preview.hidden = false;
+  preview.onload = () => URL.revokeObjectURL(objectUrl);
 });
 
 $('.menu-button')?.addEventListener('click', () => {
