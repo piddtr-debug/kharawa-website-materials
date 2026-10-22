@@ -4,47 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="KHARAWA — Make Your Signal. เสื้อผ้าและชิ้นงานที่ให้คุณประกาศตัวตนผ่านสิ่งที่สวมใส่" />
+  <meta name="theme-color" content="#11100e" />
   <meta property="og:title" content="KHARAWA — Make Your Signal" />
   <meta property="og:description" content="Not a uniform. A position." />
   <meta property="og:type" content="website" />
   <title>KHARAWA — Make Your Signal</title>
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Sans+Thai:wght@300..800&display=swap" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <header class="site-header" id="top">
     <a class="brand-lockup" href="#top" aria-label="กลับไปหน้าแรก KHARAWA">
-      <img src="./assets/icon-192.png" width="34" height="34" alt="โลโก้ KHARAWA รูปมือประกบและตัวอักษร KHARAWA" />
+      <img src="./assets/icon-192.png" width="36" height="36" alt="โลโก้ KHARAWA รูปมือประกบและตัวอักษร KHARAWA" />
       <span>KHARAWA</span>
     </a>
     <nav class="main-nav" aria-label="เมนูหลัก">
-      <a href="#manifesto" data-i18n="nav.manifesto">MANIFESTO</a>
-      <a href="#collection" data-i18n="nav.collection">COLLECTION</a>
-      <a href="#consign" data-i18n="nav.consign">CONSIGN</a>
-      <a href="#contact" data-i18n="nav.contact">CONTACT</a>
+      <a href="#manifesto" data-i18n="nav.manifesto">แนวคิด</a>
+      <a href="#collection" data-i18n="nav.collection">คอลเลกชัน</a>
+      <a href="#consign" data-i18n="nav.consign">ฝากขาย</a>
+      <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
     </nav>
     <div class="header-actions">
       <div class="language-switcher" aria-label="เลือกภาษา"><button class="language-button is-active" type="button" data-language="th" aria-pressed="true">TH</button><span>/</span><button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button></div>
-      <button class="cart-button" type="button" aria-controls="cart-drawer" aria-expanded="false">BAG <span class="cart-count">0</span></button>
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">INDEX</button>
+      <button class="cart-button" type="button" aria-controls="cart-drawer" aria-expanded="false">ตะกร้า <span class="cart-count">0</span></button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">เมนู</button>
     </div>
   </header>
 
   <div class="mobile-nav" id="mobile-nav" hidden>
-    <a href="#manifesto" data-i18n="nav.mobileManifesto">01 / MANIFESTO</a>
-    <a href="#collection" data-i18n="nav.mobileCollection">02 / COLLECTION</a>
+    <a href="#manifesto" data-i18n="nav.mobileManifesto">01 / แนวคิด</a>
+    <a href="#collection" data-i18n="nav.mobileCollection">02 / คอลเลกชัน</a>
     <a href="#consign" data-i18n="nav.mobileConsign">03 / ฝากขาย</a>
-    <a href="#contact" data-i18n="nav.mobileContact">04 / CONTACT</a>
+    <a href="#contact" data-i18n="nav.mobileContact">04 / ติดต่อ</a>
   </div>
 
   <aside class="cart-drawer" id="cart-drawer" aria-label="ตะกร้าสินค้า" aria-hidden="true">
-    <div class="cart-head"><h2 data-i18n="cart.title">YOUR BAG</h2><button class="cart-close" type="button" aria-label="ปิดตะกร้า">×</button></div>
+    <div class="cart-head"><h2 data-i18n="cart.title">ตะกร้าของคุณ</h2><button class="cart-close" type="button" aria-label="ปิดตะกร้า">×</button></div>
     <div class="cart-items" aria-live="polite"><p class="empty-cart">ยังไม่มีสินค้าในตะกร้า</p></div>
     <div class="cart-foot">
-      <div class="cart-total"><span data-i18n="cart.total">รวม</span><strong class="cart-total-value">PRICE TBC</strong></div>
-      <p class="cart-note" data-i18n="cart.note">ราคาสินค้าและค่าส่งจะยืนยันเมื่อเปิด Pre-order</p>
-      <button class="button button-dark checkout-button" type="button" disabled data-i18n="cart.checkout">REQUEST PRE-ORDER</button>
+      <div class="cart-total"><span data-i18n="cart.total">รวม</span><strong class="cart-total-value">ราคาจะแจ้งภายหลัง</strong></div>
+      <p class="cart-note" data-i18n="cart.note">ราคาและค่าจัดส่งจะแจ้งยืนยันเมื่อเปิดรับสั่งจองล่วงหน้า</p>
+      <button class="button button-dark checkout-button" type="button" disabled data-i18n="cart.checkout">ขอสั่งจองล่วงหน้า</button>
     </div>
   </aside>
   <div class="cart-backdrop" hidden></div>
@@ -58,8 +62,8 @@
         <h2 class="modal-title"></h2>
         <p class="modal-description"></p>
         <ul class="modal-specs"></ul>
-        <strong class="modal-price">PRICE TBC</strong>
-        <button class="button button-dark modal-add" type="button" data-i18n="cart.add">ADD TO BAG +</button>
+        <strong class="modal-price" data-i18n="price.tbc">ราคาจะแจ้งภายหลัง</strong>
+        <button class="button button-dark modal-add" type="button" data-i18n="cart.add">เพิ่มลงตะกร้า +</button>
       </div>
     </div>
   </dialog>
@@ -73,52 +77,60 @@
     </section>
 
     <section class="intro" aria-labelledby="hero-title">
-      <p class="eyebrow" data-i18n="hero.eyebrow">INKED FOR THE STREETS</p>
-      <h1 id="hero-title" data-i18n-html="hero.title">MAKE<br /><em>YOUR</em><br />SIGNAL.</h1>
-      <p class="hero-description" data-i18n="hero.description">เสื้อผ้าไม่ใช่แค่สิ่งที่ใส่ — แต่มันคือสิ่งที่คุณประกาศ</p>
-      <a class="button button-light" href="#collection" data-i18n="hero.cta">EXPLORE THE SIGNAL ↗</a>
+      <div class="intro-grid">
+        <div class="intro-main">
+          <p class="eyebrow" data-i18n="hero.eyebrow">งานพิมพ์เพื่อคนบนท้องถนน</p>
+          <h1 id="hero-title" data-i18n-html="hero.title">ส่งสัญญาณ<br /><em>ในแบบ</em><br />ของคุณ</h1>
+        </div>
+        <div class="intro-side">
+          <p class="hero-description" data-i18n="hero.description">เสื้อผ้าไม่ใช่เพียงสิ่งที่เราสวมใส่ แต่คือสิ่งที่เราประกาศออกไป</p>
+          <a class="button button-light" href="#collection" data-i18n="hero.cta">ดูคอลเลกชัน ↗</a>
+        </div>
+      </div>
       <p class="edition-mark">KH / 01 / 2026</p>
     </section>
 
     <section class="manifesto section-cream" id="manifesto" aria-labelledby="manifesto-title">
       <div class="section-index">01</div>
-      <div>
-        <p class="eyebrow dark" data-i18n="manifesto.eyebrow">KHARAWA / A PUBLIC SIGNAL</p>
-        <h2 id="manifesto-title" data-i18n-html="manifesto.title">NOT A<br /><em>UNIFORM.</em><br />A POSITION.</h2>
-        <p class="body-copy" data-i18n="manifesto.body">เราเชื่อว่าสิ่งที่สวมใส่มีเสียงของมันเอง KHARAWA จึงสร้างชิ้นงานที่ให้คุณพูดออกไป โดยไม่ต้องพูดดังเกินจำเป็น</p>
+      <div class="manifesto-main">
+        <p class="eyebrow dark" data-i18n="manifesto.eyebrow">KHARAWA / สัญญาณที่ทุกคนเห็น</p>
+        <h2 id="manifesto-title" data-i18n-html="manifesto.title">ไม่ใช่<br /><em>เครื่องแบบ</em><br />แต่คือจุดยืน</h2>
+        <p class="body-copy" data-i18n="manifesto.body">เราเชื่อว่าสิ่งที่สวมใส่มีเสียงของตัวเอง KHARAWA จึงสร้างชิ้นงานที่ช่วยให้คุณสื่อสารได้ชัดเจน โดยไม่ต้องตะโกน</p>
       </div>
       <div class="manifesto-stamp">EST.<br />FOR THE<br />UNMUTED</div>
     </section>
 
     <section class="collection section-black" id="collection" aria-labelledby="collection-title">
+      <div class="section-index">02</div>
       <div class="collection-heading">
         <div>
-          <p class="eyebrow" data-i18n="collection.eyebrow">02 / SELECTED SIGNALS</p>
-          <h2 id="collection-title" data-i18n-html="collection.title">THE FIELD<br /><em>NOTES.</em></h2>
+          <p class="eyebrow" data-i18n="collection.eyebrow">สัญญาณที่คัดสรร</p>
+          <h2 id="collection-title" data-i18n-html="collection.title">บันทึก<br /><em>จากสนาม</em></h2>
         </div>
-        <p class="section-intro" data-i18n="collection.intro">ชิ้นงานจากสนามทดลองของ KHARAWA — ดูรายละเอียดแต่ละชิ้นและเพิ่มลงถุงสำหรับ Pre-order</p>
+        <p class="section-intro" data-i18n="collection.intro">ชิ้นงานจากสนามทดลองของ KHARAWA ดูรายละเอียดของแต่ละชิ้น แล้วเพิ่มลงตะกร้าเพื่อสั่งจองล่วงหน้า</p>
       </div>
 
       <div class="showcase-banner">
-        <div><p class="eyebrow" data-i18n="showcase.eyebrow">FIELD EDITION 001</p><h3 data-i18n-html="showcase.title">WEAR THE<br /><em>MESSAGE.</em></h3></div>
-        <button class="button button-light" type="button" data-product="first-press-tee" data-i18n="showcase.cta">VIEW FEATURED PIECE ↗</button>
+        <div><p class="eyebrow" data-i18n="showcase.eyebrow">FIELD EDITION 001</p><h3 data-i18n-html="showcase.title">สวมใส่<br /><em>ข้อความ</em></h3></div>
+        <button class="button button-light" type="button" data-product="first-press-tee" data-i18n="showcase.cta">ดูชิ้นเด่น ↗</button>
       </div>
 
       <div class="product-grid">
-        <article class="product-card" data-card="first-press-tee"><div class="product-image product-image-1"><span>KH / FS-01</span></div><p class="product-meta">PRE-LAUNCH / 01</p><h3>FIRST PRESS TEE</h3><p>เสื้อยืดโอเวอร์ไซซ์ งานพิมพ์ด้านหน้าและกราฟิกมือประกบด้านหลัง</p><ul><li>240 GSM cotton concept</li><li>Vintage black / S–XL</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="first-press-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="first-press-tee">ADD +</button></div></article>
-        <article class="product-card" data-card="small-signal-tee"><div class="product-image product-image-2"><span>KH / FS-02</span></div><p class="product-meta">PRE-LAUNCH / 02</p><h3>SMALL SIGNAL TEE</h3><p>สัญญาณเล็กบนอกเสื้อ ในสามสีหลักของแบรนด์</p><ul><li>230 GSM cotton concept</li><li>Off-white / Black / White</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="small-signal-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="small-signal-tee">ADD +</button></div></article>
-        <article class="product-card" data-card="rising-press-tee"><div class="product-image product-image-3"><span>KH / FS-03</span></div><p class="product-meta">PRE-LAUNCH / 03</p><h3>RISING PRESS TEE</h3><p>เสื้อกราฟิกขนาดใหญ่สำหรับ Collection 01 พร้อมคำว่า Made in the Press</p><ul><li>240 GSM cotton concept</li><li>Vintage black / S–XL</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="rising-press-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="rising-press-tee">ADD +</button></div></article>
-        <article class="product-card" data-card="press-typo-tee"><div class="product-image product-image-4"><span>KH / FS-04</span></div><p class="product-meta">PRE-LAUNCH / 04</p><h3>PRESS TYPO TEE</h3><p>เสื้อกราฟิกตัวอักษร KHARAWA และ Made in the Press</p><ul><li>230 GSM cotton concept</li><li>Black / White / S–XL</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="press-typo-tee">VIEW DETAILS</button><button class="add-button" type="button" data-add="press-typo-tee">ADD +</button></div></article>
-        <article class="product-card" data-card="press-cap-01"><div class="product-image product-image-5"><span>KH / CAP-01</span></div><p class="product-meta">PRE-LAUNCH / 05</p><h3>PRESS CAP 01</h3><p>หมวก five-panel สีดำ พร้อมงานปัก KHARAWA ด้ายแดง</p><ul><li>Structured five-panel</li><li>One size / Black</li></ul><strong>PRICE TBC</strong><div class="product-actions"><button class="text-button" type="button" data-product="press-cap-01">VIEW DETAILS</button><button class="add-button" type="button" data-add="press-cap-01">ADD +</button></div></article>
+        <article class="product-card" data-card="first-press-tee"><div class="product-image product-image-1"><span>KH / FS-01</span></div><p class="product-meta">เตรียมเปิดตัว / 01</p><h3>เสื้อยืด FIRST PRESS</h3><p>เสื้อยืดโอเวอร์ไซซ์ งานพิมพ์ด้านหน้า และกราฟิกมือประกบด้านหลัง</p><ul><li>ผ้าคอตตอน 240 GSM (ต้นแบบ)</li><li>ดำวินเทจ / S–XL</li></ul><strong data-i18n="price.tbc">ราคาจะแจ้งภายหลัง</strong><div class="product-actions"><button class="text-button" type="button" data-product="first-press-tee">ดูรายละเอียด</button><button class="add-button" type="button" data-add="first-press-tee">เพิ่มลงตะกร้า</button></div></article>
+        <article class="product-card" data-card="small-signal-tee"><div class="product-image product-image-2"><span>KH / FS-02</span></div><p class="product-meta">เตรียมเปิดตัว / 02</p><h3>เสื้อยืด SMALL SIGNAL</h3><p>สัญญาณเล็กๆ บนอกเสื้อ ในสามสีหลักของแบรนด์</p><ul><li>ผ้าคอตตอน 230 GSM (ต้นแบบ)</li><li>ออฟไวท์ / ดำ / ขาว</li></ul><strong data-i18n="price.tbc">ราคาจะแจ้งภายหลัง</strong><div class="product-actions"><button class="text-button" type="button" data-product="small-signal-tee">ดูรายละเอียด</button><button class="add-button" type="button" data-add="small-signal-tee">เพิ่มลงตะกร้า</button></div></article>
+        <article class="product-card" data-card="rising-press-tee"><div class="product-image product-image-3"><span>KH / FS-03</span></div><p class="product-meta">เตรียมเปิดตัว / 03</p><h3>เสื้อยืด RISING PRESS</h3><p>เสื้อกราฟิกขนาดใหญ่สำหรับ Collection 01 พร้อมคำว่า Made in the Press</p><ul><li>ผ้าคอตตอน 240 GSM (ต้นแบบ)</li><li>ดำวินเทจ / S–XL</li></ul><strong data-i18n="price.tbc">ราคาจะแจ้งภายหลัง</strong><div class="product-actions"><button class="text-button" type="button" data-product="rising-press-tee">ดูรายละเอียด</button><button class="add-button" type="button" data-add="rising-press-tee">เพิ่มลงตะกร้า</button></div></article>
+        <article class="product-card" data-card="press-typo-tee"><div class="product-image product-image-4"><span>KH / FS-04</span></div><p class="product-meta">เตรียมเปิดตัว / 04</p><h3>เสื้อยืด PRESS TYPO</h3><p>เสื้อกราฟิกตัวอักษร KHARAWA พร้อมคำว่า Made in the Press</p><ul><li>ผ้าคอตตอน 230 GSM (ต้นแบบ)</li><li>ดำ / ขาว / S–XL</li></ul><strong data-i18n="price.tbc">ราคาจะแจ้งภายหลัง</strong><div class="product-actions"><button class="text-button" type="button" data-product="press-typo-tee">ดูรายละเอียด</button><button class="add-button" type="button" data-add="press-typo-tee">เพิ่มลงตะกร้า</button></div></article>
+        <article class="product-card" data-card="press-cap-01"><div class="product-image product-image-5"><span>KH / CAP-01</span></div><p class="product-meta">เตรียมเปิดตัว / 05</p><h3>หมวก PRESS CAP 01</h3><p>หมวกไฟว์แพนเนลสีดำ ปักชื่อ KHARAWA ด้วยด้ายสีแดง</p><ul><li>ทรงไฟว์แพนเนล โครงแข็ง</li><li>ฟรีไซซ์ / สีดำ</li></ul><strong data-i18n="price.tbc">ราคาจะแจ้งภายหลัง</strong><div class="product-actions"><button class="text-button" type="button" data-product="press-cap-01">ดูรายละเอียด</button><button class="add-button" type="button" data-add="press-cap-01">เพิ่มลงตะกร้า</button></div></article>
+        <a class="grid-note" href="#consign"><p class="eyebrow" data-i18n="note.eyebrow">มือสองคัดสรร</p><h3 data-i18n-html="note.title">มีชิ้นงาน<br />ที่อยากส่งต่อ?</h3><span class="note-cta" data-i18n="note.cta">ฝากขายกับเรา ↗</span></a>
       </div>
     </section>
 
     <section class="consign section-cream" id="consign" aria-labelledby="consign-title">
       <div class="section-index">03</div>
       <div class="consign-intro">
-        <p class="eyebrow dark" data-i18n="consign.eyebrow">PRE-LOVED / CONSIGNMENT</p>
-        <h2 id="consign-title" data-i18n-html="consign.title">PASS IT<br /><em>FORWARD.</em></h2>
-        <p class="body-copy" data-i18n="consign.body">มีชิ้นงาน KHARAWA ที่อยากส่งต่อไหม? ฝากรายละเอียดไว้กับเรา แล้วทีมงานจะติดต่อกลับเพื่อประเมินและแจ้งขั้นตอนถัดไป</p>
+        <p class="eyebrow dark" data-i18n="consign.eyebrow">มือสองคัดสรร / ฝากขาย</p>
+        <h2 id="consign-title" data-i18n-html="consign.title">ส่งต่อ<br /><em>สัญญาณ</em></h2>
+        <p class="body-copy" data-i18n="consign.body">มีชิ้นงาน KHARAWA ที่อยากส่งต่อหรือไม่? ฝากรายละเอียดไว้กับเรา แล้วทีมงานจะติดต่อกลับเพื่อประเมินและแจ้งขั้นตอนถัดไป</p>
         <div class="consign-rules">
           <p><strong data-i18n="consign.ruleOneTitle">01 / คัดสรร</strong><span data-i18n="consign.ruleOne">รับพิจารณาเสื้อผ้าและแอ็กเซสซอรีสภาพดี</span></p>
           <p><strong data-i18n="consign.ruleTwoTitle">02 / ตรวจสอบ</strong><span data-i18n="consign.ruleTwo">ทีมงานตรวจสภาพและยืนยันราคาก่อนลงขาย</span></p>
@@ -127,23 +139,23 @@
       </div>
       <form class="consign-form" id="consign-form">
         <label><span data-i18n="consign.itemLabel">ชื่อสินค้า</span><input name="itemName" required placeholder="เช่น First Press Tee" data-i18n-placeholder="consign.itemPlaceholder" /></label>
-        <div class="form-row"><label><span data-i18n="consign.categoryLabel">หมวดหมู่</span><select name="category" required><option value="" data-i18n="consign.categoryPlaceholder">เลือกหมวดหมู่</option><option value="tee">Tee</option><option value="cap">Cap</option><option value="accessory" data-i18n="consign.accessory">Accessory</option></select></label><label><span data-i18n="consign.conditionLabel">สภาพสินค้า</span><select name="condition" required><option value="" data-i18n="consign.conditionPlaceholder">เลือกสภาพ</option><option value="new" data-i18n="consign.conditionNew">เหมือนใหม่</option><option value="good" data-i18n="consign.conditionGood">สภาพดี</option><option value="used" data-i18n="consign.conditionUsed">มีร่องรอยการใช้งาน</option></select></label></div>
-        <div class="form-row"><label><span data-i18n="consign.priceLabel">ราคาที่ต้องการ</span><input name="price" type="number" min="0" step="1" placeholder="เช่น 1200" data-i18n-placeholder="consign.pricePlaceholder" /></label><label><span data-i18n="consign.contactLabel">ช่องทางติดต่อ</span><input name="contact" required placeholder="LINE / Instagram / โทรศัพท์" data-i18n-placeholder="consign.contactPlaceholder" /></label></div>
-        <label><span data-i18n="consign.detailsLabel">รายละเอียดเพิ่มเติม</span><textarea name="details" rows="4" placeholder="ไซซ์ สี ตำหนิ และข้อมูลที่ควรรู้" data-i18n-placeholder="consign.detailsPlaceholder"></textarea></label>
-        <label class="file-field"><span data-i18n="consign.photoLabel">รูปสินค้า</span><input name="photo" type="file" accept="image/*" /><small data-i18n="consign.photoNote">รองรับรูปภาพ 1 รูปสำหรับร่างข้อมูลเบื้องต้น</small></label>
+        <div class="form-row"><label><span data-i18n="consign.categoryLabel">หมวดหมู่</span><select name="category" required><option value="" data-i18n="consign.categoryPlaceholder">เลือกหมวดหมู่</option><option value="tee" data-i18n="consign.tee">เสื้อยืด</option><option value="cap" data-i18n="consign.cap">หมวก</option><option value="accessory" data-i18n="consign.accessory">แอ็กเซสซอรี</option></select></label><label><span data-i18n="consign.conditionLabel">สภาพสินค้า</span><select name="condition" required><option value="" data-i18n="consign.conditionPlaceholder">เลือกสภาพ</option><option value="new" data-i18n="consign.conditionNew">เหมือนใหม่</option><option value="good" data-i18n="consign.conditionGood">สภาพดี</option><option value="used" data-i18n="consign.conditionUsed">มีร่องรอยการใช้งาน</option></select></label></div>
+        <div class="form-row"><label><span data-i18n="consign.priceLabel">ราคาที่ต้องการ</span><input name="price" type="number" min="0" step="1" inputmode="numeric" placeholder="เช่น 1200" data-i18n-placeholder="consign.pricePlaceholder" /></label><label><span data-i18n="consign.contactLabel">ช่องทางติดต่อ</span><input name="contact" required placeholder="LINE / Instagram / เบอร์โทรศัพท์" data-i18n-placeholder="consign.contactPlaceholder" /></label></div>
+        <label><span data-i18n="consign.detailsLabel">รายละเอียดเพิ่มเติม</span><textarea name="details" rows="4" placeholder="ไซซ์ สี ตำหนิ และข้อมูลที่ควรทราบ" data-i18n-placeholder="consign.detailsPlaceholder"></textarea></label>
+        <label class="file-field"><span data-i18n="consign.photoLabel">รูปสินค้า</span><input name="photo" type="file" accept="image/*" /><small data-i18n="consign.photoNote">เลือกรูปได้ 1 รูป (ใช้สำหรับร่างข้อมูลเบื้องต้น)</small></label>
         <button class="button button-dark" type="submit" data-i18n="consign.submit">ส่งข้อมูลฝากขาย ↗</button>
         <p class="form-status" id="consign-status" role="status" aria-live="polite"></p>
       </form>
     </section>
 
-    <section class="contact section-cream" id="contact" aria-labelledby="contact-title">
+    <section class="contact section-black" id="contact" aria-labelledby="contact-title">
       <div class="section-index">04</div>
-      <div><p class="eyebrow dark" data-i18n="contact.eyebrow">JOIN THE FREQUENCY</p><h2 id="contact-title" data-i18n-html="contact.title">KEEP YOUR<br /><em>EYES OPEN.</em></h2><p class="body-copy" data-i18n="contact.body">คอลเลกชัน เรื่องเล่า และการเคลื่อนไหวครั้งถัดไปของ KHARAWA จะถูกส่งออกเมื่อถึงเวลา</p><div class="contact-actions"><a class="button button-dark" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noreferrer" data-i18n="contact.line">CHAT ON LINE ↗</a><a class="text-link" href="mailto:contact@kharawa.com" data-i18n="contact.email">contact@kharawa.com ↗</a></div></div>
+      <div class="contact-main"><p class="eyebrow" data-i18n="contact.eyebrow">เข้าร่วมคลื่นความถี่</p><h2 id="contact-title" data-i18n-html="contact.title">เปิดตา<br /><em>รับสัญญาณ</em></h2><p class="body-copy" data-i18n="contact.body">คอลเลกชัน เรื่องเล่า และก้าวต่อไปของ KHARAWA จะเปิดเผยเมื่อถึงเวลา</p><div class="contact-actions"><a class="button button-cream" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noreferrer" data-i18n="contact.line">คุยผ่าน LINE ↗</a><a class="text-link" href="mailto:contact@kharawa.com" data-i18n="contact.email">contact@kharawa.com ↗</a></div></div>
       <img class="contact-mark" src="./assets/icon-512.png" width="512" height="512" alt="โลโก้ KHARAWA" loading="lazy" />
     </section>
   </main>
 
-  <footer class="site-footer"><img src="./assets/icon-192.png" width="46" height="46" alt="โลโก้ KHARAWA" loading="lazy" /><p data-i18n-html="footer.signature">KHARAWA / 2026<br />MAKE YOUR SIGNAL.</p><a href="#top" data-i18n="footer.top">BACK TO TOP ↑</a></footer>
+  <footer class="site-footer"><img src="./assets/icon-192.png" width="46" height="46" alt="โลโก้ KHARAWA" loading="lazy" /><p data-i18n-html="footer.signature">KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ</p><a href="#top" data-i18n="footer.top">กลับขึ้นด้านบน ↑</a></footer>
   <script src="./script.js"></script>
 </body>
 </html>
