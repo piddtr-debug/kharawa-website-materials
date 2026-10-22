@@ -81,3 +81,9 @@ h2 { font-size:clamp(52px,8vw,112px); line-height:.86; letter-spacing:-.07em; ma
   .site-footer p { order:3; width:100%; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
+
+/* Mobile header stays readable over the dark hero panel. */
+@media (max-width:800px) {
+  .site-header { background:var(--black); }
+  .menu-button { color:var(--cream); border-bottom-color:var(--cream); }
+}
