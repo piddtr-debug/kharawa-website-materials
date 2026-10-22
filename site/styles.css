@@ -272,6 +272,8 @@ html[lang="th"] .consign-form label > span:not(.photo-error) { font-size: .9rem;
 /* ---------- Contact + footer ---------- */
 .contact-main { grid-column: 1 / span 8; }
 .contact-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px 32px; margin-top: 36px; }
+.contact-social { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.contact-social .button { min-height: 46px; padding: 12px 20px; }
 .contact-mark { grid-column: 10 / span 3; justify-self: end; align-self: end; width: min(100%, 240px); height: auto; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--cream); }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px var(--pad) 44px; border-top: 1px solid var(--line); font-size: .7rem; font-stretch: 112%; letter-spacing: .16em; line-height: 1.6; }
 html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spacing: .02em; }
