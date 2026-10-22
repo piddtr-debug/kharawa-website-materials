@@ -14,6 +14,7 @@
 - Product Showcase พร้อมหน้าต่างรายละเอียดสินค้า
 - Cart Drawer เพิ่ม/ลด/ลบสินค้าและบันทึกตะกร้าด้วย `localStorage`
 - Language switcher `TH / EN` สำหรับเมนู ปุ่ม หัวข้อ สินค้า Product Modal, Cart และ Footer พร้อมจำค่าภาษาที่เลือก
+- Pre-loved Consignment form สำหรับฝากขายสินค้ามือสอง พร้อมข้อมูลสินค้า สภาพ ราคา ช่องทางติดต่อ รายละเอียด และรูปภาพ
 - `site/assets/` — ไฟล์ภาพที่เว็บใช้จริง ตัดมาจากต้นฉบับโลโก้
 
 ### ไฟล์ใน `site/assets/`
@@ -52,6 +53,8 @@ Repository นี้ยัง **ไม่ใช่ source code เต็มข�
 ชุดนี้เป็น Landing Page แบบ Static สำหรับนำไปพัฒนาต่อ ยังไม่มี database, authentication หรือระบบ order จริง ดังนั้นไม่ควรนำส่วน `/track` และ `/admin/pre-orders` ไปใช้งาน production โดยตรง
 
 ตะกร้าสินค้าในเวอร์ชันนี้เป็น client-side prototype: สินค้ายังมีสถานะ `PRE-LAUNCH` และ `PRICE TBC` จึงยังไม่เปิด checkout จริง ปุ่ม `REQUEST PRE-ORDER` จะเปิดใช้งานเมื่อเชื่อมราคาจริง ฐานข้อมูล และระบบรับคำสั่งซื้อแล้ว
+
+ฟอร์มฝากขายในเวอร์ชันนี้เป็น draft form: หลังส่งข้อมูลจะเก็บเฉพาะข้อมูลแบบร่างไว้ใน `localStorage` ของ Browser เครื่องนั้น ยังไม่ได้ส่งเข้าอีเมล, LINE, database หรือระบบหลังบ้านจริง จึงต้องเชื่อม submission endpoint ก่อนใช้งานรับฝากขายจริง
 
 ## เมื่อมี source code
 
