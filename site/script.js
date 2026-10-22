@@ -39,7 +39,7 @@ const TRANSLATIONS = {
     'consign.priceLabel': 'ราคาที่ต้องการ', 'consign.pricePlaceholder': 'เช่น 1200', 'consign.contactLabel': 'ช่องทางติดต่อ', 'consign.contactPlaceholder': 'LINE / Instagram / เบอร์โทรศัพท์',
     'consign.detailsLabel': 'รายละเอียดเพิ่มเติม', 'consign.detailsPlaceholder': 'ไซซ์ สี ตำหนิ และข้อมูลที่ควรทราบ', 'consign.photoLabel': 'รูปสินค้า', 'consign.photoNote': 'รองรับ JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB',
     'consign.submit': 'ส่งข้อมูลฝากขาย ↗', 'consign.status': 'บันทึกร่างข้อมูลแล้ว ขณะนี้ยังเป็นเวอร์ชันทดลอง ข้อมูลถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น และยังไม่ได้ส่งถึงทีมงาน',
-    'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และก้าวต่อไปของ KHARAWA จะเปิดเผยเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.shopee': 'ร้านบน Shopee ↗', 'contact.email': 'contact@kharawa.com ↗',
+    'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และก้าวต่อไปของ KHARAWA จะเปิดเผยเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.shopee': 'ร้านบน Shopee ↗', 'contact.tiktok': 'ติดตามบน TikTok ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับขึ้นด้านบน ↑',
     emptyCart: 'ยังไม่มีสินค้าในตะกร้า', viewDetails: 'ดูรายละเอียด', addShort: 'เพิ่มลงตะกร้า', bag: 'ตะกร้า', index: 'เมนู'
   },
@@ -60,7 +60,7 @@ const TRANSLATIONS = {
     'consign.priceLabel': 'Asking price', 'consign.pricePlaceholder': 'e.g. 1200', 'consign.contactLabel': 'Contact channel', 'consign.contactPlaceholder': 'LINE / Instagram / phone',
     'consign.detailsLabel': 'More details', 'consign.detailsPlaceholder': 'Size, colour, flaws and anything we should know', 'consign.photoLabel': 'Product photo', 'consign.photoNote': 'JPG, PNG or WebP up to 5 MB', 'consign.photoError': 'Choose a JPG, PNG or WebP image up to 5 MB.',
     'consign.submit': 'SUBMIT CONSIGNMENT ↗', 'consign.status': 'Draft saved. This is a trial version: your details stay in this browser only and have not been sent to our team yet.',
-    'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.shopee': 'SHOP ON SHOPEE ↗', 'contact.email': 'contact@kharawa.com ↗',
+    'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.shopee': 'SHOP ON SHOPEE ↗', 'contact.tiktok': 'FOLLOW ON TIKTOK ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑',
     emptyCart: 'Your bag is empty', viewDetails: 'VIEW DETAILS', addShort: 'ADD +', bag: 'BAG', index: 'INDEX'
   }
