@@ -144,7 +144,7 @@ html[lang="th"] .cart-head h2 { font-size: 1.6rem; letter-spacing: 0; }
 .modal-close:hover { background: var(--black); color: var(--cream); }
 .modal-layout { display: grid; grid-template-columns: 5fr 6fr; }
 .modal-layout .modal-art { aspect-ratio: auto; margin: 0; min-height: 560px; }
-.modal-layout .modal-art::before { background-size: var(--modal-fit, cover); }
+.modal-layout .modal-art::before { background-size: var(--modal-fit, cover); background-position: var(--modal-pos, center); }
 .cart-item .cart-item-art::before { background-size: var(--thumb-size, cover); background-position: var(--thumb-pos, center); }
 .modal-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(32px, 4.4vw, 64px); }
 .modal-copy .product-meta { color: var(--red); }
@@ -207,9 +207,10 @@ html[lang="th"] .showcase-banner h3 { line-height: 1.2; font-size: clamp(2.1rem,
 .product-image-1 { --plate: url("./assets/products/first-press-tee.webp"); --plate-bg: #e5ddd6; --modal-fit: contain; --modal-pos-mobile: center 42%; --thumb-size: 195%; --thumb-pos: 0% 31%; }
 /* 2: real product photo, three colourways side by side (square) */
 .product-image-2 { --plate: url("./assets/products/small-signal-tee.webp"); --plate-bg: #e8e2dd; --modal-fit: contain; --modal-pos-mobile: center 52%; --thumb-size: 270%; --thumb-pos: 82% 50%; }
-.product-image-3 { --plate: url("./assets/plates/plate-3.webp"); --plate-bg: #6d1410; }
-.product-image-4 { --plate: url("./assets/plates/plate-4.webp"); --plate-bg: #0f2f63; }
-.product-image-5 { --plate: url("./assets/plates/plate-5.webp"); --plate-bg: #d6cab3; }
+/* 3 and 4: crops of the old site's product pictures (low resolution, upscaled); replace with the original files when available */
+.product-image-3 { --plate: url("./assets/products/rising-press-tee.webp"); --plate-bg: #ece8e3; --modal-pos: 100% center; }
+.product-image-4 { --plate: url("./assets/products/press-typo-tee.webp"); --plate-bg: #ebe7e2; --modal-pos: 85% center; }
+.product-image-5 { --plate: url("./assets/products/press-cap-01.webp"); --plate-bg: #ece7e1; --modal-fit: contain; --modal-pos-mobile: center; }
 .product-meta { margin: 0 0 10px; color: var(--red-hi); font-size: .68rem; font-weight: 600; font-stretch: 112%; letter-spacing: var(--track-label); line-height: 1.4; }
 html[lang="th"] .product-meta { font-size: .85rem; font-stretch: 100%; }
 .product-card h3 { margin: 0 0 10px; font-size: 1.2rem; line-height: 1.2; letter-spacing: .01em; }
