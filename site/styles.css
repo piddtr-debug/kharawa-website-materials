@@ -151,6 +151,8 @@ h2 { font-size:clamp(52px,8vw,112px); line-height:.86; letter-spacing:-.07em; ma
 .file-field small { display:block; margin-top:6px; color:rgba(17,16,14,.65); font-size:11px; }
 .consign-form .button { width:100%; justify-content:center; }
 .form-status { min-height:20px; margin:16px 0 0; color:var(--blue); font-size:12px; line-height:1.5; }
+.photo-preview { display:block; width:min(240px,100%); aspect-ratio:1; object-fit:cover; margin-top:12px; border:1px solid rgba(17,16,14,.25); }
+.photo-error { display:block; min-height:16px; margin-top:6px; color:var(--red); font-size:11px; line-height:1.4; }
 @media (max-width:800px) {
   .consign { grid-template-columns:1fr; gap:34px; padding:22vw 8vw; }
   .consign-form { padding:24px; }
