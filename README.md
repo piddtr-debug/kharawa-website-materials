@@ -16,6 +16,7 @@
 - Language switcher `TH / EN` สำหรับเมนู ปุ่ม หัวข้อ สินค้า Product Modal, Cart และ Footer พร้อมจำค่าภาษาที่เลือก
 - Pre-loved Consignment form สำหรับฝากขายสินค้ามือสอง พร้อมข้อมูลสินค้า สภาพ ราคา ช่องทางติดต่อ รายละเอียด และรูปภาพ
 - `site/admin/consignments.html` — Admin Dashboard สำหรับค้นหา กรอง ดูรายละเอียด และเปลี่ยนสถานะรายการฝากขาย
+- `docs/SUPABASE_STORAGE_SETUP.md` — คู่มือสร้าง Bucket และกำหนด Storage Policy สำหรับรูปฝากขาย
 
 ## ขอบเขตสำคัญ
 
