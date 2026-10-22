@@ -16,6 +16,8 @@
 - Language switcher `TH / EN` สำหรับเมนู ปุ่ม หัวข้อ สินค้า Product Modal, Cart และ Footer พร้อมจำค่าภาษาที่เลือก
 - Pre-loved Consignment form สำหรับฝากขายสินค้ามือสอง พร้อมข้อมูลสินค้า สภาพ ราคา ช่องทางติดต่อ รายละเอียด และรูปภาพ
 - `site/admin/consignments.html` — Admin Dashboard สำหรับค้นหา กรอง ดูรายละเอียด และเปลี่ยนสถานะรายการฝากขาย
+- `site/admin/supabase-config.example.js` — ตัวอย่าง config สำหรับเชื่อม Supabase โดยไม่ใส่ค่าจริงใน Repository
+- `docs/SUPABASE_CONSIGNMENTS_SCHEMA.sql` — schema และ RLS policy สำหรับตารางรายการฝากขาย
 - `docs/SUPABASE_STORAGE_SETUP.md` — คู่มือสร้าง Bucket และกำหนด Storage Policy สำหรับรูปฝากขาย
 
 ## ขอบเขตสำคัญ
@@ -29,6 +31,8 @@ Repository นี้ยัง **ไม่ใช่ source code เต็มข�
 ฟอร์มฝากขายในเวอร์ชันนี้เป็น draft form: หลังส่งข้อมูลจะเก็บเฉพาะข้อมูลแบบร่างไว้ใน `localStorage` ของ Browser เครื่องนั้น ยังไม่ได้ส่งเข้าอีเมล, LINE, database หรือระบบหลังบ้านจริง จึงต้องเชื่อม submission endpoint ก่อนใช้งานรับฝากขายจริง
 
 Admin Dashboard ปัจจุบันอ่านข้อมูลจาก `localStorage` ชุดเดียวกับฟอร์มฝากขาย จึงเหมาะสำหรับตรวจ flow และ UI เท่านั้น ยังไม่มี Authentication และยังไม่ใช่ระบบ production จนกว่าจะเชื่อม Supabase Server API และเพิ่มสิทธิ์ผู้ดูแล
+
+Admin Dashboard เวอร์ชันล่าสุดรองรับ Supabase Auth และตาราง `consignments` แบบ optional: คัดลอก `site/admin/supabase-config.example.js` เป็น `site/admin/supabase-config.js`, ใส่ Project URL กับ publishable/anon key, ตั้งค่า Auth user ให้มี `app_metadata.role = admin`, และรัน `docs/SUPABASE_CONSIGNMENTS_SCHEMA.sql` ใน Supabase SQL Editor จากนั้น Dashboard จะอ่านข้อมูลจาก Supabase และบันทึกสถานะอนุมัติ/ปฏิเสธลงฐานข้อมูลจริง ส่วนไฟล์ config จริงถูกกันไว้ใน `.gitignore` ไม่ให้ push ขึ้น GitHub
 
 ## เมื่อมี source code
 
