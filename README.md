@@ -8,12 +8,15 @@
 
 - `assets/KHARAWA-logo-new.png` — ภาพโลโก้ใหม่ที่ผู้ใช้ส่งมา ขนาด 1228×1281 px
 - `docs/โลโก้ใหม่_วิธีนำไปใช้.md` — จุดที่ต้องเปลี่ยนในเว็บไซต์
+- `site/index.html` — Landing Page หลักแบบ Static
+- `site/styles.css` — ระบบสี, layout และ responsive design
+- `site/script.js` — เมนูมือถือและ interaction เบื้องต้น
 
 ## ขอบเขตสำคัญ
 
 Repository นี้ยัง **ไม่ใช่ source code เต็มของเว็บไซต์ที่เผยแพร่** เนื่องจาก source code ต้นฉบับยังไม่ได้ถูกส่งเข้ามาใน Sandbox ขณะจัดทำ repository
 
-ยังไม่มีไฟล์ component, routing, database, authentication หรือระบบ order ในชุดนี้ ดังนั้นไม่ควรนำ repository นี้ไป deploy เป็นเว็บไซต์โดยตรง
+ชุดนี้เป็น Landing Page แบบ Static สำหรับนำไปพัฒนาต่อ ยังไม่มี database, authentication หรือระบบ order จริง ดังนั้นไม่ควรนำส่วน `/track` และ `/admin/pre-orders` ไปใช้งาน production โดยตรง
 
 ## เมื่อมี source code
 
