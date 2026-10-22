@@ -13,7 +13,7 @@
 - `site/script.js` — เมนูมือถือและ interaction เบื้องต้น
 - Product Showcase พร้อมหน้าต่างรายละเอียดสินค้า
 - Cart Drawer เพิ่ม/ลด/ลบสินค้าและบันทึกตะกร้าด้วย `localStorage`
-- Language switcher `TH / EN` สำหรับเมนู ปุ่ม และข้อความหลัก พร้อมจำค่าภาษาที่เลือก
+- Language switcher `TH / EN` สำหรับเมนู ปุ่ม หัวข้อ สินค้า Product Modal, Cart และ Footer พร้อมจำค่าภาษาที่เลือก
 
 ## ขอบเขตสำคัญ
 
