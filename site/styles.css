@@ -16,6 +16,7 @@
   --muted-dark: rgba(17, 16, 14, .74);
 
   --font: 'Archivo', 'Noto Sans Thai', 'Sarabun', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font); /* headings and labels; Thai gets Prompt (heavier, wider) so it holds up next to the Archivo capitals */
   --track-label: .18em;   /* small caps labels; Thai has no caps, so it is nearly 0 under html[lang="th"] */
   --track-display: -.035em;
   --lh-body: 1.75;
@@ -24,10 +25,12 @@
   --gutter: clamp(20px, 5vw, 80px);
   --max: 1360px;
   --pad: max(var(--gutter), calc((100% - var(--max)) / 2));
+  --pad-vw: max(var(--gutter), calc((100vw - var(--max)) / 2)); /* same edge as --pad, for boxes nested inside a grid column */
   --section-y: clamp(88px, 11vw, 176px);
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 html[lang="th"] {
+  --font-display: 'Archivo', 'Prompt', 'Noto Sans Thai', 'Sarabun', system-ui, sans-serif;
   --track-label: .02em;
   --track-display: 0em;
   --lh-body: 1.95;
@@ -46,10 +49,12 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 h1, h2, h3, p { margin-top: 0; }
 p { text-wrap: pretty; }
+h1, h2, h3, .eyebrow, .button, .main-nav a, .menu-button, .cart-button, .mobile-nav a, .product-meta, .product-card strong, .text-button, .add-button, .modal-price, .cart-total strong, .consign-rules strong, .consign-form label > span, .note-cta, .site-footer { font-family: var(--font-display); }
 h1, h2, h3 { font-weight: 800; font-stretch: 112%; text-wrap: balance; }
 h1 em, h2 em, h3 em { color: var(--red-hi); font-style: normal; }
 .section-cream h2 em { color: var(--red); }
 html[lang="th"] h1, html[lang="th"] h2, html[lang="th"] h3 { font-weight: 700; font-stretch: 100%; }
+html[lang="th"] h1 { font-weight: 800; }
 
 h1 { font-size: clamp(3.4rem, 2rem + 7vw, 9rem); line-height: .9; letter-spacing: var(--track-display); margin: 0; }
 h2 { font-size: clamp(2.6rem, 1.4rem + 4.8vw, 6.6rem); line-height: .94; letter-spacing: var(--track-display); margin: 0 0 .5em; }
@@ -158,10 +163,10 @@ html[lang="th"] .modal-title { line-height: 1.25; }
 /* ---------- Hero + intro ---------- */
 /* Split first screen like the original site: copy on black at the left, the artwork at the right. */
 .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); min-height: 100vh; min-height: 100svh; background: var(--black); }
-.hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: calc(var(--header-h) + clamp(24px, 5vh, 64px)) clamp(24px, 4vw, 72px) clamp(24px, 4vh, 48px) var(--pad); }
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: calc(var(--header-h) + clamp(24px, 5vh, 64px)) clamp(24px, 4vw, 72px) clamp(24px, 4vh, 48px) var(--pad-vw); }
 .hero .eyebrow::before { content: "✱"; width: auto; height: auto; background: none; color: var(--red-hi); font-size: 1.05em; line-height: 1; }
-.hero h1 { font-size: clamp(3.4rem, 1.2rem + 7.4vw, 10rem); letter-spacing: -.045em; }
-html[lang="th"] .hero h1 { font-size: clamp(3rem, 1.4rem + 6.2vw, 8.4rem); letter-spacing: 0; }
+.hero h1 { font-size: clamp(3.4rem, 1.2rem + 7.4vw, 8.4rem); letter-spacing: -.045em; }
+html[lang="th"] .hero h1 { font-size: clamp(2.8rem, 1.2rem + 5.2vw, 7.2rem); letter-spacing: 0; }
 .hero-description { max-width: 24em; margin: clamp(24px, 4vh, 40px) 0 clamp(24px, 4vh, 36px); color: var(--muted); font-size: 1.0625rem; line-height: var(--lh-body); }
 .hero-cta { box-shadow: 4px 4px 0 var(--red); }
 .hero-cta:hover, .hero-cta:focus-visible { box-shadow: 8px 8px 0 var(--red); }
