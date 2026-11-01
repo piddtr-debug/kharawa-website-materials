@@ -26,7 +26,7 @@
   --max: 1360px;
   --pad: max(var(--gutter), calc((100% - var(--max)) / 2));
   --pad-vw: max(var(--gutter), calc((100vw - var(--max)) / 2)); /* same edge as --pad, for boxes nested inside a grid column */
-  --section-y: clamp(88px, 11vw, 176px);
+  --section-y: clamp(64px, 8vw, 120px);
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 html[lang="th"] {
@@ -67,7 +67,7 @@ html[lang="th"] h2 { font-size: clamp(2.4rem, 1.3rem + 4vw, 5.6rem); line-height
 html[lang="th"] .eyebrow { font-size: .9rem; font-stretch: 100%; }
 .body-copy { max-width: 34em; margin: 0; font-size: 1.0625rem; line-height: var(--lh-body); }
 
-.section-index { grid-column: 1 / -1; display: flex; align-items: baseline; padding-top: 16px; margin-bottom: clamp(48px, 7vw, 112px); border-top: 1px solid var(--line-dark); color: var(--red); font-size: .75rem; font-weight: 600; font-stretch: 112%; letter-spacing: .2em; }
+.section-index { grid-column: 1 / -1; display: flex; align-items: baseline; padding-top: 16px; margin-bottom: clamp(32px, 4.5vw, 64px); border-top: 1px solid var(--line-dark); color: var(--red); font-size: .75rem; font-weight: 600; font-stretch: 112%; letter-spacing: .2em; }
 .section-black .section-index { border-top-color: var(--line); color: var(--red-hi); }
 .section-cream { background: var(--cream); color: var(--black); }
 .section-black { background: var(--black); color: var(--cream); }
@@ -201,8 +201,8 @@ html[lang="th"] .showcase-banner h3 { line-height: 1.2; font-size: clamp(2.1rem,
 .product-card { display: flex; flex-direction: column; }
 /* One row track per part of the card (image, status, name, text, specs, price, actions): rows line up across the grid. */
 @supports (grid-template-rows: subgrid) {
-  .product-card { display: grid; grid-template-rows: subgrid; grid-row: span 7; row-gap: 0; }
-  .grid-note { grid-row: span 7; }
+  .product-card { display: grid; grid-template-rows: subgrid; grid-row: span 8; row-gap: 0; }
+  .grid-note { grid-row: span 8; }
 }
 .product-image { position: relative; overflow: hidden; aspect-ratio: 1 / 1; margin-bottom: 22px; background: var(--plate-bg, var(--paper)); }
 .product-image::before { content: ""; position: absolute; inset: 0; background: var(--plate, none) center / cover no-repeat; transition: transform 1s var(--ease); }
@@ -341,3 +341,21 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* ---------- Trust strip (under the hero) ---------- */
+.trust-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--ink); border-bottom: 1px solid var(--line); }
+.trust-strip p { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 22px var(--gutter); border-right: 1px solid var(--line); font-size: .875rem; line-height: 1.5; color: var(--muted); }
+.trust-strip p:last-child { border-right: 0; }
+.trust-strip b { font-family: var(--font-display); font-size: .95rem; font-weight: 600; color: var(--cream); }
+@media (max-width: 760px) {
+  .trust-strip { grid-template-columns: 1fr 1fr; }
+  .trust-strip p { padding: 18px var(--gutter); border-bottom: 1px solid var(--line); }
+  .trust-strip p:nth-child(2n) { border-right: 0; }
+  .trust-strip p:nth-last-child(-n+2) { border-bottom: 0; }
+}
+
+/* ---------- Buy links on product cards ---------- */
+.buy-row { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px; }
+.buy-link { padding: 10px 0; border-bottom: 1px solid var(--line); font-family: var(--font-display); font-size: .78rem; font-weight: 600; letter-spacing: var(--track-label); color: var(--muted); transition: color .2s, border-color .2s; }
+html[lang="th"] .buy-link { font-size: .9rem; letter-spacing: 0; }
+.buy-link:hover, .buy-link:focus-visible { color: var(--red-hi); border-color: var(--red-hi); }
