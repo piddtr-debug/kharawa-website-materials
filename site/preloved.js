@@ -101,7 +101,9 @@
     media.append(el('span', 'status-badge', T().status[item.status]));
     media.addEventListener('click', () => openItem(item.id));
     const meta = el('p', 'preloved-meta', `${T().size} ${item.size} · ${T().cond[item.condition]}`);
-    a.append(media, el('p', 'preloved-brand', item.brand), el('h3', null, item.name), meta, el('strong', null, price(item)));
+    a.append(media, el('p', 'preloved-brand', item.brand), el('h3', null, item.name), meta);
+    if (item.details) a.append(el('p', 'preloved-desc', item.details));
+    a.append(el('strong', null, price(item)));
     return a;
   }
 

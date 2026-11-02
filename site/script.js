@@ -289,6 +289,11 @@ function renderConsignDone() {
   const text = consignSummary();
   $('#done-ref').textContent = lastConsign.ref;
   $('#done-summary').textContent = text;
+  const thumbs = $('#done-photos');
+  if (thumbs) {
+    thumbs.replaceChildren(...(lastConsign.previewUrls || []).map((url, i) => { const img = document.createElement('img'); img.className = 'photo-preview'; img.alt = `${tr('sum.photos')} ${i + 1}`; img.src = url; return img; }));
+    thumbs.hidden = !thumbs.childElementCount;
+  }
   $('#done-line').href = `https://line.me/R/oaMessage/${LINE_OA}/?text=${encodeURIComponent(text)}`;
   const state = lastConsign.state || 'local';
   $('#consign-done').dataset.state = state;
@@ -364,10 +369,11 @@ $('#consign-form')?.addEventListener('submit', (event) => {
   error.textContent = '';
   const data = Object.fromEntries(new FormData(form).entries());
   delete data.photo;
-  lastConsign = { ...data, price: data.price || '', details: data.details || '', brandName: data.brand === 'other' ? (data.brandName || '').trim() : '', photoCount: consignPhotos.length, ref: makeReference(), createdAt: new Date().toISOString() };
+  lastConsign = { ...data, price: data.price || '', details: data.details || '', brandName: data.brand === 'other' ? (data.brandName || '').trim() : '', photoCount: consignPhotos.length, previewUrls: consignPhotos.map((file) => URL.createObjectURL(file)), ref: makeReference(), createdAt: new Date().toISOString() };
   let drafts = [];
   try { const stored = JSON.parse(readStorage(CONSIGN_KEY) || '[]'); if (Array.isArray(stored)) drafts = stored; } catch { /* start a fresh list */ }
-  drafts.push({ ...lastConsign, photos: consignPhotos.map((file) => file.name) });
+  const { previewUrls, ...saved } = lastConsign;
+  drafts.push({ ...saved, photos: consignPhotos.map((file) => file.name) });
   writeStorage(CONSIGN_KEY, JSON.stringify(drafts));
   lastConsign.state = ENDPOINT ? 'sending' : 'local';
   renderConsignDone();
@@ -382,6 +388,7 @@ $('#done-copy')?.addEventListener('click', async () => {
   catch { const range = document.createRange(); range.selectNodeContents($('#done-summary')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range); status.textContent = ''; }
 });
 $('#done-again')?.addEventListener('click', () => {
+  (lastConsign?.previewUrls || []).forEach((url) => URL.revokeObjectURL(url));
   lastConsign = null;
   $('#consign-form').reset();
   consignPhotos = [];
