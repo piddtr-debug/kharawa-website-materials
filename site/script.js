@@ -48,10 +48,10 @@ const TRANSLATIONS = {
     'consign.detailsPlaceholder': 'สี ตำหนิ ปีที่ซื้อ และข้อมูลที่ควรทราบ', 'consign.photoLabel': 'รูปสินค้า (ได้สูงสุด 4 รูป)',
     'consign.photoNote': 'แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB ต่อรูป และไม่เกิน 4 รูป',
     'consign.consent': 'ฉันยินยอมให้ KHARAWA ใช้ข้อมูลที่กรอกเพื่อติดต่อกลับเรื่องการฝากขายเท่านั้น', 'consign.formError': 'กรุณากรอกข้อมูลที่มีเครื่องหมายจำเป็นให้ครบ และติ๊กยินยอมก่อนส่ง',
-    'done.eyebrow': 'บันทึกรายการแล้ว', 'done.refLabel': 'เลขอ้างอิง',
-    'done.next': 'อีกหนึ่งขั้นตอน: กดส่งรายการนี้ให้ทีมงานทาง LINE เพื่อให้เราได้รับข้อมูล แล้วส่งรูปสินค้าต่อในแชทได้เลย ทีมงานจะติดต่อกลับเพื่อประเมินราคา', 'done.line': 'ส่งให้ทีมงานทาง LINE ↗',
+    'done.refLabel': 'เลขอ้างอิง',
+    'done.line': 'ส่งให้ทีมงานทาง LINE ↗',
     'done.copy': 'คัดลอกข้อความ', 'done.copied': 'คัดลอกแล้ว',
-    'done.again': 'ฝากชิ้นอื่นต่อ', 'done.note': 'หมายเหตุ: เว็บไซต์ยังไม่ได้ส่งข้อมูลให้ทีมงานอัตโนมัติ ข้อมูลที่กรอกถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น',
+    'done.again': 'ฝากชิ้นอื่นต่อ', 
     'sum.ref': 'เลขอ้างอิง', 'sum.brand': 'แบรนด์',
     'sum.item': 'สินค้า', 'sum.category': 'หมวดหมู่',
     'sum.size': 'ไซซ์', 'sum.condition': 'สภาพ',
@@ -64,6 +64,13 @@ const TRANSLATIONS = {
     'preloved.available': 'พร้อมขาย', 'preloved.reserved': 'จองแล้ว',
     'preloved.sold': 'ขายแล้ว', 'preloved.size': 'ไซซ์',
     'preloved.noPhoto': 'ยังไม่มีรูป', 'preloved.askText': 'สนใจสินค้ามือสอง',
+    'done.eyebrow.local': 'บันทึกรายการแล้ว', 'done.eyebrow.sending': 'กำลังส่งข้อมูล…',
+    'done.eyebrow.sent': 'ส่งถึงทีมงานแล้ว', 'done.eyebrow.failed': 'ส่งไม่สำเร็จ',
+    'done.lead.local': 'อีกหนึ่งขั้นตอน: กดส่งรายการนี้ให้ทีมงานทาง LINE เพื่อให้เราได้รับข้อมูล แล้วส่งรูปสินค้าต่อในแชทได้เลย ทีมงานจะติดต่อกลับเพื่อประเมินราคา', 'done.lead.sending': 'กรุณารอสักครู่ ระบบกำลังส่งรายการและรูปให้ทีมงาน อย่าปิดหน้านี้',
+    'done.lead.sent': 'ทีมงานได้รับรายการของคุณแล้ว จะติดต่อกลับตามช่องทางที่ให้ไว้เพื่อประเมินราคา เก็บเลขอ้างอิงนี้ไว้ถามความคืบหน้าได้', 'done.lead.failed': 'ส่งอัตโนมัติไม่สำเร็จ (อาจเพราะอินเทอร์เน็ตหรือรูปมีขนาดใหญ่) กรุณากดส่งทาง LINE แทน แล้วส่งรูปต่อในแชท',
+    'done.note.local': 'หมายเหตุ: เว็บไซต์ยังไม่ได้ส่งข้อมูลให้ทีมงานอัตโนมัติ ข้อมูลที่กรอกถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น', 'done.note.sending': '',
+    'done.note.sent': '', 'done.note.failed': 'ข้อมูลที่กรอกยังเก็บอยู่ในเบราว์เซอร์นี้ และไม่ได้ถูกส่งถึงทีมงาน',
+    'done.retry': 'ลองส่งอีกครั้ง',
     'consign.submit': 'ส่งข้อมูลฝากขาย ↗',
     'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และก้าวต่อไปของ KHARAWA จะเปิดเผยเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับขึ้นด้านบน ↑',
@@ -95,10 +102,10 @@ const TRANSLATIONS = {
     'consign.detailsPlaceholder': 'Colour, flaws, year bought and anything we should know', 'consign.photoLabel': 'Photos (up to 4)',
     'consign.photoNote': 'Front, back, size label and any flaws work best. JPG, PNG or WebP, up to 5 MB each.', 'consign.photoError': 'Choose JPG, PNG or WebP images up to 5 MB each, 4 at most.',
     'consign.consent': 'I agree that KHARAWA may use these details only to contact me about this consignment.', 'consign.formError': 'Please fill in every required field and tick the consent box.',
-    'done.eyebrow': 'Details saved', 'done.refLabel': 'Reference',
-    'done.next': 'One more step: send this to our team on LINE so we receive it, then send the photos in the same chat. We will reply with a price assessment.', 'done.line': 'SEND TO OUR TEAM ON LINE ↗',
+    'done.refLabel': 'Reference',
+    'done.line': 'SEND TO OUR TEAM ON LINE ↗',
     'done.copy': 'COPY TEXT', 'done.copied': 'Copied',
-    'done.again': 'Consign another piece', 'done.note': 'Note: this site does not send the form to our team automatically yet. Your details stay in this browser only.',
+    'done.again': 'Consign another piece', 
     'sum.ref': 'Reference', 'sum.brand': 'Brand',
     'sum.item': 'Item', 'sum.category': 'Category',
     'sum.size': 'Size', 'sum.condition': 'Condition',
@@ -111,6 +118,13 @@ const TRANSLATIONS = {
     'preloved.available': 'Available', 'preloved.reserved': 'Reserved',
     'preloved.sold': 'Sold', 'preloved.size': 'Size',
     'preloved.noPhoto': 'No photo yet', 'preloved.askText': 'I am interested in this pre-loved piece',
+    'done.eyebrow.local': 'Details saved', 'done.eyebrow.sending': 'Sending…',
+    'done.eyebrow.sent': 'Sent to our team', 'done.eyebrow.failed': 'Could not send',
+    'done.lead.local': 'One more step: send this to our team on LINE so we receive it, then send the photos in the same chat. We will reply with a price assessment.', 'done.lead.sending': 'Please wait while we send your details and photos to our team. Keep this page open.',
+    'done.lead.sent': 'Our team has your request and will contact you on the channel you gave to assess the price. Keep the reference number to ask about progress.', 'done.lead.failed': 'Automatic sending failed (connection, or the photos may be large). Please send it on LINE instead and add the photos in the chat.',
+    'done.note.local': 'Note: this site does not send the form to our team automatically yet. Your details stay in this browser only.', 'done.note.sending': '',
+    'done.note.sent': '', 'done.note.failed': 'Your details are still only in this browser and have not reached our team.',
+    'done.retry': 'TRY AGAIN',
     'consign.submit': 'SUBMIT CONSIGNMENT ↗',
     'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑',
@@ -274,6 +288,13 @@ function renderConsignDone() {
   $('#done-ref').textContent = lastConsign.ref;
   $('#done-summary').textContent = text;
   $('#done-line').href = `https://line.me/R/oaMessage/${LINE_OA}/?text=${encodeURIComponent(text)}`;
+  const state = lastConsign.state || 'local';
+  $('#consign-done').dataset.state = state;
+  $('#done-eyebrow').textContent = tr(`done.eyebrow.${state}`);
+  $('#done-lead').textContent = tr(`done.lead.${state}`);
+  const note = $('#done-note'); note.textContent = TRANSLATIONS[currentLanguage][`done.note.${state}`] || ''; note.hidden = !note.textContent;
+  $('#done-retry').hidden = state !== 'failed';
+  $('#done-line').hidden = state === 'sending';
 }
 function showConsignForm(show) {
   $('#consign-form').hidden = !show;
@@ -285,6 +306,42 @@ function syncBrandField() {
   $('#consign-form').elements.brandName.required = other;
 }
 let consignPhotos = [];
+// Where submissions go. Set in site/config.js (Google Apps Script web app URL); empty = LINE hand-off only.
+const ENDPOINT = (typeof window.KHARAWA_CONSIGN_ENDPOINT === 'string' && /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(window.KHARAWA_CONSIGN_ENDPOINT.trim())) ? window.KHARAWA_CONSIGN_ENDPOINT.trim() : '';
+function shrinkPhoto(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const scale = Math.min(1, 1280 / Math.max(img.naturalWidth, img.naturalHeight));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(img.naturalWidth * scale)); canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      resolve({ name: file.name.replace(/\.[^.]+$/, '') + '.jpg', mime: 'image/jpeg', data: dataUrl.split(',')[1] });
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image')); };
+    img.src = url;
+  });
+}
+async function deliverConsign() {
+  const c = lastConsign;
+  const form = $('#consign-form');
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 60000);
+  try {
+    const photos = await Promise.all(consignPhotos.map(shrinkPhoto));
+    const payload = { ref: c.ref, createdAt: c.createdAt, lang: currentLanguage, brand: c.brand === 'other' ? (c.brandName || 'other') : 'KHARAWA', itemName: c.itemName,
+      category: optionLabel(form.elements.category, c.category), size: c.size, condition: tr({ new: 'consign.conditionNew', good: 'consign.conditionGood', used: 'consign.conditionUsed' }[c.condition]),
+      price: c.price, contact: c.contact, details: c.details, consent: true, website: c.website || '', photos };
+    // no-cors + text/plain keeps this a "simple" request, which Apps Script accepts from another origin. The reply is opaque.
+    await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), signal: controller.signal });
+    if (lastConsign === c) c.state = 'sent';
+  } catch { if (lastConsign === c) c.state = 'failed'; }
+  clearTimeout(timer);
+  if (lastConsign === c) renderConsignDone();
+}
 function renderPhotoPreviews() {
   const holder = $('#consign-photo-previews');
   holder.querySelectorAll('img').forEach((img) => URL.revokeObjectURL(img.src));
@@ -310,10 +367,13 @@ $('#consign-form')?.addEventListener('submit', (event) => {
   try { const stored = JSON.parse(readStorage(CONSIGN_KEY) || '[]'); if (Array.isArray(stored)) drafts = stored; } catch { /* start a fresh list */ }
   drafts.push({ ...lastConsign, photos: consignPhotos.map((file) => file.name) });
   writeStorage(CONSIGN_KEY, JSON.stringify(drafts));
+  lastConsign.state = ENDPOINT ? 'sending' : 'local';
   renderConsignDone();
   showConsignForm(false);
   $('#consign-done').focus();
+  if (ENDPOINT) deliverConsign();
 });
+$('#done-retry')?.addEventListener('click', () => { if (!lastConsign || !ENDPOINT) return; lastConsign.state = 'sending'; renderConsignDone(); deliverConsign(); });
 $('#done-copy')?.addEventListener('click', async () => {
   const status = $('#done-status');
   try { await navigator.clipboard.writeText(consignSummary()); status.textContent = tr('done.copied'); }
