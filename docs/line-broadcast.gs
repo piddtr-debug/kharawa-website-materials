@@ -12,7 +12,7 @@
  * then writes the time in column N so the same item is never sent twice. At most MAX_PER_RUN items per run.
  */
 var BC_SITE = 'https://piddtr-debug.github.io/kharawa-website-materials';
-var BC_LINE_ADD = 'https://line.me/R/ti/p/%40Kharawa';
+var BC_LINE_ADD = 'https://line.me/R/ti/p/%40737yiaxp';
 var BC_MARK_COL = 14;              // column N = "sent to LINE"
 var BC_MAX_PER_RUN = 3;
 var BC_STATUS_OK = { '\u0e25\u0e07\u0e02\u0e32\u0e22': 1, '\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e02\u0e32\u0e22': 1 };

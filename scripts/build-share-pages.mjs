@@ -30,7 +30,7 @@ function page(item) {
   const image = photo ? photo.replace(/=[ws]\d+.*$/, '') + '=w1200' : `${SITE}/assets/og-image.jpg`;
   const price = Number(item.price) > 0 ? `฿${Number(item.price).toLocaleString('en-US')}` : 'สอบถามราคา';
   const title = `${item.brand || 'KHARAWA'} ${item.name} · ${price}`;
-  const desc = `ไซซ์ ${item.size || '-'} · ${condTh[item.condition] || ''} · มือสองคัดสรรโดย KHARAWA ทัก LINE @Kharawa`;
+  const desc = `ไซซ์ ${item.size || '-'} · ${condTh[item.condition] || ''} · มือสองคัดสรรโดย KHARAWA ทัก LINE @737yiaxp`;
   const url = `${SITE}/s/${item.id}.html`;
   const target = `../preloved.html#${encodeURIComponent(item.id)}`;
   return `<!doctype html>

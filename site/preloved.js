@@ -1,7 +1,7 @@
 // Pre-loved shop page: grid, filters, item dialog. Data comes from KharawaPreloved.load() (Google Sheet via Apps Script).
 (function () {
   const LANGUAGE_KEY = 'kharawa-language-v1';
-  const LINE_OA = '%40Kharawa';
+  const LINE_OA = '%40737yiaxp';
   const SHOPEE = 'https://shopee.co.th/liu.bei0705#product_list';
   const TEXT = {
     th: {
