@@ -14,6 +14,8 @@ function doPost(e) {
   try {
     lock.waitLock(20000);
     var d = JSON.parse(e.postData.contents);
+    if (d.events) return lineWebhook_(d);                           // LINE chat webhook (line-chat.gs)
+    if (d.action && /^chat/.test(String(d.action))) return chatAdmin_(d);   // admin chat page (line-chat.gs)
     if (d.website) return out_({ ok: true });                       // honeypot: bots fill the hidden field
     if (!d.consent || !d.itemName || !d.contact || !d.size || !d.ref) return out_({ ok: false, error: 'invalid' });
     if (!/^KH-C-\d{6}-[A-Z2-9]{4}$/.test(String(d.ref))) return out_({ ok: false, error: 'invalid-ref' });
