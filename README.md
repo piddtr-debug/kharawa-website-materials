@@ -138,3 +138,6 @@ Admin Dashboard เวอร์ชันล่าสุดรองรับ Sup
 - ทุก 30 นาที (และทุกครั้งที่ deploy) GitHub Actions รัน `scripts/build-share-pages.mjs` อ่านรายการ "ลงขาย" จาก Google Sheet แล้วสร้างหน้า `s/<เลขอ้างอิง>.html` ที่มีรูปและชื่อสินค้าใน og: tags ให้ Facebook / LINE แสดงการ์ดพรีวิวพร้อมรูป
 - ปุ่มแชร์ใช้ลิงก์ `s/...` นี้ (ยกเว้นสินค้าตัวอย่าง) และมีลิงก์รูปสินค้าไว้โหลดไปอัปโหลดเองที่ Shopee/TikTok/YouTube
 - ลงสินค้าแล้วอยากให้ขึ้นทันที: Actions → Deploy → Run workflow
+
+## ส่งสินค้าใหม่เข้า LINE OA อัตโนมัติ
+`docs/line-broadcast.gs` + คู่มือ `docs/ตั้งค่า_LINE_ส่งสินค้าใหม่อัตโนมัติ.md` (ปิดเป็นค่าเริ่มต้น โทเคนเก็บใน Script Properties เท่านั้น)
