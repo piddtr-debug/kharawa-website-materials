@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>KHARAWA แชทลูกค้า</title>
+<style>
+  :root{--bg:#0e0e0e;--panel:#171614;--line:#c9a24a44;--gold:#c9a24a;--text:#f3ead7;--mute:#f3ead799;--in:#26231f;--out:#c9a24a}
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;font-size:15px}
+  button{font:inherit;cursor:pointer}
+  #login{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+  #login form{max-width:340px;width:100%}
+  h1{font-size:1.2rem;letter-spacing:.2em;font-weight:500;margin:0 0 6px}
+  .sub{opacity:.65;margin:0 0 20px;font-size:.9rem}
+  input[type=password],textarea{width:100%;background:#000;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit}
+  .btn{background:var(--gold);color:#111;border:0;border-radius:10px;padding:12px 18px;font-weight:700}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+  .err{color:#ff8a80;min-height:1.3em;margin:10px 0 0;font-size:.9rem}
+  #app{display:none;height:100%}
+  .wrap{display:grid;grid-template-columns:320px 1fr;height:100%}
+  .side{border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+  .side header,.main header{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .side header b{letter-spacing:.15em;font-weight:600}
+  #contacts{overflow:auto;flex:1}
+  .c{display:flex;gap:10px;padding:12px 16px;border-bottom:1px solid #ffffff10;cursor:pointer;align-items:center}
+  .c:hover,.c.on{background:var(--panel)}
+  .av{width:42px;height:42px;border-radius:50%;background:#333 center/cover;flex:none}
+  .cm{min-width:0;flex:1}
+  .cn{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ct{opacity:.65;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cr{text-align:right;font-size:.75rem;opacity:.7;flex:none}
+  .badge{display:inline-block;background:#e53935;color:#fff;border-radius:99px;min-width:20px;padding:1px 6px;font-size:.75rem;margin-top:4px;opacity:1}
+  .main{display:flex;flex-direction:column;min-height:0}
+  #msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:8px}
+  .m{max-width:78%;padding:9px 12px;border-radius:14px;white-space:pre-wrap;word-break:break-word;background:var(--in)}
+  .m.out{align-self:flex-end;background:var(--out);color:#111}
+  .m small{display:block;opacity:.55;font-size:.7rem;margin-top:3px}
+  .m img{max-width:240px;max-height:300px;border-radius:8px;display:block}
+  .empty{margin:auto;opacity:.5;text-align:center}
+  .quick{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;border-top:1px solid var(--line)}
+  .quick button{flex:none;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:.85rem}
+  .quick button:hover{background:var(--panel)}
+  .send{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);align-items:flex-end}
+  .send textarea{resize:none;height:52px}
+  #back{display:none}
+  dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;max-width:560px;width:calc(100% - 24px)}
+  dialog::backdrop{background:#000a}
+  .qrow{display:flex;gap:6px;margin-bottom:8px}
+  .qrow input{flex:1;min-width:0;background:#000;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px}
+  .qrow input.t{flex:2}
+  @media (max-width:760px){
+    .wrap{grid-template-columns:1fr}
+    .main{display:none}
+    .wrap.chatting .side{display:none}
+    .wrap.chatting .main{display:flex}
+    #back{display:inline-block}
+  }
+</style>
+</head>
+<body>
+<div id="login">
+  <form id="loginForm">
+    <h1>KHARAWA แชทลูกค้า</h1>
+    <p class="sub">ใส่รหัสผ่านแอดมิน (ที่ตั้งไว้ในสคริปต์) เพื่อเข้าใช้งาน</p>
+    <input id="pin" type="password" placeholder="รหัสผ่าน" autocomplete="current-password" required>
+    <p class="err" id="loginErr"></p>
+    <button class="btn" type="submit">เข้าสู่ระบบ</button>
+  </form>
+</div>
+
+<div id="app">
+  <div class="wrap" id="wrap">
+    <aside class="side">
+      <header><b>แชทลูกค้า</b><span><button class="btn ghost" id="refresh" title="รีเฟรช">↻</button> <button class="btn ghost" id="logout">ออก</button></span></header>
+      <div id="contacts"></div>
+    </aside>
+    <section class="main">
+      <header><span><button class="btn ghost" id="back">← กลับ</button> <b id="title">เลือกลูกค้าทางซ้าย</b></span></header>
+      <div id="msgs"><div class="empty">ยังไม่ได้เลือกแชท</div></div>
+      <div class="quick" id="quick"></div>
+      <div class="send">
+        <textarea id="text" placeholder="พิมพ์ข้อความตอบลูกค้า… (Ctrl+Enter เพื่อส่ง)"></textarea>
+        <button class="btn" id="sendBtn">ส่ง</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<dialog id="qdlg">
+  <h3 style="margin-top:0">แก้ไขข้อความสำเร็จรูป</h3>
+  <p class="sub">ใส่ {ชื่อ} ตรงที่อยากให้แทนด้วยชื่อลูกค้า เก็บไว้ในเบราว์เซอร์เครื่องนี้</p>
+  <div id="qedit"></div>
+  <button class="btn ghost" id="qadd">+ เพิ่ม</button>
+  <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+    <button class="btn ghost" id="qcancel">ยกเลิก</button><button class="btn" id="qsave">บันทึก</button>
+  </div>
+</dialog>
+
+<script src="../config.js"></script>
+<script>
+(function () {
+  var URL_ = window.KHARAWA_CONSIGN_ENDPOINT;
+  var $ = function (s) { return document.querySelector(s); };
+  var pin = '', current = null, contacts = [], pollTimer = null, imgCache = {};
+  var DEFAULT_QUICK = [
+    { l: 'ทักทาย', t: 'สวัสดีค่ะ คุณ{ชื่อ} ขอบคุณที่ติดต่อ KHARAWA นะคะ สนใจสินค้าตัวไหนสอบถามได้เลยค่ะ' },
+    { l: 'ขอไซซ์/รูป', t: 'รบกวนแจ้งไซซ์ที่ต้องการ หรือส่งชื่อ/รูปสินค้าที่สนใจมาได้เลยนะคะ' },
+    { l: 'ราคา/สต็อก', t: 'ตรวจสอบราคาและสต็อกให้สักครู่นะคะ' },
+    { l: 'การชำระเงิน', t: 'สามารถโอนชำระได้เลยค่ะ เมื่อโอนแล้วส่งสลิปในแชทนี้ได้เลยนะคะ' },
+    { l: 'จัดส่ง', t: 'หลังได้รับยอดโอนแล้ว ทางร้านจะแพ็กและส่งภายใน 1-2 วันทำการ พร้อมส่งเลขพัสดุให้ค่ะ' },
+    { l: 'ขอบคุณ', t: 'ขอบคุณที่อุดหนุน KHARAWA นะคะ 🙏' }
+  ];
+  function quick() { try { var q = JSON.parse(localStorage.getItem('kh-quick') || 'null'); if (Array.isArray(q) && q.length) return q; } catch (e) {} return DEFAULT_QUICK; }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fmt(ms) { if (!ms) return ''; var d = new Date(ms), n = new Date(); var t = d.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }); return d.toDateString() === n.toDateString() ? t : d.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' }) + ' ' + t; }
+  function api(body) {
+    body.pin = pin;
+    return fetch(URL_, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); });
+  }
+  function errText(e) {
+    return ({ 'bad-pin': 'รหัสผ่านไม่ถูกต้อง', 'locked': 'ใส่ผิดหลายครั้ง ถูกล็อก 10 นาที', 'no-pin-set': 'ยังไม่ได้ตั้งรหัสผ่านในสคริปต์ (CHAT_ADMIN_PIN)', 'no-token': 'ยังไม่ได้ใส่ LINE token ในสคริปต์' })[e]
+      || (/^line-/.test(e) ? 'LINE ปฏิเสธการส่ง (' + e + ')' : 'เกิดข้อผิดพลาด: ' + e);
+  }
+
+  // ---- login ----
+  $('#loginForm').addEventListener('submit', function (ev) {
+    ev.preventDefault(); pin = $('#pin').value; $('#loginErr').textContent = 'กำลังตรวจสอบ…';
+    api({ action: 'chatList' }).then(function (r) {
+      if (!r.ok) { $('#loginErr').textContent = errText(r.error); return; }
+      try { sessionStorage.setItem('kh-pin', pin); } catch (e) {}
+      start(r.contacts);
+    }).catch(function () { $('#loginErr').textContent = 'เชื่อมต่อสคริปต์ไม่ได้ (เช็ก URL ใน config.js)'; });
+  });
+  $('#logout').addEventListener('click', function () { try { sessionStorage.removeItem('kh-pin'); } catch (e) {} location.reload(); });
+  try { var sp = sessionStorage.getItem('kh-pin'); if (sp) { $('#pin').value = sp; $('#loginForm').requestSubmit(); } } catch (e) {}
+
+  function start(list) {
+    $('#login').style.display = 'none'; $('#app').style.display = 'block';
+    contacts = list; renderContacts(); renderQuick();
+    clearInterval(pollTimer); pollTimer = setInterval(poll, 8000);
+  }
+
+  // ---- contacts ----
+  function renderContacts() {
+    var un = contacts.reduce(function (a, c) { return a + c.unread; }, 0);
+    document.title = (un ? '(' + un + ') ' : '') + 'KHARAWA แชทลูกค้า';
+    $('#contacts').innerHTML = contacts.length ? contacts.map(function (c) {
+      return '<div class="c' + (current && current.userId === c.userId ? ' on' : '') + '" data-id="' + esc(c.userId) + '">' +
+        '<div class="av"' + (c.picture ? ' style="background-image:url(\'' + esc(c.picture) + '\')"' : '') + '></div>' +
+        '<div class="cm"><div class="cn">' + esc(c.name) + '</div><div class="ct">' + esc(c.lastText) + '</div></div>' +
+        '<div class="cr">' + fmt(c.lastTime) + (c.unread ? '<br><span class="badge">' + c.unread + '</span>' : '') + '</div></div>';
+    }).join('') : '<div class="empty" style="padding:30px">ยังไม่มีข้อความจากลูกค้า</div>';
+    [].forEach.call(document.querySelectorAll('.c'), function (el) {
+      el.addEventListener('click', function () { open_(el.dataset.id); });
+    });
+  }
+  var lastSig = '';
+  function poll() {
+    if (document.hidden) return;
+    api({ action: 'chatList' }).then(function (r) {
+      if (!r.ok) return;
+      var prevUnread = contacts.reduce(function (a, c) { return a + c.unread; }, 0);
+      contacts = r.contacts;
+      // the open chat is read already
+      contacts.forEach(function (c) { if (current && c.userId === current.userId && c.unread) c._reload = true; });
+      renderContacts();
+      var sig = contacts.map(function (c) { return c.userId + c.lastTime; }).join();
+      if (current && sig !== lastSig) loadThread(false);
+      lastSig = sig;
+      var now = contacts.reduce(function (a, c) { return a + c.unread; }, 0);
+      if (now > prevUnread) beep();
+    }).catch(function () {});
+  }
+  function beep() { try { var a = new (window.AudioContext || window.webkitAudioContext)(), o = a.createOscillator(); o.connect(a.destination); o.frequency.value = 880; o.start(); o.stop(a.currentTime + .12); } catch (e) {} }
+
+  // ---- thread ----
+  function open_(id) {
+    current = contacts.filter(function (c) { return c.userId === id; })[0];
+    $('#title').textContent = current ? current.name : '';
+    $('#wrap').classList.add('chatting'); renderContacts(); loadThread(true); renderQuick();
+  }
+  $('#back').addEventListener('click', function () { $('#wrap').classList.remove('chatting'); current = null; renderContacts(); });
+  function loadThread(scroll) {
+    if (!current) return;
+    var id = current.userId;
+    api({ action: 'chatThread', userId: id }).then(function (r) {
+      if (!r.ok || !current || current.userId !== id) return;
+      var box = $('#msgs'), atEnd = scroll || box.scrollHeight - box.scrollTop - box.clientHeight < 80;
+      box.innerHTML = r.messages.length ? r.messages.map(function (m) {
+        var body = m.type === 'image' && m.fileId ? '<img data-f="' + esc(m.fileId) + '" alt="รูปจากลูกค้า" src="' + (imgCache[m.fileId] || 'data:image/gif;base64,R0lGODlhAQABAAAAACw=') + '">' : esc(m.text);
+        return '<div class="m ' + (m.dir === 'out' ? 'out' : '') + '">' + body + '<small>' + fmt(m.time) + '</small></div>';
+      }).join('') : '<div class="empty">ยังไม่มีข้อความ</div>';
+      if (atEnd) box.scrollTop = box.scrollHeight;
+      [].forEach.call(box.querySelectorAll('img[data-f]'), function (img) {
+        var f = img.dataset.f; if (imgCache[f]) return;
+        api({ action: 'chatImage', fileId: f }).then(function (x) { if (x.ok) { imgCache[f] = x.dataUrl; img.src = x.dataUrl; } });
+      });
+      current.unread = 0; renderContacts();
+    });
+  }
+
+  // ---- send ----
+  function send() {
+    var t = $('#text').value.trim(); if (!current || !t) return;
+    var b = $('#sendBtn'); b.disabled = true; b.textContent = '…';
+    api({ action: 'chatSend', userId: current.userId, text: t }).then(function (r) {
+      b.disabled = false; b.textContent = 'ส่ง';
+      if (!r.ok) { alert('ส่งไม่สำเร็จ: ' + errText(r.error) + (r.detail ? '\n' + r.detail : '')); return; }
+      $('#text').value = ''; loadThread(true);
+    }).catch(function () { b.disabled = false; b.textContent = 'ส่ง'; alert('ส่งไม่สำเร็จ: เชื่อมต่อไม่ได้'); });
+  }
+  $('#sendBtn').addEventListener('click', send);
+  $('#text').addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) send(); });
+  $('#refresh').addEventListener('click', poll);
+
+  // ---- quick replies ----
+  function renderQuick() {
+    var q = quick();
+    $('#quick').innerHTML = q.map(function (x, i) { return '<button data-i="' + i + '">' + esc(x.l) + '</button>'; }).join('') + '<button data-edit="1">✎ แก้ไข</button>';
+    [].forEach.call($('#quick').querySelectorAll('button'), function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.edit) return editQuick();
+        var name = current ? current.name : '';
+        var tx = $('#text'); tx.value = q[b.dataset.i].t.replace(/\{ชื่อ\}/g, name); tx.focus();
+      });
+    });
+  }
+  function editQuick() {
+    var q = quick();
+    $('#qedit').innerHTML = q.map(rowHtml).join('');
+    $('#qdlg').showModal();
+  }
+  function rowHtml(x) { return '<div class="qrow"><input class="l" placeholder="ชื่อปุ่ม" value="' + esc(x.l) + '"><input class="t" placeholder="ข้อความ" value="' + esc(x.t) + '"><button class="btn ghost" type="button" onclick="this.parentNode.remove()">ลบ</button></div>'; }
+  $('#qadd').addEventListener('click', function () { $('#qedit').insertAdjacentHTML('beforeend', rowHtml({ l: '', t: '' })); });
+  $('#qcancel').addEventListener('click', function () { $('#qdlg').close(); });
+  $('#qsave').addEventListener('click', function () {
+    var out = [].map.call($('#qedit').querySelectorAll('.qrow'), function (r) { return { l: r.querySelector('.l').value.trim(), t: r.querySelector('.t').value.trim() }; }).filter(function (x) { return x.l && x.t; });
+    try { localStorage.setItem('kh-quick', JSON.stringify(out)); } catch (e) {}
+    $('#qdlg').close(); renderQuick();
+  });
+})();
+</script>
+</body>
+</html>
