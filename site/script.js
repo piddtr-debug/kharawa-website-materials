@@ -71,6 +71,7 @@ const TRANSLATIONS = {
     'done.note.local': 'หมายเหตุ: เว็บไซต์ยังไม่ได้ส่งข้อมูลให้ทีมงานอัตโนมัติ ข้อมูลที่กรอกถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น', 'done.note.sending': '',
     'done.note.sent': '', 'done.note.failed': 'ข้อมูลที่กรอกยังเก็บอยู่ในเบราว์เซอร์นี้ และไม่ได้ถูกส่งถึงทีมงาน',
     'done.retry': 'ลองส่งอีกครั้ง',
+    'nav.preloved': 'มือสอง', 'nav.mobilePreloved': 'มือสองคัดสรร ↗', 'preloved.more': 'ดูสินค้ามือสองทั้งหมด ↗', 'preloved.view': 'ดูรายละเอียด',
     'consign.submit': 'ส่งข้อมูลฝากขาย ↗',
     'contact.eyebrow': 'เข้าร่วมคลื่นความถี่', 'contact.title': 'เปิดตา<br /><em>รับสัญญาณ</em>', 'contact.body': 'คอลเลกชัน เรื่องเล่า และก้าวต่อไปของ KHARAWA จะเปิดเผยเมื่อถึงเวลา', 'contact.line': 'คุยผ่าน LINE ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับขึ้นด้านบน ↑',
@@ -125,6 +126,7 @@ const TRANSLATIONS = {
     'done.note.local': 'Note: this site does not send the form to our team automatically yet. Your details stay in this browser only.', 'done.note.sending': '',
     'done.note.sent': '', 'done.note.failed': 'Your details are still only in this browser and have not reached our team.',
     'done.retry': 'TRY AGAIN',
+    'nav.preloved': 'PRE-LOVED', 'nav.mobilePreloved': 'PRE-LOVED ↗', 'preloved.more': 'SEE ALL PRE-LOVED ↗', 'preloved.view': 'VIEW DETAILS',
     'consign.submit': 'SUBMIT CONSIGNMENT ↗',
     'contact.eyebrow': 'JOIN THE FREQUENCY', 'contact.title': 'KEEP YOUR<br /><em>EYES OPEN.</em>', 'contact.body': 'The next collection, story and movement from KHARAWA will be released when the time is right.', 'contact.line': 'CHAT ON LINE ↗', 'contact.email': 'contact@kharawa.com ↗',
     'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑',
@@ -407,16 +409,9 @@ $('#consign-photo')?.addEventListener('change', (event) => {
 });
 
 // ---- Pre-loved listing -------------------------------------------------------
-// Add real pieces here. Shape:
-// { id: 'pl-001', brand: 'KHARAWA' | 'Carhartt' | ..., name: '...', size: 'L', condition: 'new' | 'good' | 'used',
-//   price: 1200 (or null = "ask for price"), status: 'available' | 'reserved' | 'sold', image: './assets/preloved/pl-001.webp' (or '') }
-// Optional: images: ['./a.webp', './b.webp'] to use several photos in the auto video.
+// Real items come from the Google Sheet (see preloved-data.js). The home page only shows a teaser of up to 4; all items are on preloved.html.
 // Preview only: add ?demo=preloved to the URL to see sample cards (uses existing product photos, not real second-hand stock).
-const PRELOVED_DEMO = [
-  { id: 'demo-1', brand: 'KHARAWA', name: 'First Press Tee', size: 'L', condition: 'good', price: 590, status: 'available', image: './assets/products/first-press-tee.webp', images: ['./assets/products/first-press-tee.webp', './assets/products/rising-press-tee.webp'] },
-  { id: 'demo-2', brand: 'Carhartt', name: 'Pocket Tee', size: 'M', condition: 'new', price: null, status: 'available', image: './assets/products/small-signal-tee.webp' },
-];
-const PRELOVED_ITEMS = (window.KHARAWA_DEMO || new URLSearchParams(location.search).get('demo') === 'preloved') ? PRELOVED_DEMO : [];
+let PRELOVED_ITEMS = [];
 let prelovedFilter = 'all';
 function renderPreloved(items = PRELOVED_ITEMS) {
   const grid = $('#preloved-grid');
@@ -455,6 +450,7 @@ function renderPreloved(items = PRELOVED_ITEMS) {
       ask.href = `https://line.me/R/oaMessage/${LINE_OA}/?text=${encodeURIComponent(`${tr('preloved.askText')}: ${item.brand} ${item.name} (${item.id})`)}`;
       card.append(ask);
     }
+    const view = document.createElement('a'); view.className = 'buy-link'; view.href = `./preloved.html#${encodeURIComponent(item.id)}`; view.textContent = tr('preloved.view'); card.append(view);
     if (window.KharawaShare) {
       const share = document.createElement('button'); share.type = 'button'; share.className = 'buy-link share-open-btn'; share.textContent = window.KharawaShare.label();
       share.addEventListener('click', () => window.KharawaShare.open(item));
@@ -485,3 +481,9 @@ function closeMobileNav() { const nav = $('#mobile-nav'); if (!nav || nav.hidden
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeCart(); closeMobileNav(); if ($('#product-modal').open) closeProduct(); } });
 $$('.language-button').forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
 applyLanguage();
+
+// Teaser on the home page: up to 4 pieces that can still be bought. The full list is on preloved.html.
+window.KharawaPreloved?.load().then((all) => {
+  PRELOVED_ITEMS = all.filter((item) => item.status !== 'sold').slice(0, 4);
+  renderPreloved();
+}).catch(() => { /* leave the "curating" message in place */ });

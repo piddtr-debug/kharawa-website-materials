@@ -36,7 +36,7 @@
   };
   const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'th');
   const t = (k) => L[lang()][k];
-  const itemUrl = (item) => `${SITE_URL}/#preloved-${item.id}`;
+  const itemUrl = (item) => `${SITE_URL}/preloved.html#${encodeURIComponent(item.id)}`;
   const priceText = (item) => (item.price ? `฿${Number(item.price).toLocaleString('en-US')}` : t('ask'));
   const photos = (item) => (item.images && item.images.length ? item.images : item.image ? [item.image] : []);
 
