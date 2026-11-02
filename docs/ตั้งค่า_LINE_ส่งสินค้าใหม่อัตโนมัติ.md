@@ -1,17 +1,17 @@
 # ส่งสินค้ามือสองชิ้นใหม่เข้า LINE OA อัตโนมัติ
 
-เมื่อคุณเปลี่ยนสถานะแถวในชีตเป็น "ลงขาย" ระบบจะส่งข้อความ 1 ข้อความ (รูป + ชื่อ + ราคา + ปุ่ม "ดูสินค้า") ให้ทุกคนที่ติดตาม LINE OA @Kharawa แล้วจดเวลาลงคอลัมน์ N กันส่งซ้ำ
+เมื่อคุณเปลี่ยนสถานะแถวในชีตเป็น "ลงขาย" ระบบจะส่งข้อความ 1 ข้อความ (รูป + ชื่อ + ราคา + ปุ่ม "ดูสินค้า") ให้ทุกคนที่ติดตาม LINE OA @737yiaxp แล้วจดเวลาลงคอลัมน์ N กันส่งซ้ำ
 
 **ปิดอยู่เป็นค่าเริ่มต้น** จะไม่ส่งอะไรจนกว่าคุณจะตั้ง `LINE_BROADCAST_ENABLED = yes` เอง
 
 > ห้ามส่งหรือวางโทเคนในแชต ในโค้ด หรือใน GitHub เด็ดขาด ใครมีโทเคนส่งข้อความในนามร้านได้ ให้วางในช่อง Script Properties ของ Apps Script เท่านั้น (ขั้นที่ 3) ถ้าเผลอเปิดเผย ให้กด Reissue ในขั้นที่ 2 เพื่อออกอันใหม่
 
 ## ขั้นที่ 1: เปิด Messaging API ของ LINE OA
-1. เข้า https://manager.line.biz เลือกบัญชี @Kharawa
+1. เข้า https://manager.line.biz เลือกบัญชี @737yiaxp
 2. เมนู **การตั้งค่า (Settings)** → **Messaging API** → กด **เปิดใช้ Messaging API (Enable Messaging API)** แล้วเลือก/สร้าง Provider ตามที่หน้าจอบอก
 
 ## ขั้นที่ 2: ออก Channel access token
-1. เข้า https://developers.line.biz/console เลือก Provider → เลือกช่อง Messaging API ของ @Kharawa
+1. เข้า https://developers.line.biz/console เลือก Provider → เลือกช่อง Messaging API ของ @737yiaxp
 2. แท็บ **Messaging API** เลื่อนลงไปหัวข้อ **Channel access token (long-lived)** → กด **Issue**
 3. กดคัดลอกโทเคน (ยาวมาก) เก็บไว้ในคลิปบอร์ด อย่าส่งให้ใคร
 

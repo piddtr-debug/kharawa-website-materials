@@ -2,7 +2,7 @@
 // Needs no external account: share links, caption text and the video are all built in the browser.
 (function () {
   const SITE_URL = 'https://piddtr-debug.github.io/kharawa-website-materials'; // change if a custom domain is connected
-  const LINE_ADD = 'https://line.me/R/ti/p/%40Kharawa';
+  const LINE_ADD = 'https://line.me/R/ti/p/%40737yiaxp';
   const L = {
     th: {
       share: 'แชร์ / ทำโพสต์', title: 'แชร์สินค้ามือสอง', close: 'ปิด',
@@ -13,7 +13,7 @@
       noVideo: 'เบราว์เซอร์นี้สร้างวิดีโอไม่ได้ ลองใช้ Chrome', noPhoto: 'สินค้าชิ้นนี้ยังไม่มีรูป สร้างวิดีโอไม่ได้',
       manual: 'ช่องนี้ยังโพสต์ให้อัตโนมัติไม่ได้ ให้คัดลอกแคปชั่นแล้วเปิดหน้าลงขายด้วยตัวเอง', open: 'เปิดหน้าลงขาย ↗',
       new: 'ใหม่ ป้ายยังอยู่', good: 'สภาพดี', used: 'สภาพผ่านการใช้งาน', size: 'ไซซ์', price: 'ราคา', ask: 'สอบถามราคา',
-      cta: 'ทักสั่งได้ทาง LINE @Kharawa',
+      cta: 'ทักสั่งได้ทาง LINE @737yiaxp',
     },
     en: {
       share: 'Share / Post', title: 'Share this piece', close: 'Close',
@@ -24,7 +24,7 @@
       noVideo: 'This browser cannot record video. Try Chrome.', noPhoto: 'No photo for this piece, so no video.',
       manual: 'This channel cannot be posted to automatically. Copy the caption and open the listing page yourself.', open: 'Open listing page ↗',
       new: 'Brand new with tags', good: 'Good condition', used: 'Pre-owned', size: 'Size', price: 'Price', ask: 'Ask for price',
-      cta: 'Order on LINE @Kharawa',
+      cta: 'Order on LINE @737yiaxp',
     },
   };
   const PLATFORMS = {
