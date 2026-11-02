@@ -350,7 +350,13 @@ $('#consign-photo')?.addEventListener('change', (event) => {
 // Add real pieces here. Shape:
 // { id: 'pl-001', brand: 'KHARAWA' | 'Carhartt' | ..., name: '...', size: 'L', condition: 'new' | 'good' | 'used',
 //   price: 1200 (or null = "ask for price"), status: 'available' | 'reserved' | 'sold', image: './assets/preloved/pl-001.webp' (or '') }
-const PRELOVED_ITEMS = [];
+// Optional: images: ['./a.webp', './b.webp'] to use several photos in the auto video.
+// Preview only: add ?demo=preloved to the URL to see sample cards (uses existing product photos, not real second-hand stock).
+const PRELOVED_DEMO = [
+  { id: 'demo-1', brand: 'KHARAWA', name: 'First Press Tee', size: 'L', condition: 'good', price: 590, status: 'available', image: './assets/products/first-press-tee.webp', images: ['./assets/products/first-press-tee.webp', './assets/products/rising-press-tee.webp'] },
+  { id: 'demo-2', brand: 'Carhartt', name: 'Pocket Tee', size: 'M', condition: 'new', price: null, status: 'available', image: './assets/products/small-signal-tee.webp' },
+];
+const PRELOVED_ITEMS = (window.KHARAWA_DEMO || new URLSearchParams(location.search).get('demo') === 'preloved') ? PRELOVED_DEMO : [];
 let prelovedFilter = 'all';
 function renderPreloved(items = PRELOVED_ITEMS) {
   const grid = $('#preloved-grid');
@@ -389,6 +395,12 @@ function renderPreloved(items = PRELOVED_ITEMS) {
       ask.href = `https://line.me/R/oaMessage/${LINE_OA}/?text=${encodeURIComponent(`${tr('preloved.askText')}: ${item.brand} ${item.name} (${item.id})`)}`;
       card.append(ask);
     }
+    if (window.KharawaShare) {
+      const share = document.createElement('button'); share.type = 'button'; share.className = 'buy-link share-open-btn'; share.textContent = window.KharawaShare.label();
+      share.addEventListener('click', () => window.KharawaShare.open(item));
+      card.append(share);
+    }
+    card.id = `preloved-${item.id}`;
     return card;
   }));
 }
