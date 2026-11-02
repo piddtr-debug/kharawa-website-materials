@@ -124,6 +124,16 @@
       </div>
     </section>
 
+    <section class="preloved section-black" id="preloved" aria-labelledby="preloved-title">
+      <div class="preloved-head">
+        <div><p class="eyebrow" data-i18n="preloved.eyebrow">มือสองคัดสรร</p><h2 id="preloved-title" data-i18n-html="preloved.title">ชิ้นที่ผ่านมือ<br /><em>มาแล้ว</em></h2></div>
+        <p class="body-copy" data-i18n="preloved.body">เสื้อผ้ามือสองที่ทีมงานตรวจสภาพแล้ว ทั้งของ KHARAWA และแบรนด์อื่น สนใจชิ้นไหนทักถามทาง LINE ได้เลย</p>
+      </div>
+      <div class="preloved-filters" id="preloved-filters" role="group" aria-label="กรองตามแบรนด์" hidden></div>
+      <div class="preloved-grid" id="preloved-grid"></div>
+      <p class="preloved-empty" id="preloved-empty" hidden></p>
+    </section>
+
     <section class="consign section-cream" id="consign" aria-labelledby="consign-title">
       <div class="section-index">03</div>
       <div class="consign-intro">
@@ -136,15 +146,41 @@
           <p><strong data-i18n="consign.ruleThreeTitle">03 / ส่งต่อ</strong><span data-i18n="consign.ruleThree">รอการติดต่อกลับเพื่อยืนยันการฝากขาย</span></p>
         </div>
       </div>
-      <form class="consign-form" id="consign-form">
+      <div class="consign-panel">
+      <form class="consign-form" id="consign-form" novalidate>
+        <fieldset class="field-group"><legend data-i18n="consign.brandLabel">แบรนด์ของสินค้า</legend>
+          <div class="pill-row">
+            <label class="pill"><input type="radio" name="brand" value="kharawa" checked /><span data-i18n="consign.brandKharawa">KHARAWA</span></label>
+            <label class="pill"><input type="radio" name="brand" value="other" /><span data-i18n="consign.brandOther">แบรนด์อื่น</span></label>
+          </div>
+          <label class="brand-other" id="brand-other-wrap" hidden><span data-i18n="consign.brandNameLabel">ชื่อแบรนด์</span><input name="brandName" autocomplete="off" placeholder="เช่น Uniqlo, Carhartt" data-i18n-placeholder="consign.brandNamePlaceholder" /></label>
+        </fieldset>
         <label><span data-i18n="consign.itemLabel">ชื่อสินค้า</span><input name="itemName" required placeholder="เช่น First Press Tee" data-i18n-placeholder="consign.itemPlaceholder" /></label>
-        <div class="form-row"><label><span data-i18n="consign.categoryLabel">หมวดหมู่</span><select name="category" required><option value="" data-i18n="consign.categoryPlaceholder">เลือกหมวดหมู่</option><option value="tee" data-i18n="consign.tee">เสื้อยืด</option><option value="cap" data-i18n="consign.cap">หมวก</option><option value="accessory" data-i18n="consign.accessory">แอ็กเซสซอรี</option></select></label><label><span data-i18n="consign.conditionLabel">สภาพสินค้า</span><select name="condition" required><option value="" data-i18n="consign.conditionPlaceholder">เลือกสภาพ</option><option value="new" data-i18n="consign.conditionNew">เหมือนใหม่</option><option value="good" data-i18n="consign.conditionGood">สภาพดี</option><option value="used" data-i18n="consign.conditionUsed">มีร่องรอยการใช้งาน</option></select></label></div>
-        <div class="form-row"><label><span data-i18n="consign.priceLabel">ราคาที่ต้องการ</span><input name="price" type="number" min="0" step="1" inputmode="numeric" placeholder="เช่น 1200" data-i18n-placeholder="consign.pricePlaceholder" /></label><label><span data-i18n="consign.contactLabel">ช่องทางติดต่อ</span><input name="contact" required placeholder="LINE / Instagram / เบอร์โทรศัพท์" data-i18n-placeholder="consign.contactPlaceholder" /></label></div>
-        <label><span data-i18n="consign.detailsLabel">รายละเอียดเพิ่มเติม</span><textarea name="details" rows="4" placeholder="ไซซ์ สี ตำหนิ และข้อมูลที่ควรทราบ" data-i18n-placeholder="consign.detailsPlaceholder"></textarea></label>
-        <label class="file-field"><span data-i18n="consign.photoLabel">รูปสินค้า</span><input id="consign-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" /><small data-i18n="consign.photoNote">รองรับ JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB</small><span class="photo-error" id="consign-photo-error" role="alert"></span><img class="photo-preview" id="consign-photo-preview" alt="ตัวอย่างรูปสินค้าที่เลือก" hidden /></label>
+        <div class="form-row"><label><span data-i18n="consign.categoryLabel">หมวดหมู่</span><select name="category" required><option value="" data-i18n="consign.categoryPlaceholder">เลือกหมวดหมู่</option><option value="tee" data-i18n="consign.tee">เสื้อยืด</option><option value="shirt" data-i18n="consign.shirt">เสื้อเชิ้ต / เสื้อมีกระดุม</option><option value="outer" data-i18n="consign.outer">แจ็กเก็ต / เสื้อคลุม</option><option value="bottoms" data-i18n="consign.bottoms">กางเกง / กระโปรง</option><option value="cap" data-i18n="consign.cap">หมวก</option><option value="accessory" data-i18n="consign.accessory">แอ็กเซสซอรี</option><option value="other" data-i18n="consign.otherCat">อื่นๆ</option></select></label><label><span data-i18n="consign.sizeLabel">ไซซ์</span><input name="size" required placeholder="เช่น L หรืออก 40 นิ้ว" data-i18n-placeholder="consign.sizePlaceholder" /></label></div>
+        <fieldset class="field-group"><legend data-i18n="consign.conditionLabel">สภาพสินค้า</legend>
+          <div class="pill-row">
+            <label class="pill"><input type="radio" name="condition" value="new" required /><span data-i18n="consign.conditionNew">เหมือนใหม่</span></label>
+            <label class="pill"><input type="radio" name="condition" value="good" /><span data-i18n="consign.conditionGood">สภาพดี</span></label>
+            <label class="pill"><input type="radio" name="condition" value="used" /><span data-i18n="consign.conditionUsed">มีร่องรอยการใช้งาน</span></label>
+          </div>
+        </fieldset>
+        <div class="form-row"><label><span data-i18n="consign.priceLabel">ราคาที่ต้องการ (บาท)</span><input name="price" type="number" min="0" step="1" inputmode="numeric" placeholder="เช่น 1200" data-i18n-placeholder="consign.pricePlaceholder" /></label><label><span data-i18n="consign.contactLabel">ช่องทางติดต่อ</span><input name="contact" required placeholder="LINE / Instagram / เบอร์โทรศัพท์" data-i18n-placeholder="consign.contactPlaceholder" /></label></div>
+        <label><span data-i18n="consign.detailsLabel">รายละเอียดเพิ่มเติม</span><textarea name="details" rows="4" placeholder="สี ตำหนิ ปีที่ซื้อ และข้อมูลที่ควรทราบ" data-i18n-placeholder="consign.detailsPlaceholder"></textarea></label>
+        <label class="file-field"><span data-i18n="consign.photoLabel">รูปสินค้า (ได้สูงสุด 4 รูป)</span><input id="consign-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" multiple /><small data-i18n="consign.photoNote">แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป</small><span class="photo-error" id="consign-photo-error" role="alert"></span><span class="photo-previews" id="consign-photo-previews"></span></label>
+        <label class="consent"><input type="checkbox" name="consent" required /><span data-i18n="consign.consent">ฉันยินยอมให้ KHARAWA ใช้ข้อมูลที่กรอกเพื่อติดต่อกลับเรื่องการฝากขายเท่านั้น</span></label>
+        <span class="form-error" id="consign-form-error" role="alert"></span>
         <button class="button button-dark" type="submit" data-i18n="consign.submit">ส่งข้อมูลฝากขาย ↗</button>
-        <p class="form-status" id="consign-status" role="status" aria-live="polite"></p>
       </form>
+      <div class="consign-done" id="consign-done" hidden tabindex="-1">
+        <p class="eyebrow dark" data-i18n="done.eyebrow">บันทึกรายการแล้ว</p>
+        <p class="done-ref"><span data-i18n="done.refLabel">เลขอ้างอิง</span> <strong id="done-ref">KH-C-000000-0000</strong></p>
+        <p class="body-copy" data-i18n="done.next">อีกหนึ่งขั้นตอน: กดส่งรายการนี้ให้ทีมงานทาง LINE เพื่อให้เราได้รับข้อมูล แล้วส่งรูปสินค้าต่อในแชทได้เลย ทีมงานจะติดต่อกลับเพื่อประเมินราคา</p>
+        <pre class="done-summary" id="done-summary"></pre>
+        <div class="done-actions"><a class="button button-dark" id="done-line" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noopener noreferrer" data-i18n="done.line">ส่งให้ทีมงานทาง LINE ↗</a><button class="button button-ghost" type="button" id="done-copy" data-i18n="done.copy">คัดลอกข้อความ</button><button class="text-button" type="button" id="done-again" data-i18n="done.again">ฝากชิ้นอื่นต่อ</button></div>
+        <p class="form-status" id="done-status" role="status" aria-live="polite"></p>
+        <p class="done-note" data-i18n="done.note">หมายเหตุ: เว็บไซต์ยังไม่ได้ส่งข้อมูลให้ทีมงานอัตโนมัติ ข้อมูลที่กรอกถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น</p>
+      </div>
+      </div>
     </section>
 
     <section class="contact section-black" id="contact" aria-labelledby="contact-title">
@@ -155,6 +191,7 @@
   </main>
 
   <footer class="site-footer"><img src="./assets/icon-192.png" width="46" height="46" alt="โลโก้ KHARAWA" loading="lazy" /><p data-i18n-html="footer.signature">KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ</p><a class="footer-shop" href="https://www.instagram.com/kharawa.liubei/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a><a class="footer-shop" href="https://www.facebook.com/profile.php?id=61594162431839" target="_blank" rel="noopener noreferrer">FACEBOOK ↗</a><a class="footer-shop" href="https://www.tiktok.com/@liube72" target="_blank" rel="noopener noreferrer">TIKTOK ↗</a><a class="footer-shop" href="https://shopee.co.th/liu.bei0705#product_list" target="_blank" rel="noopener noreferrer">SHOPEE ↗</a><a href="#top" data-i18n="footer.top">กลับขึ้นด้านบน ↑</a></footer>
+  <script src="./share.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
