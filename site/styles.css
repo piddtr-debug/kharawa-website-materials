@@ -431,7 +431,7 @@ html[lang="th"] .preloved-brand { letter-spacing: 0; }
 .share-panel h4 { margin: 22px 0 10px; font-size: .95rem; color: var(--red-hi); }
 .share-item, .share-note, .share-manual, .share-msg { margin: 0 0 8px; color: var(--muted); font-size: .9rem; line-height: 1.6; }
 .share-close { position: absolute; top: 12px; right: 12px; min-height: 44px; padding: 0 14px; background: none; border: 1px solid var(--line); color: var(--cream); font: inherit; cursor: pointer; }
-.share-links, .share-tabs, .share-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.share-links, .share-tabs, .share-row, .share-photos { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .share-modal .filter-chip { display: inline-flex; align-items: center; text-decoration: none; }
 .share-modal .filter-chip:disabled { opacity: .5; cursor: wait; }
 .share-caption { width: 100%; box-sizing: border-box; padding: 12px; background: var(--black); color: var(--cream); border: 1px solid var(--line); font: inherit; font-size: .95rem; line-height: 1.6; resize: vertical; }
