@@ -168,17 +168,18 @@
         <label><span data-i18n="consign.detailsLabel">รายละเอียดเพิ่มเติม</span><textarea name="details" rows="4" placeholder="สี ตำหนิ ปีที่ซื้อ และข้อมูลที่ควรทราบ" data-i18n-placeholder="consign.detailsPlaceholder"></textarea></label>
         <label class="file-field"><span data-i18n="consign.photoLabel">รูปสินค้า (ได้สูงสุด 4 รูป)</span><input id="consign-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" multiple /><small data-i18n="consign.photoNote">แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป</small><span class="photo-error" id="consign-photo-error" role="alert"></span><span class="photo-previews" id="consign-photo-previews"></span></label>
         <label class="consent"><input type="checkbox" name="consent" required /><span data-i18n="consign.consent">ฉันยินยอมให้ KHARAWA ใช้ข้อมูลที่กรอกเพื่อติดต่อกลับเรื่องการฝากขายเท่านั้น</span></label>
+        <label class="hp-field" aria-hidden="true"><span>Website</span><input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
         <span class="form-error" id="consign-form-error" role="alert"></span>
         <button class="button button-dark" type="submit" data-i18n="consign.submit">ส่งข้อมูลฝากขาย ↗</button>
       </form>
       <div class="consign-done" id="consign-done" hidden tabindex="-1">
-        <p class="eyebrow dark" data-i18n="done.eyebrow">บันทึกรายการแล้ว</p>
+        <p class="eyebrow dark" id="done-eyebrow">บันทึกรายการแล้ว</p>
         <p class="done-ref"><span data-i18n="done.refLabel">เลขอ้างอิง</span> <strong id="done-ref">KH-C-000000-0000</strong></p>
-        <p class="body-copy" data-i18n="done.next">อีกหนึ่งขั้นตอน: กดส่งรายการนี้ให้ทีมงานทาง LINE เพื่อให้เราได้รับข้อมูล แล้วส่งรูปสินค้าต่อในแชทได้เลย ทีมงานจะติดต่อกลับเพื่อประเมินราคา</p>
+        <p class="body-copy" id="done-lead"></p>
         <pre class="done-summary" id="done-summary"></pre>
-        <div class="done-actions"><a class="button button-dark" id="done-line" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noopener noreferrer" data-i18n="done.line">ส่งให้ทีมงานทาง LINE ↗</a><button class="button button-ghost" type="button" id="done-copy" data-i18n="done.copy">คัดลอกข้อความ</button><button class="text-button" type="button" id="done-again" data-i18n="done.again">ฝากชิ้นอื่นต่อ</button></div>
+        <div class="done-actions"><a class="button button-dark" id="done-line" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noopener noreferrer" data-i18n="done.line">ส่งให้ทีมงานทาง LINE ↗</a><button class="button button-ghost" type="button" id="done-retry" data-i18n="done.retry" hidden>ลองส่งอีกครั้ง</button><button class="button button-ghost" type="button" id="done-copy" data-i18n="done.copy">คัดลอกข้อความ</button><button class="text-button" type="button" id="done-again" data-i18n="done.again">ฝากชิ้นอื่นต่อ</button></div>
         <p class="form-status" id="done-status" role="status" aria-live="polite"></p>
-        <p class="done-note" data-i18n="done.note">หมายเหตุ: เว็บไซต์ยังไม่ได้ส่งข้อมูลให้ทีมงานอัตโนมัติ ข้อมูลที่กรอกถูกเก็บไว้ในเบราว์เซอร์นี้เท่านั้น</p>
+        <p class="done-note" id="done-note"></p>
       </div>
       </div>
     </section>
@@ -191,6 +192,7 @@
   </main>
 
   <footer class="site-footer"><img src="./assets/icon-192.png" width="46" height="46" alt="โลโก้ KHARAWA" loading="lazy" /><p data-i18n-html="footer.signature">KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ</p><a class="footer-shop" href="https://www.instagram.com/kharawa.liubei/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a><a class="footer-shop" href="https://www.facebook.com/profile.php?id=61594162431839" target="_blank" rel="noopener noreferrer">FACEBOOK ↗</a><a class="footer-shop" href="https://www.tiktok.com/@liube72" target="_blank" rel="noopener noreferrer">TIKTOK ↗</a><a class="footer-shop" href="https://shopee.co.th/liu.bei0705#product_list" target="_blank" rel="noopener noreferrer">SHOPEE ↗</a><a href="#top" data-i18n="footer.top">กลับขึ้นด้านบน ↑</a></footer>
+  <script src="./config.js"></script>
   <script src="./share.js"></script>
   <script src="./script.js"></script>
 </body>
