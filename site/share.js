@@ -6,7 +6,7 @@
   const L = {
     th: {
       share: 'แชร์ / ทำโพสต์', title: 'แชร์สินค้ามือสอง', close: 'ปิด',
-      links: 'แชร์ลิงก์', caption: 'แคปชั่นขาย (แก้ไขได้)', platform: 'แพลตฟอร์ม',
+      links: 'แชร์ลิงก์', photos: 'รูปสำหรับอัปโหลด (Shopee / TikTok / YouTube)', photo: 'รูปที่', caption: 'แคปชั่นขาย (แก้ไขได้)', platform: 'แพลตฟอร์ม',
       copy: 'คัดลอกแคปชั่น', copied: 'คัดลอกแล้ว', copyLink: 'คัดลอกลิงก์', shareNative: 'แชร์ผ่านมือถือ',
       video: 'วิดีโอขาย', makeVideo: 'สร้างวิดีโอ', making: 'กำลังสร้าง…', download: 'ดาวน์โหลดวิดีโอ',
       videoNote: 'ทำจากรูปสินค้า ไม่ต้องใช้บัญชีใด ๆ',
@@ -17,7 +17,7 @@
     },
     en: {
       share: 'Share / Post', title: 'Share this piece', close: 'Close',
-      links: 'Share link', caption: 'Sales caption (editable)', platform: 'Platform',
+      links: 'Share link', photos: 'Photos to upload (Shopee / TikTok / YouTube)', photo: 'Photo', caption: 'Sales caption (editable)', platform: 'Platform',
       copy: 'Copy caption', copied: 'Copied', copyLink: 'Copy link', shareNative: 'Share from phone',
       video: 'Sales video', makeVideo: 'Make video', making: 'Making…', download: 'Download video',
       videoNote: 'Built from the item photos, no account needed',
@@ -37,6 +37,9 @@
   const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'th');
   const t = (k) => L[lang()][k];
   const itemUrl = (item) => `${SITE_URL}/preloved.html#${encodeURIComponent(item.id)}`;
+  // Link to share outside the site: a per-item page with the photo in its og: tags, so Facebook / LINE show a preview card.
+  // Demo items have no such page, so they fall back to the normal item link.
+  const shareUrl = (item) => (/^demo-/.test(item.id) ? itemUrl(item) : `${SITE_URL}/s/${encodeURIComponent(item.id)}.html`);
   const priceText = (item) => (item.price ? `฿${Number(item.price).toLocaleString('en-US')}` : t('ask'));
   const photos = (item) => (item.images && item.images.length ? item.images : item.image ? [item.image] : []);
 
@@ -53,7 +56,7 @@
       lang() === 'th' ? 'ทีมงานตรวจสภาพแล้ว มีชิ้นเดียว ใครมาก่อนได้ก่อน' : 'Checked by our team. One piece only, first come first served.',
       '',
       `${e('💬')}${t('cta')}`,
-      `${e('🔗')}${itemUrl(item)}`,
+      `${e('🔗')}${shareUrl(item)}`,
     ];
     if (p.tags) lines.push('', [...new Set(['#KHARAWA', '#มือสอง', '#เสื้อผ้ามือสอง', `#${brand.replace(/\s+/g, '')}`])].join(' '));
     return lines.join('\n');
@@ -128,6 +131,7 @@
       <button type="button" class="share-close" data-x></button>
       <h3 id="share-title"></h3><p class="share-item"></p>
       <h4 data-h="links"></h4><div class="share-links"></div>
+      <h4 data-h="photos"></h4><div class="share-photos"></div>
       <h4 data-h="caption"></h4><div class="share-tabs" role="group"></div>
       <textarea class="share-caption" rows="9"></textarea>
       <div class="share-row"><button type="button" class="filter-chip" data-copy></button><a class="filter-chip" data-open target="_blank" rel="noopener noreferrer" hidden></a></div>
@@ -155,19 +159,23 @@
     m.querySelector('#share-title').textContent = t('title');
     m.querySelector('.share-item').textContent = `${item.brand} ${item.name}`;
     m.querySelectorAll('[data-h]').forEach((h) => (h.textContent = t(h.dataset.h)));
-    const url = encodeURIComponent(itemUrl(item));
+    const url = encodeURIComponent(shareUrl(item));
     const links = m.querySelector('.share-links'); links.replaceChildren();
     [['Facebook', `https://www.facebook.com/sharer/sharer.php?u=${url}`], ['LINE', `https://social-plugins.line.me/lineit/share?url=${url}`]].forEach(([n, href]) => {
       const a = document.createElement('a'); a.className = 'filter-chip'; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.href = href; a.textContent = `${n} ↗`; links.append(a);
     });
     const copyLink = document.createElement('button'); copyLink.type = 'button'; copyLink.className = 'filter-chip'; copyLink.textContent = t('copyLink');
-    copyLink.addEventListener('click', async () => { try { await navigator.clipboard.writeText(itemUrl(item)); copyLink.textContent = t('copied'); setTimeout(() => (copyLink.textContent = t('copyLink')), 1500); } catch {} });
+    copyLink.addEventListener('click', async () => { try { await navigator.clipboard.writeText(shareUrl(item)); copyLink.textContent = t('copied'); setTimeout(() => (copyLink.textContent = t('copyLink')), 1500); } catch {} });
     links.append(copyLink);
     if (navigator.share) {
       const n = document.createElement('button'); n.type = 'button'; n.className = 'filter-chip'; n.textContent = t('shareNative');
-      n.addEventListener('click', () => navigator.share({ title: `${item.brand} ${item.name}`, text: m.querySelector('.share-caption').value, url: itemUrl(item) }).catch(() => {}));
+      n.addEventListener('click', () => navigator.share({ title: `${item.brand} ${item.name}`, text: m.querySelector('.share-caption').value, url: shareUrl(item) }).catch(() => {}));
       links.append(n);
     }
+    const pw = m.querySelector('.share-photos'); pw.replaceChildren();
+    photos(item).forEach((src, i) => {
+      const a = document.createElement('a'); a.className = 'filter-chip'; a.href = src; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.download = `${item.id}-${i + 1}`; a.textContent = `${t('photo')} ${i + 1} ↗`; pw.append(a);
+    });
     const tabs = m.querySelector('.share-tabs'); tabs.replaceChildren();
     Object.entries(PLATFORMS).forEach(([key, p]) => {
       const b = document.createElement('button'); b.type = 'button'; b.className = 'filter-chip'; b.textContent = p.label; b.setAttribute('aria-pressed', String(key === platform));
