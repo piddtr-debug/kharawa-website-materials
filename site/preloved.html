@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="สินค้ามือสองคัดสรรจาก KHARAWA และแบรนด์อื่น ตรวจสภาพโดยทีมงาน ทักถามได้ทาง LINE" />
+  <meta name="theme-color" content="#11100e" />
+  <meta property="og:title" content="สินค้ามือสอง — KHARAWA" />
+  <meta property="og:description" content="Pre-loved pieces checked by our team." />
+  <meta property="og:type" content="website" />
+  <title>สินค้ามือสอง — KHARAWA</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Noto+Sans+Thai:wght@300..800&family=Prompt:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./preloved-page.css" />
+</head>
+<body class="shop-page">
+  <header class="site-header" id="top">
+    <a class="brand-lockup" href="./" aria-label="กลับไปหน้าแรก KHARAWA">
+      <img src="./assets/icon-192.png" width="36" height="36" alt="โลโก้ KHARAWA" />
+      <span>KHARAWA</span>
+    </a>
+    <nav class="main-nav" aria-label="เมนูหลัก">
+      <a href="./#collection" data-i18n="nav.collection">คอลเลกชัน</a>
+      <a href="./preloved.html" aria-current="page" data-i18n="nav.preloved">มือสอง</a>
+      <a href="./#consign" data-i18n="nav.consign">ฝากขาย</a>
+      <a href="./#contact" data-i18n="nav.contact">ติดต่อ</a>
+    </nav>
+    <div class="header-actions">
+      <div class="language-switcher" aria-label="เลือกภาษา"><button class="language-button is-active" type="button" data-language="th" aria-pressed="true">TH</button><span>/</span><button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button></div>
+      <a class="back-link" href="./" data-i18n="page.home">← หน้าแรก</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="shop-hero section-black" aria-labelledby="shop-title">
+      <p class="eyebrow" data-i18n="page.eyebrow">มือสองคัดสรร / PRE-LOVED</p>
+      <h1 id="shop-title" data-i18n-html="page.title">สินค้า<br /><em>มือสอง</em></h1>
+      <p class="body-copy" data-i18n="page.body">เสื้อผ้าและชิ้นงานที่ทีมงานตรวจสภาพแล้ว ทั้งของ KHARAWA และแบรนด์อื่น แต่ละชิ้นมีชิ้นเดียว สนใจชิ้นไหนทักถามทาง LINE ได้เลย</p>
+    </section>
+
+    <section class="shop section-black" aria-label="รายการสินค้า">
+      <div class="shop-tools" id="shop-tools" hidden>
+        <div class="preloved-filters" id="brand-filters" role="group" aria-label="กรองตามแบรนด์"></div>
+        <div class="shop-selects">
+          <label><span data-i18n="f.category">หมวดหมู่</span><select id="f-category"></select></label>
+          <label><span data-i18n="f.size">ไซซ์</span><select id="f-size"></select></label>
+          <label><span data-i18n="f.sort">เรียงตาม</span><select id="f-sort"><option value="new" data-i18n="s.new">ใหม่ล่าสุด</option><option value="low" data-i18n="s.low">ราคาต่ำไปสูง</option><option value="high" data-i18n="s.high">ราคาสูงไปต่ำ</option></select></label>
+        </div>
+        <p class="shop-count" id="shop-count" role="status" aria-live="polite"></p>
+      </div>
+      <p class="shop-state" id="shop-state" role="status" aria-live="polite"></p>
+      <div class="preloved-grid shop-grid" id="shop-grid"></div>
+      <div class="shop-cta"><p data-i18n="page.cta">มีเสื้อผ้าสภาพดีที่อยากส่งต่อ?</p><a class="button button-cream" href="./#consign" data-i18n="page.ctaButton">ฝากขายกับเรา ↗</a></div>
+    </section>
+  </main>
+
+  <dialog class="item-dialog" id="item-dialog" aria-labelledby="item-name">
+    <button class="item-close" id="item-close" type="button" aria-label="ปิด">×</button>
+    <div class="item-layout">
+      <div class="item-gallery"><div class="item-main" id="item-main"></div><div class="item-thumbs" id="item-thumbs"></div></div>
+      <div class="item-info">
+        <p class="preloved-brand" id="item-brand"></p>
+        <h2 id="item-name"></h2>
+        <p class="item-price" id="item-price"></p>
+        <dl class="item-specs" id="item-specs"></dl>
+        <p class="item-details" id="item-details"></p>
+        <div class="item-actions" id="item-actions"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer"><img src="./assets/icon-192.png" width="46" height="46" alt="โลโก้ KHARAWA" loading="lazy" /><p data-i18n-html="footer.signature">KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ</p><a class="footer-shop" href="https://shopee.co.th/liu.bei0705#product_list" target="_blank" rel="noopener noreferrer">SHOPEE ↗</a><a class="footer-shop" href="https://line.me/R/ti/p/%40Kharawa" target="_blank" rel="noopener noreferrer">LINE ↗</a><a href="#top" data-i18n="footer.top">กลับขึ้นด้านบน ↑</a></footer>
+  <script src="./config.js"></script>
+  <script src="./preloved-data.js"></script>
+  <script src="./share.js"></script>
+  <script src="./preloved.js"></script>
+</body>
+</html>

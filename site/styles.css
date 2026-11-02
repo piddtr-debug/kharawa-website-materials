@@ -439,3 +439,5 @@ html[lang="th"] .preloved-brand { letter-spacing: 0; }
 .share-video { display: block; width: 100%; max-height: 60dvh; margin-top: 12px; background: #000; }
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .done-note[hidden], .done-actions [hidden] { display: none; }
+
+.preloved-more { margin: 40px 0 0; }
