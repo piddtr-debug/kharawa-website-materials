@@ -1,7 +1,7 @@
 // Share + auto caption + auto sales video for pre-loved items.
 // Needs no external account: share links, caption text and the video are all built in the browser.
 (function () {
-  const SITE_URL = 'https://kharawa.example'; // TODO: replace with the real domain once the site is published
+  const SITE_URL = 'https://piddtr-debug.github.io/kharawa-website-materials'; // change if a custom domain is connected
   const LINE_ADD = 'https://line.me/R/ti/p/%40Kharawa';
   const L = {
     th: {
