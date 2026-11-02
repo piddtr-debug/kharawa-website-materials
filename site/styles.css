@@ -250,7 +250,8 @@ html[lang="th"] .grid-note .note-cta { font-size: .95rem; font-stretch: 100%; }
 .consign-rules p { display: grid; grid-template-columns: 8.5em 1fr; gap: 18px; margin: 0; padding: 16px 0; border-bottom: 1px solid var(--line-dark); font-size: .9375rem; line-height: 1.6; }
 .consign-rules strong { color: var(--red); font-size: .72rem; font-weight: 700; font-stretch: 112%; letter-spacing: var(--track-label); }
 html[lang="th"] .consign-rules strong { font-size: .9rem; font-stretch: 100%; }
-.consign-form { grid-column: 7 / span 6; padding: clamp(24px, 3.2vw, 48px); background: var(--paper); border: 1px solid var(--line-dark); }
+.consign-panel { grid-column: 7 / span 6; }
+.consign-form, .consign-done { padding: clamp(24px, 3.2vw, 48px); background: var(--paper); border: 1px solid var(--line-dark); }
 .consign-form label { display: block; margin-bottom: 22px; }
 .consign-form label > span:not(.photo-error) { display: block; margin-bottom: 8px; font-size: .72rem; font-weight: 600; font-stretch: 112%; letter-spacing: var(--track-label); text-transform: uppercase; }
 html[lang="th"] .consign-form label > span:not(.photo-error) { font-size: .9rem; font-stretch: 100%; }
@@ -288,9 +289,9 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
   .manifesto-main { grid-column: 1 / -1; }
   .manifesto .body-copy { margin-left: 0; }
   .manifesto-stamp { grid-column: 1 / -1; justify-self: start; margin-top: 48px; }
-  .consign-intro, .consign-form, .contact-main { grid-column: 1 / -1; }
+  .consign-intro, .consign-panel, .contact-main { grid-column: 1 / -1; }
   .consign-intro { position: static; }
-  .consign-form { margin-top: 56px; }
+  .consign-panel { margin-top: 56px; }
   .contact-mark { grid-column: 1 / -1; justify-self: start; margin-top: 56px; width: 160px; }
 }
 @media (max-width: 900px) {
@@ -359,3 +360,63 @@ html[lang="th"] .site-footer { font-size: .9rem; font-stretch: 100%; letter-spac
 .buy-link { padding: 10px 0; border-bottom: 1px solid var(--line); font-family: var(--font-display); font-size: .78rem; font-weight: 600; letter-spacing: var(--track-label); color: var(--muted); transition: color .2s, border-color .2s; }
 html[lang="th"] .buy-link { font-size: .9rem; letter-spacing: 0; }
 .buy-link:hover, .buy-link:focus-visible { color: var(--red-hi); border-color: var(--red-hi); }
+
+/* ---- Consignment form v2 + pre-loved listing ---- */
+.consign-form[hidden], .consign-done[hidden], .brand-other[hidden], .preloved-filters[hidden], .preloved-empty[hidden] { display: none; }
+.consign-form, .consign-done { background: var(--paper); border: 1px solid var(--line-dark); }
+.field-group { margin: 0 0 22px; padding: 0; border: 0; min-width: 0; }
+.field-group legend { display: block; padding: 0; margin-bottom: 8px; font-family: var(--font-display); font-size: .72rem; font-weight: 600; font-stretch: 112%; letter-spacing: var(--track-label); text-transform: uppercase; }
+html[lang="th"] .field-group legend { font-size: .9rem; font-stretch: 100%; letter-spacing: 0; text-transform: none; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.consign-form .pill { display: block; margin: 0; position: relative; }
+.pill input { position: absolute; opacity: 0; width: 100%; height: 100%; min-height: 0; margin: 0; cursor: pointer; }
+.consign-form .pill > span { display: block; margin: 0; padding: 12px 18px; min-height: 48px; border: 1px solid rgba(17, 16, 14, .42); background: var(--cream); font-size: .95rem; font-weight: 500; font-stretch: 100%; letter-spacing: 0; text-transform: none; line-height: 1.4; transition: background-color .2s, color .2s, border-color .2s; }
+.pill input:checked + span { background: var(--black); color: var(--cream); border-color: var(--black); }
+.pill input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+.brand-other { margin: 14px 0 0 !important; }
+.consent { display: flex !important; gap: 12px; align-items: flex-start; }
+.consent input { flex: none; width: 22px; min-height: 22px; height: 22px; margin-top: 3px; accent-color: var(--black); }
+.consign-form label.consent > span:not(.photo-error) { margin: 0; font-size: .9rem; font-weight: 400; font-stretch: 100%; letter-spacing: 0; text-transform: none; line-height: 1.6; }
+.form-error { display: block; min-height: 1.4em; margin-bottom: 8px; color: #a31b15; font-size: .9rem; line-height: 1.5; }
+.photo-previews { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.photo-previews .photo-preview { width: 96px; margin: 0; }
+.consign-done { display: grid; gap: 16px; }
+.consign-done:focus { outline: none; }
+.consign-done .eyebrow, .consign-done p { margin: 0; }
+.done-ref { font-size: 1rem; }
+.done-ref strong { display: block; margin-top: 4px; font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: .04em; color: var(--red); }
+.done-summary { margin: 0; padding: 16px; background: var(--cream); border: 1px solid var(--line-dark); font: inherit; font-size: .88rem; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.done-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.done-actions .button { width: auto; flex: 1 1 220px; }
+.button-ghost { background: transparent; border: 1px solid var(--black); color: var(--black); }
+.button-ghost:hover { background: var(--black); color: var(--cream); }
+.done-note { color: var(--muted-dark); font-size: .85rem; line-height: 1.6; }
+
+.preloved { padding: calc(var(--section-y) * .55) var(--pad) var(--section-y); }
+.preloved-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end; margin-bottom: 32px; }
+.preloved-head > div { grid-column: 1 / span 6; }
+.preloved-head .body-copy { grid-column: 8 / span 5; margin: 0; }
+.preloved-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.filter-chip { min-height: 44px; padding: 10px 18px; border: 1px solid var(--line); background: transparent; color: var(--cream); font: inherit; font-size: .9rem; cursor: pointer; }
+.filter-chip[aria-pressed="true"] { background: var(--cream); color: var(--black); }
+.filter-chip:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+.preloved-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 28px 24px; }
+.preloved-grid:empty { display: none; }
+.preloved-card { display: flex; flex-direction: column; gap: 6px; }
+.preloved-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #1f1c18; border: 1px solid var(--line); margin-bottom: 10px; }
+.preloved-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.preloved-media.no-photo { display: grid; place-items: center; color: var(--muted); font-size: .85rem; }
+.preloved-media .status-badge { position: absolute; top: 10px; left: 10px; padding: 5px 10px; background: var(--cream); color: var(--black); font-size: .78rem; font-weight: 600; }
+.is-sold .preloved-media img { opacity: .45; }
+.is-sold .status-badge { background: var(--red); color: var(--cream); }
+.preloved-brand { margin: 0; color: var(--red-hi); font-family: var(--font-display); font-size: .78rem; font-weight: 700; letter-spacing: var(--track-label); text-transform: uppercase; }
+html[lang="th"] .preloved-brand { letter-spacing: 0; }
+.preloved-card h3 { margin: 0; font-size: 1.1rem; line-height: 1.35; }
+.preloved-meta { margin: 0; color: var(--muted); font-size: .9rem; }
+.preloved-card strong { font-family: var(--font-display); font-size: 1.05rem; }
+.preloved-card .buy-link { align-self: flex-start; margin-top: 6px; }
+.preloved-empty { margin: 0; padding: 28px; border: 1px dashed var(--line); color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 60ch; }
+@media (max-width: 800px) {
+  .preloved-head { display: block; }
+  .preloved-head .body-copy { margin-top: 20px; }
+}
