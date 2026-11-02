@@ -1,0 +1,5 @@
+# Local Supabase configuration with project URL and publishable key
+site/admin/supabase-config.js
+.env
+.env.*
+!.env.example
