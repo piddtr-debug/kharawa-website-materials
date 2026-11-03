@@ -141,3 +141,6 @@ Admin Dashboard เวอร์ชันล่าสุดรองรับ Sup
 
 ## ส่งสินค้าใหม่เข้า LINE OA อัตโนมัติ
 `docs/line-broadcast.gs` + คู่มือ `docs/ตั้งค่า_LINE_ส่งสินค้าใหม่อัตโนมัติ.md` (ปิดเป็นค่าเริ่มต้น โทเคนเก็บใน Script Properties เท่านั้น)
+
+## โพสต์สินค้าใหม่ลงเพจ Facebook อัตโนมัติ
+`docs/facebook-post.gs` + คู่มือ `docs/ตั้งค่า_Facebook_โพสต์สินค้าใหม่อัตโนมัติ.md` (ปิดเป็นค่าเริ่มต้น ความลับเก็บใน Script Properties เท่านั้น)
