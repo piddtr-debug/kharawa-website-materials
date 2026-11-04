@@ -10,10 +10,18 @@
  *   FB_POST_ENABLED = yes                        (posting is OFF unless this is exactly "yes")
  *
  * Order: facebookExchangeToken -> facebookCheckSetup -> facebookDryRun -> set FB_POST_ENABLED=yes -> setupFacebookTrigger
+ *
+ * AI label (column P "ภาพแต่งด้วย AI"):
+ *   "ใช่"    -> the caption starts with FB_AI_LABEL so readers know the photo was made or edited with AI.
+ *   "ไม่ใช่" -> posted as a normal photo.
+ *   empty    -> NOT posted. A warning is written to the log every run until the owner fills it in
+ *              (menu 🛍️ KHARAWA asks this when an item is set to "ลงขาย").
  */
 var FB_API = 'https://graph.facebook.com/v21.0';
 var FB_SITE = 'https://piddtr-debug.github.io/kharawa-website-materials';
 var FB_MARK_COL = 15;              // column O = "posted to Facebook"
+var FB_AI_COL = 16;                // column P = "photo made/edited with AI" (\u0e43\u0e0a\u0e48 / \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48)
+var FB_AI_LABEL = '\ud83e\udd16 \u0e20\u0e32\u0e1e\u0e19\u0e35\u0e49\u0e2a\u0e23\u0e49\u0e32\u0e07/\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI';
 var FB_MAX_PER_RUN = 2;
 var FB_STATUS_OK = { '\u0e25\u0e07\u0e02\u0e32\u0e22': 1, '\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e02\u0e32\u0e22': 1 };
 
@@ -77,7 +85,8 @@ function facebookPostNewItems_(dryRun) {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
     if (!sheet || sheet.getLastRow() < 2) return;
     if (!String(sheet.getRange(1, FB_MARK_COL).getValue())) sheet.getRange(1, FB_MARK_COL).setValue('\u0e42\u0e1e\u0e2a\u0e15\u0e4c FB \u0e41\u0e25\u0e49\u0e27').setFontWeight('bold');
-    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, FB_MARK_COL).getValues();
+    if (!String(sheet.getRange(1, FB_AI_COL).getValue())) sheet.getRange(1, FB_AI_COL).setValue('\u0e20\u0e32\u0e1e\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI').setFontWeight('bold');
+    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, FB_AI_COL).getValues();
     var done = 0;
     for (var i = 0; i < rows.length && done < FB_MAX_PER_RUN; i++) {
       var r = rows[i];
@@ -86,8 +95,10 @@ function facebookPostNewItems_(dryRun) {
       if (!/^[\w-]{1,40}$/.test(id)) continue;
       var photos = publicPhotos_(String(r[11]));
       if (!photos.length) continue;
-      var caption = fbCaption_(id, String(r[2]) || 'KHARAWA', String(r[3]), String(r[5]), Number(r[7]) > 0 ? Number(r[7]) : null);
-      if (dryRun) { console.log('WOULD POST ' + id + ' | photo ' + photos[0] + '\n' + caption); done++; continue; }
+      var ai = fbAiFlag_(r[FB_AI_COL - 1]);
+      if (!ai) { console.warn('\u26a0\ufe0f \u0e44\u0e21\u0e48\u0e42\u0e1e\u0e2a\u0e15\u0e4c ' + id + ': \u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e23\u0e30\u0e1a\u0e38\u0e27\u0e48\u0e32\u0e20\u0e32\u0e1e\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI \u0e2b\u0e23\u0e37\u0e2d\u0e44\u0e21\u0e48 (\u0e04\u0e2d\u0e25\u0e31\u0e21\u0e19\u0e4c P \u0e43\u0e2a\u0e48 \u0e43\u0e0a\u0e48 / \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48)'); continue; }
+      var caption = fbCaption_(id, String(r[2]) || 'KHARAWA', String(r[3]), String(r[5]), Number(r[7]) > 0 ? Number(r[7]) : null, ai === 'yes');
+      if (dryRun) { console.log('WOULD POST ' + id + (ai === 'yes' ? ' [AI LABEL]' : '') + ' | photo ' + photos[0] + '\n' + caption); done++; continue; }
       var res = UrlFetchApp.fetch(FB_API + '/' + encodeURIComponent(pageId) + '/photos', {
         method: 'post', muteHttpExceptions: true,
         payload: { url: photos[0], message: caption, access_token: token }
@@ -104,9 +115,18 @@ function facebookPostNewItems_(dryRun) {
   } finally { lock.releaseLock(); }
 }
 
-function fbCaption_(id, brand, name, size, price) {
+/** 'yes' / 'no' from column P, or '' when the owner has not answered yet. */
+function fbAiFlag_(v) {
+  if (v === true) return 'yes';
+  var s = String(v).trim().toLowerCase();
+  if (s === '\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48' || s === '\u0e44\u0e21\u0e48' || s === 'no' || s === 'n' || s === 'false') return 'no';
+  if (s === '\u0e43\u0e0a\u0e48' || s === 'yes' || s === 'y' || s === 'true' || s === 'ai') return 'yes';
+  return '';
+}
+
+function fbCaption_(id, brand, name, size, price, aiEdited) {
   var priceText = price ? '\u0e3f' + String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '\u0e2a\u0e2d\u0e1a\u0e16\u0e32\u0e21\u0e23\u0e32\u0e04\u0e32';
-  return [
+  return (aiEdited ? [FB_AI_LABEL, ''] : []).concat([
     brand + ' ' + name,
     '\u0e44\u0e0b\u0e0b\u0e4c ' + size + ' | ' + priceText,
     '',
@@ -115,5 +135,5 @@ function fbCaption_(id, brand, name, size, price) {
     '\u0e17\u0e31\u0e01\u0e2a\u0e31\u0e48\u0e07 LINE: https://line.me/R/ti/p/%40737yiaxp',
     '',
     '#KHARAWA #\u0e21\u0e37\u0e2d\u0e2a\u0e2d\u0e07 #\u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e1c\u0e49\u0e32\u0e21\u0e37\u0e2d\u0e2a\u0e2d\u0e07'
-  ].join('\n');
+  ]).join('\n');
 }

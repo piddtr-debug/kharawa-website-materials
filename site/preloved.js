@@ -16,6 +16,7 @@
       status: { available: 'พร้อมขาย', reserved: 'จองแล้ว', sold: 'ขายแล้ว' }, cond: { new: 'เหมือนใหม่', good: 'สภาพดี', used: 'มีร่องรอยการใช้งาน' },
       cat: { tee: 'เสื้อยืด', shirt: 'เสื้อเชิ้ต / เสื้อมีกระดุม', outer: 'แจ็กเก็ต / เสื้อคลุม', bottoms: 'กางเกง / กระโปรง', cap: 'หมวก', accessory: 'แอ็กเซสซอรี', other: 'อื่นๆ' },
       size: 'ไซซ์', condition: 'สภาพ', category: 'หมวดหมู่', price: 'ราคา', priceTbc: 'สอบถามราคา', noPhoto: 'ยังไม่มีรูป', view: 'ดูรายละเอียด', close: 'ปิด',
+      ai: '🤖 ภาพนี้สร้าง/แต่งด้วย AI',
       ask: 'ถามทาง LINE ↗', shopee: 'ดูร้านบน Shopee ↗', copyLink: 'คัดลอกลิงก์', copied: 'คัดลอกแล้ว', soldNote: 'ชิ้นนี้ขายแล้ว', reservedNote: 'ชิ้นนี้มีคนจองแล้ว ทักถามได้ถ้าอยากให้แจ้งเมื่อว่าง',
       askText: 'สนใจสินค้ามือสอง', photoOf: (n, i, t) => `${n} รูปที่ ${i} จาก ${t}`, 'footer.signature': 'KHARAWA / 2026<br />ส่งสัญญาณในแบบของคุณ', 'footer.top': 'กลับขึ้นด้านบน ↑',
     },
@@ -31,6 +32,7 @@
       status: { available: 'Available', reserved: 'Reserved', sold: 'Sold' }, cond: { new: 'Like new', good: 'Good condition', used: 'Visible wear' },
       cat: { tee: 'Tee', shirt: 'Shirt / button-up', outer: 'Jacket / outerwear', bottoms: 'Trousers / skirt', cap: 'Cap', accessory: 'Accessory', other: 'Other' },
       size: 'Size', condition: 'Condition', category: 'Category', price: 'Price', priceTbc: 'Ask for price', noPhoto: 'No photo yet', view: 'View details', close: 'Close',
+      ai: '🤖 Image created/edited with AI',
       ask: 'ASK ON LINE ↗', shopee: 'OUR SHOPEE STORE ↗', copyLink: 'COPY LINK', copied: 'Copied', soldNote: 'This piece has been sold.', reservedNote: 'This piece is reserved. Ask us if you want to be told when it is free.',
       askText: 'I am interested in this pre-loved piece', photoOf: (n, i, t) => `${n}, photo ${i} of ${t}`, 'footer.signature': 'KHARAWA / 2026<br />MAKE YOUR SIGNAL.', 'footer.top': 'BACK TO TOP ↑',
     },
@@ -99,6 +101,7 @@
     if (item.image) { const img = el('img'); img.src = item.image; img.alt = ''; img.loading = 'lazy'; img.addEventListener('error', () => { img.remove(); media.classList.add('no-photo'); media.prepend(document.createTextNode(T().noPhoto)); }); media.append(img); }
     else { media.classList.add('no-photo'); media.append(document.createTextNode(T().noPhoto)); }
     media.append(el('span', 'status-badge', T().status[item.status]));
+    if (item.aiEdited) media.append(el('span', 'ai-badge', T().ai));
     media.addEventListener('click', () => openItem(item.id));
     const meta = el('p', 'preloved-meta', `${T().size} ${item.size} · ${T().cond[item.condition]}`);
     a.append(media, el('p', 'preloved-brand', item.brand), el('h3', null, item.name), meta);
@@ -146,6 +149,8 @@
     $('#item-brand').textContent = item.brand; $('#item-name').textContent = item.name; $('#item-price').textContent = price(item);
     const specs = $('#item-specs'); specs.replaceChildren();
     [[T().size, item.size], [T().condition, T().cond[item.condition]], [T().category, catLabel(item)]].forEach(([k, v]) => { const row = el('div'); row.append(el('dt', null, k), el('dd', null, v)); specs.append(row); });
+    specs.parentElement.querySelector('.item-ai')?.remove();
+    if (item.aiEdited) specs.after(el('p', 'item-ai', T().ai));
     $('#item-details').textContent = item.details;
     $('#item-details').hidden = !item.details;
     const actions = $('#item-actions'); actions.replaceChildren();

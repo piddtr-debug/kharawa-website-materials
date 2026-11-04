@@ -46,7 +46,7 @@ const TRANSLATIONS = {
     'consign.otherCat': 'อื่นๆ', 'consign.sizeLabel': 'ไซซ์',
     'consign.sizePlaceholder': 'เช่น L หรืออก 40 นิ้ว', 'consign.priceLabel': 'ราคาที่ต้องการ (บาท)',
     'consign.detailsPlaceholder': 'สี ตำหนิ ปีที่ซื้อ และข้อมูลที่ควรทราบ', 'consign.photoLabel': 'รูปสินค้า (ได้สูงสุด 4 รูป)',
-    'consign.photoNote': 'แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB ต่อรูป และไม่เกิน 4 รูป',
+    'consign.photoNote': 'แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป', 'consign.ai': 'รูปนี้แต่งหรือสร้างด้วย AI', 'consign.aiNote': '⚠️ ถ้าแต่งรูปด้วย AI (เช่น เปลี่ยนฉากหลัง ลบตำหนิ ปรับสีเสื้อ) ต้องติ๊กทุกครั้ง หน้าเว็บและโพสต์ Facebook / Instagram จะมีคำกำกับ "ภาพนี้สร้าง/แต่งด้วย AI" เพื่อไม่ให้ลูกค้าเข้าใจผิด', 'sum.ai': 'ภาพแต่งด้วย AI', 'sum.yes': 'ใช่', 'sum.no': 'ไม่ใช่', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB ต่อรูป และไม่เกิน 4 รูป',
     'consign.consent': 'ฉันยินยอมให้ KHARAWA ใช้ข้อมูลที่กรอกเพื่อติดต่อกลับเรื่องการฝากขายเท่านั้น', 'consign.formError': 'กรุณากรอกข้อมูลที่มีเครื่องหมายจำเป็นให้ครบ และติ๊กยินยอมก่อนส่ง',
     'done.refLabel': 'เลขอ้างอิง',
     'done.line': 'ส่งให้ทีมงานทาง LINE ↗',
@@ -101,7 +101,7 @@ const TRANSLATIONS = {
     'consign.otherCat': 'Other', 'consign.sizeLabel': 'Size',
     'consign.sizePlaceholder': 'e.g. L or chest 40 in', 'consign.priceLabel': 'Asking price (THB)',
     'consign.detailsPlaceholder': 'Colour, flaws, year bought and anything we should know', 'consign.photoLabel': 'Photos (up to 4)',
-    'consign.photoNote': 'Front, back, size label and any flaws work best. JPG, PNG or WebP, up to 5 MB each.', 'consign.photoError': 'Choose JPG, PNG or WebP images up to 5 MB each, 4 at most.',
+    'consign.photoNote': 'Front, back, size label and any flaws work best. JPG, PNG or WebP, up to 5 MB each.', 'consign.ai': 'These photos were edited or created with AI', 'consign.aiNote': '⚠️ Tick this every time a photo was edited with AI (new background, removed flaws, recoloured). The site and Facebook / Instagram posts will say "Image created/edited with AI" so no one is misled.', 'sum.ai': 'Photos edited with AI', 'sum.yes': 'Yes', 'sum.no': 'No', 'consign.photoError': 'Choose JPG, PNG or WebP images up to 5 MB each, 4 at most.',
     'consign.consent': 'I agree that KHARAWA may use these details only to contact me about this consignment.', 'consign.formError': 'Please fill in every required field and tick the consent box.',
     'done.refLabel': 'Reference',
     'done.line': 'SEND TO OUR TEAM ON LINE ↗',
@@ -280,7 +280,8 @@ function consignSummary() {
     `${tr('sum.price')}: ${c.price ? `${Number(c.price).toLocaleString('en-US')} THB` : '-'}`,
     `${tr('sum.contact')}: ${c.contact}`,
     `${tr('sum.details')}: ${c.details || '-'}`,
-    `${tr('sum.photos')}: ${c.photoCount}`
+    `${tr('sum.photos')}: ${c.photoCount}`,
+    `${tr('sum.ai')}: ${tr(c.aiEdited === 'yes' ? 'sum.yes' : 'sum.no')}`
   ];
   return rows.join('\n');
 }
@@ -341,7 +342,7 @@ async function deliverConsign() {
     const photos = await Promise.all(consignPhotos.map(shrinkPhoto));
     const payload = { ref: c.ref, createdAt: c.createdAt, lang: currentLanguage, brand: c.brand === 'other' ? (c.brandName || 'other') : 'KHARAWA', itemName: c.itemName,
       category: optionLabel(form.elements.category, c.category), size: c.size, condition: tr({ new: 'consign.conditionNew', good: 'consign.conditionGood', used: 'consign.conditionUsed' }[c.condition]),
-      price: c.price, contact: c.contact, details: c.details, consent: true, website: c.website || '', photos };
+      price: c.price, contact: c.contact, details: c.details, consent: true, aiEdited: c.aiEdited === 'yes', website: c.website || '', photos };
     // no-cors + text/plain keeps this a "simple" request, which Apps Script accepts from another origin. The reply is opaque.
     await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), signal: controller.signal });
     if (lastConsign === c) c.state = 'sent';

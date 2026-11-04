@@ -14,6 +14,7 @@
       manual: 'ช่องนี้ยังโพสต์ให้อัตโนมัติไม่ได้ ให้คัดลอกแคปชั่นแล้วเปิดหน้าลงขายด้วยตัวเอง', open: 'เปิดหน้าลงขาย ↗',
       new: 'ใหม่ ป้ายยังอยู่', good: 'สภาพดี', used: 'สภาพผ่านการใช้งาน', size: 'ไซซ์', price: 'ราคา', ask: 'สอบถามราคา',
       cta: 'ทักสั่งได้ทาง LINE @737yiaxp',
+      ai: 'ภาพแต่งหรือสร้างด้วย AI', aiWarn: '⚠️ ถ้าแต่งภาพด้วย AI ต้องติ๊กช่องนี้ทุกครั้ง แคปชั่นจะมีคำกำกับให้อัตโนมัติ', aiLabel: '🤖 ภาพนี้สร้าง/แต่งด้วย AI',
     },
     en: {
       share: 'Share / Post', title: 'Share this piece', close: 'Close',
@@ -25,6 +26,7 @@
       manual: 'This channel cannot be posted to automatically. Copy the caption and open the listing page yourself.', open: 'Open listing page ↗',
       new: 'Brand new with tags', good: 'Good condition', used: 'Pre-owned', size: 'Size', price: 'Price', ask: 'Ask for price',
       cta: 'Order on LINE @737yiaxp',
+      ai: 'Photo made or edited with AI', aiWarn: '⚠️ Tick this every time a photo was edited with AI. The caption will carry a label.', aiLabel: '🤖 Image created/edited with AI',
     },
   };
   const PLATFORMS = {
@@ -59,6 +61,7 @@
       `${e('🔗')}${shareUrl(item)}`,
     ];
     if (p.tags) lines.push('', [...new Set(['#KHARAWA', '#มือสอง', '#เสื้อผ้ามือสอง', `#${brand.replace(/\s+/g, '')}`])].join(' '));
+    if (aiEdited) lines.unshift(t('aiLabel'), '');
     return lines.join('\n');
   }
 
@@ -122,7 +125,7 @@
     return { blob, ext: /mp4/.test(blob.type) ? 'mp4' : 'webm' };
   }
 
-  let modal, current, platform = 'facebook', videoUrl;
+  let modal, current, platform = 'facebook', videoUrl, aiEdited = false;
   function ensureModal() {
     if (modal) return modal;
     modal = document.createElement('div'); modal.className = 'share-modal'; modal.hidden = true;
@@ -133,6 +136,8 @@
       <h4 data-h="links"></h4><div class="share-links"></div>
       <h4 data-h="photos"></h4><div class="share-photos"></div>
       <h4 data-h="caption"></h4><div class="share-tabs" role="group"></div>
+      <label class="share-ai"><input type="checkbox" data-ai> <span data-ai-text></span></label>
+      <p class="share-ai-warn"></p>
       <textarea class="share-caption" rows="9"></textarea>
       <div class="share-row"><button type="button" class="filter-chip" data-copy></button><a class="filter-chip" data-open target="_blank" rel="noopener noreferrer" hidden></a></div>
       <p class="share-manual" hidden></p>
@@ -149,6 +154,7 @@
       e.target.textContent = t('copied'); setTimeout(() => (e.target.textContent = t('copy')), 1500);
     });
     modal.querySelector('[data-make]').addEventListener('click', onMake);
+    modal.querySelector('[data-ai]').addEventListener('change', (e) => { aiEdited = e.target.checked; fill(); });
     return modal;
   }
   function close() { modal.hidden = true; document.body.classList.remove('share-open'); if (videoUrl) { URL.revokeObjectURL(videoUrl); videoUrl = null; } }
@@ -181,6 +187,9 @@
       const b = document.createElement('button'); b.type = 'button'; b.className = 'filter-chip'; b.textContent = p.label; b.setAttribute('aria-pressed', String(key === platform));
       b.addEventListener('click', () => { platform = key; fill(); }); tabs.append(b);
     });
+    m.querySelector('[data-ai]').checked = aiEdited;
+    m.querySelector('[data-ai-text]').textContent = t('ai');
+    m.querySelector('.share-ai-warn').textContent = t('aiWarn');
     m.querySelector('.share-caption').value = buildCaption(item, platform);
     m.querySelector('[data-copy]').textContent = t('copy');
     const p = PLATFORMS[platform], open = m.querySelector('[data-open]'), manual = m.querySelector('.share-manual');
@@ -207,7 +216,7 @@
   window.KharawaShare = {
     label: () => t('share'),
     open(item) {
-      current = item; platform = 'facebook'; ensureModal(); fill();
+      current = item; platform = 'facebook'; aiEdited = !!item.aiEdited; ensureModal(); fill();
       modal.querySelector('.share-video').hidden = true; modal.querySelector('[data-dl]').hidden = true; modal.querySelector('.share-msg').textContent = '';
       modal.hidden = false; document.body.classList.add('share-open'); modal.querySelector('[data-x]').focus();
     },

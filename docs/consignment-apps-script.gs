@@ -22,8 +22,10 @@ function doPost(e) {
     var links = savePhotos_(d);
     sheet.appendRow([
       new Date(), s_(d.ref, 30), s_(d.brand, 80), s_(d.itemName, 200), s_(d.category, 60), s_(d.size, 60),
-      s_(d.condition, 60), s_(d.price, 20), s_(d.contact, 200), s_(d.details, 2000), links.length, links.join('\n'), '\u0e23\u0e2d\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a'
+      s_(d.condition, 60), s_(d.price, 20), s_(d.contact, 200), s_(d.details, 2000), links.length, links.join('\n'), '\u0e23\u0e2d\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a',
+      '', '', d.aiEdited === true ? '\u0e43\u0e0a\u0e48' : '\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48'   // N, O (LINE / Facebook marks), P = photos edited with AI
     ]);
+    if (!String(sheet.getRange(1, AI_COL).getValue())) sheet.getRange(1, AI_COL).setValue('\u0e20\u0e32\u0e1e\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI').setFontWeight('bold');
     notify_(d, links);
     return out_({ ok: true, ref: d.ref });
   } catch (err) {
@@ -47,16 +49,17 @@ var CONDITION_MAP = { '\u0e40\u0e2b\u0e21\u0e37\u0e2d\u0e19\u0e43\u0e2b\u0e21\u0
 var CATEGORY_MAP = { '\u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e22\u0e37\u0e14': 'tee', '\u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e40\u0e0a\u0e34\u0e49\u0e15 / \u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e21\u0e35\u0e01\u0e23\u0e30\u0e14\u0e38\u0e21': 'shirt', '\u0e41\u0e08\u0e47\u0e01\u0e40\u0e01\u0e47\u0e15 / \u0e40\u0e2a\u0e37\u0e49\u0e2d\u0e04\u0e25\u0e38\u0e21': 'outer', '\u0e01\u0e32\u0e07\u0e40\u0e01\u0e07 / \u0e01\u0e23\u0e30\u0e42\u0e1b\u0e23\u0e07': 'bottoms', '\u0e2b\u0e21\u0e27\u0e01': 'cap', '\u0e41\u0e2d\u0e47\u0e01\u0e40\u0e0b\u0e2a\u0e0b\u0e2d\u0e23\u0e35': 'accessory', '\u0e2d\u0e37\u0e48\u0e19\u0e46': 'other',
   'tee': 'tee', 'shirt / button-up': 'shirt', 'jacket / outerwear': 'outer', 'trousers / skirt': 'bottoms', 'cap': 'cap', 'accessory': 'accessory', 'other': 'other' };
 var CACHE_SECONDS = 120;
+var AI_COL = 16;   // column P: "\u0e43\u0e0a\u0e48" = photos were edited/created with AI (shown on the site and in captions)
 
 function listItems_() {
   var cache = CacheService.getScriptCache();
-  var hit = cache.get('list-v1');
+  var hit = cache.get('list-v2');
   if (hit) return JSON.parse(hit);
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   var items = [];
   if (sheet) applyStatusDropdown_(sheet);
   if (sheet && sheet.getLastRow() > 1) {
-    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length).getValues();
+    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, Math.max(HEADERS.length, AI_COL)).getValues();
     rows.forEach(function (r) {
       var status = STATUS_MAP[String(r[12]).trim()];
       if (!status || !r[1] || !r[3]) return;
@@ -67,13 +70,14 @@ function listItems_() {
         id: String(r[1]), brand: String(r[2]) || 'KHARAWA', name: String(r[3]), category: cat, categoryCode: CATEGORY_MAP[cat.toLowerCase()] || 'other',
         size: String(r[5]), condition: cond, price: Number(r[7]) > 0 ? Number(r[7]) : null,
         details: String(r[9]).substring(0, 400), status: status, photos: photos,
-        listedAt: r[0] instanceof Date ? r[0].getTime() : 0
+        listedAt: r[0] instanceof Date ? r[0].getTime() : 0,
+        aiEdited: /^(\u0e43\u0e0a\u0e48|yes|y|true|ai)$/i.test(String(r[AI_COL - 1]).trim())
       });
     });
     items.sort(function (a, b) { return b.listedAt - a.listedAt; });
   }
   var result = { ok: true, items: items, updatedAt: new Date().getTime() };
-  try { cache.put('list-v1', JSON.stringify(result), CACHE_SECONDS); } catch (x) {}
+  try { cache.put('list-v2', JSON.stringify(result), CACHE_SECONDS); } catch (x) {}
   return result;
 }
 
