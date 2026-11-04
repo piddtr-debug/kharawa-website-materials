@@ -13,7 +13,9 @@
  */
 var BC_SITE = 'https://piddtr-debug.github.io/kharawa-website-materials';
 var BC_LINE_ADD = 'https://line.me/R/ti/p/%40737yiaxp';
-var BC_MARK_COL = 14;              // column N = "sent to LINE"
+var BC_MARK_COL = 14;
+var BC_AI_COL = 16;                // column P = photo made/edited with AI (\u0e43\u0e0a\u0e48 / \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48); empty = not sent yet
+var BC_AI_LABEL = '\ud83e\udd16 \u0e20\u0e32\u0e1e\u0e19\u0e35\u0e49\u0e2a\u0e23\u0e49\u0e32\u0e07/\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI';              // column N = "sent to LINE"
 var BC_MAX_PER_RUN = 3;
 var BC_STATUS_OK = { '\u0e25\u0e07\u0e02\u0e32\u0e22': 1, '\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e02\u0e32\u0e22': 1 };
 
@@ -42,7 +44,7 @@ function broadcastNewItems_(dryRun) {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
     if (!sheet || sheet.getLastRow() < 2) return;
     if (!String(sheet.getRange(1, BC_MARK_COL).getValue())) sheet.getRange(1, BC_MARK_COL).setValue('\u0e2a\u0e48\u0e07 LINE \u0e41\u0e25\u0e49\u0e27').setFontWeight('bold');
-    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, BC_MARK_COL).getValues();
+    var rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, BC_AI_COL).getValues();
     var sent = 0;
     for (var i = 0; i < rows.length && sent < BC_MAX_PER_RUN; i++) {
       var r = rows[i];
@@ -51,7 +53,9 @@ function broadcastNewItems_(dryRun) {
       if (!/^[\w-]{1,40}$/.test(id)) continue;
       var photos = publicPhotos_(String(r[11]));
       if (!photos.length) continue;                                         // wait until a photo exists
-      var message = bcFlex_(id, String(r[2]) || 'KHARAWA', String(r[3]), String(r[5]), Number(r[7]) > 0 ? Number(r[7]) : null, photos[0]);
+      var ai = bcAiFlag_(r[BC_AI_COL - 1]);
+      if (!ai) { console.warn('\u26a0\ufe0f \u0e44\u0e21\u0e48\u0e2a\u0e48\u0e07 LINE ' + id + ': \u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e23\u0e30\u0e1a\u0e38\u0e04\u0e2d\u0e25\u0e31\u0e21\u0e19\u0e4c P (\u0e20\u0e32\u0e1e\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI)'); continue; }
+      var message = bcFlex_(id, String(r[2]) || 'KHARAWA', String(r[3]), String(r[5]), Number(r[7]) > 0 ? Number(r[7]) : null, photos[0], ai === 'yes');
       if (dryRun) { console.log(JSON.stringify(message)); sent++; continue; }
       var res = UrlFetchApp.fetch('https://api.line.me/v2/bot/message/broadcast', {
         method: 'post', contentType: 'application/json', muteHttpExceptions: true,
@@ -71,11 +75,20 @@ function broadcastNewItems_(dryRun) {
   } finally { lock.releaseLock(); }
 }
 
-function bcFlex_(id, brand, name, size, price, photo) {
+/** 'yes' / 'no' from column P, or '' when not answered yet. */
+function bcAiFlag_(v) {
+  if (v === true) return 'yes';
+  var s = String(v).trim().toLowerCase();
+  if (s === '\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48' || s === '\u0e44\u0e21\u0e48' || s === 'no' || s === 'n' || s === 'false') return 'no';
+  if (s === '\u0e43\u0e0a\u0e48' || s === 'yes' || s === 'y' || s === 'true' || s === 'ai') return 'yes';
+  return '';
+}
+
+function bcFlex_(id, brand, name, size, price, photo, aiEdited) {
   var priceText = price ? '\u0e3f' + String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '\u0e2a\u0e2d\u0e1a\u0e16\u0e32\u0e21\u0e23\u0e32\u0e04\u0e32';
   var link = BC_SITE + '/preloved.html#' + encodeURIComponent(id);
-  var alt = (brand + ' ' + name + ' ' + priceText).substring(0, 380);
-  return {
+  var alt = ((aiEdited ? BC_AI_LABEL + ' | ' : '') + brand + ' ' + name + ' ' + priceText).substring(0, 380);
+  var msg = {
     type: 'flex', altText: alt,
     contents: {
       type: 'bubble',
@@ -96,4 +109,6 @@ function bcFlex_(id, brand, name, size, price, photo) {
       }
     }
   };
+  if (aiEdited) msg.contents.body.contents.unshift({ type: 'text', text: BC_AI_LABEL, size: 'xs', color: '#666666', wrap: true });
+  return msg;
 }
