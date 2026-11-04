@@ -4,7 +4,7 @@
  * to set its status. "ลงขาย" shows the item on the website; "ซ่อน" hides it.
  * Add this as a NEW file in Extensions > Apps Script (do not replace the other code).
  *
- * AI label: every time rows are set to "ลงขาย", the menu asks whether their photos were made or edited
+ * AI label: every time rows are set to "ลงขาย", the menu asks whether their photos were edited
  * with AI (column P) for any row not answered yet, and warns when an AI label will be added to the Facebook post.
  */
 var ADMIN_SHEET_NAME = 'ฝากขาย';       // ฝากขาย
@@ -66,8 +66,8 @@ function setStatus_(value) {
     if (missing) {
       var answer = ui.alert('⚠️ ภาพแต่งด้วย AI หรือไม่?',
         'สินค้า ' + missing + ' ชิ้นที่เลือกยังไม่ได้ระบุ\n\n' +
-        'ภาพของสินค้าเหล่านี้สร้างหรือแต่งด้วย AI หรือไม่?\n\n' +
-        'Yes = แต่งด้วย AI (โพสต์ Facebook จะมีคำว่า "ภาพนี้สร้าง/แต่งด้วย AI")\n' +
+        'ภาพของสินค้าเหล่านี้แต่งด้วย AI หรือไม่?\n\n' +
+        'Yes = แต่งด้วย AI (โพสต์ Facebook จะมีคำว่า "ภาพนี้แต่งด้วย AI")\n' +
         'No = ภาพจริง ไม่ได้แต่ง\n' +
         'Cancel = ยกเลิก ยังไม่ลงขาย', ui.ButtonSet.YES_NO_CANCEL);
       if (answer !== ui.Button.YES && answer !== ui.Button.NO) return;
@@ -88,5 +88,5 @@ function setAi_(value) {
   if (!sel) return;
   sel.sheet.getRange(sel.first, ADMIN_AI_COL, sel.count, 1).setValue(value);
   SpreadsheetApp.getActive().toast(sel.count + ' แถว: ภาพแต่งด้วย AI = "' + value + '"' +
-    (value === 'ใช่' ? '\n⚠️ โพสต์ Facebook จะมีคำว่า "ภาพนี้สร้าง/แต่งด้วย AI"' : ''), 'KHARAWA', 6);
+    (value === 'ใช่' ? '\n⚠️ โพสต์ Facebook จะมีคำว่า "ภาพนี้แต่งด้วย AI"' : ''), 'KHARAWA', 6);
 }
