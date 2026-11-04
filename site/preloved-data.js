@@ -5,7 +5,7 @@
   const ENDPOINT = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(raw) ? raw : '';
   const DEMO = [
     { id: 'demo-1', brand: 'KHARAWA', name: 'First Press Tee', category: 'tee', size: 'L', condition: 'good', price: 590, status: 'available', image: './assets/products/first-press-tee.webp', images: ['./assets/products/first-press-tee.webp', './assets/products/small-signal-tee.webp'], details: 'Sample item for preview only.' },
-    { id: 'demo-2', brand: 'Carhartt', name: 'Pocket Tee', category: 'tee', size: 'M', condition: 'new', price: null, status: 'available', image: './assets/products/small-signal-tee.webp', images: ['./assets/products/small-signal-tee.webp'], details: '' },
+    { id: 'demo-2', brand: 'Carhartt', name: 'Pocket Tee', category: 'tee', size: 'M', condition: 'new', price: null, status: 'available', image: './assets/products/small-signal-tee.webp', images: ['./assets/products/small-signal-tee.webp'], details: '', aiEdited: true },
     { id: 'demo-3', brand: 'Uniqlo', name: 'Linen Shirt', category: 'shirt', size: 'L', condition: 'good', price: 350, status: 'sold', image: '', images: [], details: '' },
   ];
   const wantsDemo = () => window.KHARAWA_DEMO || new URLSearchParams(location.search).get('demo') === 'preloved';
@@ -15,6 +15,7 @@
       id: String(row.id), brand: String(row.brand || 'KHARAWA'), name: String(row.name || ''), category: String(row.categoryCode || 'other'), categoryLabel: String(row.category || ''),
       size: String(row.size || ''), condition: ['new', 'good', 'used'].includes(row.condition) ? row.condition : 'good', price: Number(row.price) > 0 ? Number(row.price) : null,
       status: ['available', 'reserved', 'sold'].includes(row.status) ? row.status : 'available', image: photos[0] || '', images: photos, details: String(row.details || ''),
+      aiEdited: row.aiEdited === true,
     };
   }
   async function load() {
