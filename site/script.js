@@ -61,6 +61,7 @@ const TRANSLATIONS = {
     'preloved.title': 'ชิ้นที่ผ่านมือ<br /><em>มาแล้ว</em>', 'preloved.body': 'เสื้อผ้ามือสองที่ทีมงานตรวจสภาพแล้ว ทั้งของ KHARAWA และแบรนด์อื่น สนใจชิ้นไหนทักถามทาง LINE ได้เลย',
     'preloved.all': 'ทั้งหมด', 'preloved.empty': 'กำลังคัดสรรชิ้นแรก ถ้าอยากให้ชิ้นของคุณเป็นหนึ่งในนั้น ฝากขายได้ที่ฟอร์มด้านล่าง',
     'preloved.ask': 'ถามทาง LINE ↗', 'preloved.priceTbc': 'สอบถามราคา',
+    'preloved.ai': '🤖 ภาพนี้สร้าง/แต่งด้วย AI',
     'preloved.available': 'พร้อมขาย', 'preloved.reserved': 'จองแล้ว',
     'preloved.sold': 'ขายแล้ว', 'preloved.size': 'ไซซ์',
     'preloved.noPhoto': 'ยังไม่มีรูป', 'preloved.askText': 'สนใจสินค้ามือสอง',
@@ -116,6 +117,7 @@ const TRANSLATIONS = {
     'preloved.title': 'ALREADY<br /><em>LOVED.</em>', 'preloved.body': 'Second-hand pieces our team has checked, from KHARAWA and other brands. Ask about any piece on LINE.',
     'preloved.all': 'ALL', 'preloved.empty': 'We are curating the first pieces. Want yours to be among them? Use the consignment form below.',
     'preloved.ask': 'ASK ON LINE ↗', 'preloved.priceTbc': 'Ask for price',
+    'preloved.ai': '🤖 Image created/edited with AI',
     'preloved.available': 'Available', 'preloved.reserved': 'Reserved',
     'preloved.sold': 'Sold', 'preloved.size': 'Size',
     'preloved.noPhoto': 'No photo yet', 'preloved.askText': 'I am interested in this pre-loved piece',
@@ -448,6 +450,7 @@ function renderPreloved(items = PRELOVED_ITEMS) {
     if (item.image) { const img = document.createElement('img'); img.src = item.image; img.alt = item.name; img.loading = 'lazy'; media.append(img); }
     else { media.classList.add('no-photo'); media.textContent = tr('preloved.noPhoto'); }
     const badge = document.createElement('span'); badge.className = 'status-badge'; badge.textContent = tr(`preloved.${item.status || 'available'}`); media.append(badge);
+    if (item.aiEdited) { const ai = document.createElement('span'); ai.className = 'ai-badge'; ai.textContent = tr('preloved.ai'); media.append(ai); }
     const brand = document.createElement('p'); brand.className = 'preloved-brand'; brand.textContent = item.brand;
     const name = document.createElement('h3'); name.textContent = item.name;
     const meta = document.createElement('p'); meta.className = 'preloved-meta'; meta.textContent = `${tr('preloved.size')} ${item.size} · ${tr(conditionKey[item.condition] || '')}`;
