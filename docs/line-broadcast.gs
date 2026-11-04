@@ -14,8 +14,8 @@
 var BC_SITE = 'https://piddtr-debug.github.io/kharawa-website-materials';
 var BC_LINE_ADD = 'https://line.me/R/ti/p/%40737yiaxp';
 var BC_MARK_COL = 14;
-var BC_AI_COL = 16;                // column P = photo made/edited with AI (\u0e43\u0e0a\u0e48 / \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48); empty = not sent yet
-var BC_AI_LABEL = '\ud83e\udd16 \u0e20\u0e32\u0e1e\u0e19\u0e35\u0e49\u0e2a\u0e23\u0e49\u0e32\u0e07/\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI';              // column N = "sent to LINE"
+var BC_AI_COL = 16;                // column P = photo edited with AI (\u0e43\u0e0a\u0e48 / \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48); empty = not sent yet
+var BC_AI_LABEL = '\ud83e\udd16 \u0e20\u0e32\u0e1e\u0e19\u0e35\u0e49\u0e41\u0e15\u0e48\u0e07\u0e14\u0e49\u0e27\u0e22 AI';              // column N = "sent to LINE"
 var BC_MAX_PER_RUN = 3;
 var BC_STATUS_OK = { '\u0e25\u0e07\u0e02\u0e32\u0e22': 1, '\u0e1e\u0e23\u0e49\u0e2d\u0e21\u0e02\u0e32\u0e22': 1 };
 
