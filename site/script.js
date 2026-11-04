@@ -46,7 +46,7 @@ const TRANSLATIONS = {
     'consign.otherCat': 'อื่นๆ', 'consign.sizeLabel': 'ไซซ์',
     'consign.sizePlaceholder': 'เช่น L หรืออก 40 นิ้ว', 'consign.priceLabel': 'ราคาที่ต้องการ (บาท)',
     'consign.detailsPlaceholder': 'สี ตำหนิ ปีที่ซื้อ และข้อมูลที่ควรทราบ', 'consign.photoLabel': 'รูปสินค้า (ได้สูงสุด 4 รูป)',
-    'consign.photoNote': 'แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป', 'consign.ai': 'รูปนี้แต่งหรือสร้างด้วย AI', 'consign.aiNote': '⚠️ ถ้าแต่งรูปด้วย AI (เช่น เปลี่ยนฉากหลัง ลบตำหนิ ปรับสีเสื้อ) ต้องติ๊กทุกครั้ง หน้าเว็บและโพสต์ Facebook / Instagram จะมีคำกำกับ "ภาพนี้สร้าง/แต่งด้วย AI" เพื่อไม่ให้ลูกค้าเข้าใจผิด', 'sum.ai': 'ภาพแต่งด้วย AI', 'sum.yes': 'ใช่', 'sum.no': 'ไม่ใช่', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB ต่อรูป และไม่เกิน 4 รูป',
+    'consign.photoNote': 'แนะนำให้ถ่ายด้านหน้า ด้านหลัง ป้ายไซซ์ และจุดที่มีตำหนิ รองรับ JPG, PNG หรือ WebP ไม่เกิน 5 MB ต่อรูป', 'consign.ai': 'รูปนี้แต่งด้วย AI', 'consign.aiNote': '⚠️ ถ้าแต่งรูปด้วย AI (เช่น เปลี่ยนฉากหลัง ลบตำหนิ ปรับสีเสื้อ) ต้องติ๊กทุกครั้ง หน้าเว็บและโพสต์ Facebook / Instagram จะมีคำกำกับ "ภาพนี้แต่งด้วย AI" เพื่อไม่ให้ลูกค้าเข้าใจผิด', 'sum.ai': 'ภาพแต่งด้วย AI', 'sum.yes': 'ใช่', 'sum.no': 'ไม่ใช่', 'consign.photoError': 'กรุณาเลือก JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB ต่อรูป และไม่เกิน 4 รูป',
     'consign.consent': 'ฉันยินยอมให้ KHARAWA ใช้ข้อมูลที่กรอกเพื่อติดต่อกลับเรื่องการฝากขายเท่านั้น', 'consign.formError': 'กรุณากรอกข้อมูลที่มีเครื่องหมายจำเป็นให้ครบ และติ๊กยินยอมก่อนส่ง',
     'done.refLabel': 'เลขอ้างอิง',
     'done.line': 'ส่งให้ทีมงานทาง LINE ↗',
@@ -61,6 +61,7 @@ const TRANSLATIONS = {
     'preloved.title': 'ชิ้นที่ผ่านมือ<br /><em>มาแล้ว</em>', 'preloved.body': 'เสื้อผ้ามือสองที่ทีมงานตรวจสภาพแล้ว ทั้งของ KHARAWA และแบรนด์อื่น สนใจชิ้นไหนทักถามทาง LINE ได้เลย',
     'preloved.all': 'ทั้งหมด', 'preloved.empty': 'กำลังคัดสรรชิ้นแรก ถ้าอยากให้ชิ้นของคุณเป็นหนึ่งในนั้น ฝากขายได้ที่ฟอร์มด้านล่าง',
     'preloved.ask': 'ถามทาง LINE ↗', 'preloved.priceTbc': 'สอบถามราคา',
+    'preloved.ai': '🤖 ภาพนี้แต่งด้วย AI',
     'preloved.available': 'พร้อมขาย', 'preloved.reserved': 'จองแล้ว',
     'preloved.sold': 'ขายแล้ว', 'preloved.size': 'ไซซ์',
     'preloved.noPhoto': 'ยังไม่มีรูป', 'preloved.askText': 'สนใจสินค้ามือสอง',
@@ -101,7 +102,7 @@ const TRANSLATIONS = {
     'consign.otherCat': 'Other', 'consign.sizeLabel': 'Size',
     'consign.sizePlaceholder': 'e.g. L or chest 40 in', 'consign.priceLabel': 'Asking price (THB)',
     'consign.detailsPlaceholder': 'Colour, flaws, year bought and anything we should know', 'consign.photoLabel': 'Photos (up to 4)',
-    'consign.photoNote': 'Front, back, size label and any flaws work best. JPG, PNG or WebP, up to 5 MB each.', 'consign.ai': 'These photos were edited or created with AI', 'consign.aiNote': '⚠️ Tick this every time a photo was edited with AI (new background, removed flaws, recoloured). The site and Facebook / Instagram posts will say "Image created/edited with AI" so no one is misled.', 'sum.ai': 'Photos edited with AI', 'sum.yes': 'Yes', 'sum.no': 'No', 'consign.photoError': 'Choose JPG, PNG or WebP images up to 5 MB each, 4 at most.',
+    'consign.photoNote': 'Front, back, size label and any flaws work best. JPG, PNG or WebP, up to 5 MB each.', 'consign.ai': 'These photos were edited with AI', 'consign.aiNote': '⚠️ Tick this every time a photo was edited with AI (new background, removed flaws, recoloured). The site and Facebook / Instagram posts will say "Image edited with AI" so no one is misled.', 'sum.ai': 'Photos edited with AI', 'sum.yes': 'Yes', 'sum.no': 'No', 'consign.photoError': 'Choose JPG, PNG or WebP images up to 5 MB each, 4 at most.',
     'consign.consent': 'I agree that KHARAWA may use these details only to contact me about this consignment.', 'consign.formError': 'Please fill in every required field and tick the consent box.',
     'done.refLabel': 'Reference',
     'done.line': 'SEND TO OUR TEAM ON LINE ↗',
@@ -116,6 +117,7 @@ const TRANSLATIONS = {
     'preloved.title': 'ALREADY<br /><em>LOVED.</em>', 'preloved.body': 'Second-hand pieces our team has checked, from KHARAWA and other brands. Ask about any piece on LINE.',
     'preloved.all': 'ALL', 'preloved.empty': 'We are curating the first pieces. Want yours to be among them? Use the consignment form below.',
     'preloved.ask': 'ASK ON LINE ↗', 'preloved.priceTbc': 'Ask for price',
+    'preloved.ai': '🤖 Image edited with AI',
     'preloved.available': 'Available', 'preloved.reserved': 'Reserved',
     'preloved.sold': 'Sold', 'preloved.size': 'Size',
     'preloved.noPhoto': 'No photo yet', 'preloved.askText': 'I am interested in this pre-loved piece',
@@ -448,6 +450,7 @@ function renderPreloved(items = PRELOVED_ITEMS) {
     if (item.image) { const img = document.createElement('img'); img.src = item.image; img.alt = item.name; img.loading = 'lazy'; media.append(img); }
     else { media.classList.add('no-photo'); media.textContent = tr('preloved.noPhoto'); }
     const badge = document.createElement('span'); badge.className = 'status-badge'; badge.textContent = tr(`preloved.${item.status || 'available'}`); media.append(badge);
+    if (item.aiEdited) { const ai = document.createElement('span'); ai.className = 'ai-badge'; ai.textContent = tr('preloved.ai'); media.append(ai); }
     const brand = document.createElement('p'); brand.className = 'preloved-brand'; brand.textContent = item.brand;
     const name = document.createElement('h3'); name.textContent = item.name;
     const meta = document.createElement('p'); meta.className = 'preloved-meta'; meta.textContent = `${tr('preloved.size')} ${item.size} · ${tr(conditionKey[item.condition] || '')}`;

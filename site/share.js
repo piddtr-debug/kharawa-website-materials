@@ -14,7 +14,7 @@
       manual: 'ช่องนี้ยังโพสต์ให้อัตโนมัติไม่ได้ ให้คัดลอกแคปชั่นแล้วเปิดหน้าลงขายด้วยตัวเอง', open: 'เปิดหน้าลงขาย ↗',
       new: 'ใหม่ ป้ายยังอยู่', good: 'สภาพดี', used: 'สภาพผ่านการใช้งาน', size: 'ไซซ์', price: 'ราคา', ask: 'สอบถามราคา',
       cta: 'ทักสั่งได้ทาง LINE @737yiaxp',
-      ai: 'ภาพแต่งหรือสร้างด้วย AI', aiWarn: '⚠️ ถ้าแต่งภาพด้วย AI ต้องติ๊กช่องนี้ทุกครั้ง แคปชั่นจะมีคำกำกับให้อัตโนมัติ', aiLabel: '🤖 ภาพนี้สร้าง/แต่งด้วย AI',
+      ai: 'ภาพแต่งด้วย AI', aiWarn: '⚠️ ถ้าแต่งภาพด้วย AI ต้องติ๊กช่องนี้ทุกครั้ง แคปชั่นจะมีคำกำกับให้อัตโนมัติ', aiLabel: '🤖 ภาพนี้แต่งด้วย AI',
     },
     en: {
       share: 'Share / Post', title: 'Share this piece', close: 'Close',
@@ -26,7 +26,7 @@
       manual: 'This channel cannot be posted to automatically. Copy the caption and open the listing page yourself.', open: 'Open listing page ↗',
       new: 'Brand new with tags', good: 'Good condition', used: 'Pre-owned', size: 'Size', price: 'Price', ask: 'Ask for price',
       cta: 'Order on LINE @737yiaxp',
-      ai: 'Photo made or edited with AI', aiWarn: '⚠️ Tick this every time a photo was edited with AI. The caption will carry a label.', aiLabel: '🤖 Image created/edited with AI',
+      ai: 'Photo edited with AI', aiWarn: '⚠️ Tick this every time a photo was edited with AI. The caption will carry a label.', aiLabel: '🤖 Image edited with AI',
     },
   };
   const PLATFORMS = {
